@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { InicioComponent } from './core/components/inicio/inicio.component';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { CarouselComponent } from './core/components/carousel/carousel.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { FooterComponent } from './core/components/footer/footer.component';
     LoginComponent,
     InicioComponent,
     FooterComponent,
+    CarouselComponent,
     
   ],
   imports: [
