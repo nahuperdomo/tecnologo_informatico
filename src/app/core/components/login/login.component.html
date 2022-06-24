@@ -1,0 +1,18 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+    <img src="../../../../assets/LogoUTECLetras.png" class="logo"alt="Logo Utec" width="150rem" height="150rem">
+    <mat-form-field appearance="fill" class="usuario">
+      <mat-label>Usuario</mat-label> 
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="contrasena">
+      <mat-label>Introduce tu contraseña</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary">Iniciar Sesion</button>
+  
+  </div> 

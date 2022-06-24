@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" fxLayout="row">
+    <mat-toolbar-row>
+        
+      <span routerLink="/">
+        <img src="../../../../assets/LogoUTEC.png" class="logo"alt="Logo Utec" width="45rem" height="45rem">
+      </span>
+      <span fxFlex="2 1 auto"></span>
+      <a routerLink="/login" fxLayoutAlign="center center" fxHide fxShow.gt-xs mat-button >
+        Iniciar Sesion
+      </a>
+
+      <button fxLayoutAlign="center center" fxHide.gt-xs fxShow mat-button (click)="mostrarMenu()"> 
+        <mat-icon>menu</mat-icon>
+      </button>
+       
+    </mat-toolbar-row>
+
+</mat-toolbar>
+
+<mat-toolbar color="primary" fxLayout="column" fxLayoutAlign="space-around center" fxHide.gt-xs fxShow *ngIf="this.opciones == 0">
+    <mat-toolbar-row>
+       
+        <div>
+            <a routerLink="/login" fxLayoutAlign="center center" fxHide.gt-xs fxShow mat-button>
+                Iniciar Sesion
+              </a>
+        </div> 
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+
