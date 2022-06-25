@@ -11,13 +11,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from '../app-routing.module';
 import{MatInputModule} from '@angular/material/input';
+import { AbmDocumentosComponent } from './components/abm-documentos/abm-documentos.component';
 /* import { MatCarouselModule } from '@ngmodule/material-carousel';
  */
 
 
 @NgModule({
   declarations: [
-    ToolbarComponent
+    ToolbarComponent,
+    AbmDocumentosComponent
   ],
   imports: [
     CommonModule,
