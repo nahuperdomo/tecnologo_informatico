@@ -18,6 +18,7 @@ import { InicioComponent } from './core/components/inicio/inicio.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { CarouselComponent } from './core/components/carousel/carousel.component';
 import { AbmNoticiasComponent } from './core/components/abm-noticias/abm-noticias.component';
+import { NoticiasComponent } from './core/components/noticias/noticias.component';
 
 
 
@@ -28,7 +29,8 @@ import { AbmNoticiasComponent } from './core/components/abm-noticias/abm-noticia
     InicioComponent,
     FooterComponent,
     CarouselComponent,
-    AbmNoticiasComponent
+    AbmNoticiasComponent,
+    NoticiasComponent,
 
     
   ],
@@ -36,6 +38,8 @@ import { AbmNoticiasComponent } from './core/components/abm-noticias/abm-noticia
     CoreModule,
     BrowserModule,
     AppRoutingModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

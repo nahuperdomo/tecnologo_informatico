@@ -14,8 +14,11 @@ import  {MatInputModule} from '@angular/material/input';
 import { AbmNoticiasComponent } from './components/abm-noticias/abm-noticias.component';
 /**/ 
 import {MatSelectModule} from '@angular/material/select';
-import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
+import {MatCardModule} from '@angular/material/card';
+
+
+
 
 
 
@@ -48,7 +51,9 @@ import { HttpClientModule } from '@angular/common/http';
 
     MatSelectModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+
+    
 
     
   ],
@@ -65,6 +70,8 @@ import { HttpClientModule } from '@angular/common/http';
 
     MatSelectModule,
     MatCardModule,
+
+
 
 
   ]

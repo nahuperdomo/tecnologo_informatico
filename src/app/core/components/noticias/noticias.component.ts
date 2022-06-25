@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+
+
 @Component({
   selector: 'ns-noticias',
   templateUrl: './noticias.component.html',

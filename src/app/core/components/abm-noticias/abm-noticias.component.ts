@@ -19,6 +19,11 @@ export class AbmNoticiasComponent implements OnInit {
   public setEleccion (eleccion: string): void {
     this.eleccion = eleccion;
   }
+
+  public setSelected (noticia: Noticia): void {
+    this.selected = noticia;
+    console.log(this.selected);
+  }
   
   ngOnInit(): void {
     this.servNoticia.getNoticias().subscribe({

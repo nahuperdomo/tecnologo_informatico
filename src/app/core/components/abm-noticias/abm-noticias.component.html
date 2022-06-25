@@ -3,20 +3,21 @@
 </div>
 <br> 
 <!-- fxLayoutAlign="space-around center"   -->
-<div fxLayout="flex" fxLayoutAlign="space-around center" >
+<div fxLayout= "column" fxLayout.gt-xs="rox" fxLayoutAlign="space-around center" >
 
     <div fxLayout="column" fxFlex="20" >
         <h3>SELECCIONE UNA NOTICIA</h3>
         <mat-form-field appearance="fill">
             <mat-label>Select an option</mat-label>
-            <mat-select [(value)]="selected">
-            <mat-option *ngFor="let x of noticias" value={{x}}>{{x.id}}-{{x.titulo}}</mat-option>
+            <mat-select>
+            <mat-option  *ngFor="let x of noticias" (click)="setSelected(x)"  value={{x}}>{{x.id}}-{{x.titulo}}</mat-option>
             </mat-select>
 
         </mat-form-field>
-        <p *ngIf ="this.selected.id !=-1 ">You selected: {{selected}}</p>
+        <p *ngIf ="this.selected.id !=-1 ">Seleccino: {{selected}}</p>
         <section>
             <hr>
+            <br>
             <div class="example-button-row">
                 <button (click)="setEleccion('Nuevo')" mat-raised-button>+Nueva Noticia</button>
 
@@ -31,7 +32,7 @@
     <div *ngIf ="this.eleccion =='Vista'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
         <h3>Vista Preliminar:</h3>  
         <mat-card class="example-card">
-            <mat-card-title></mat-card-title>
+            <mat-card-title>{{this.selected.titulo}}</mat-card-title>
             <hr>
             <mat-card-title-group>
               <img mat-card-xl-image src="https://img2.rtv"  onerror='this.src="../../../assets/Noticia.png"' alt="https://img2.rtve.es/i/?w=1600&i=1591339409512.jpg">
