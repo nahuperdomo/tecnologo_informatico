@@ -10,14 +10,25 @@ import { MatSidenavModule} from  '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from '../app-routing.module';
-import{MatInputModule} from '@angular/material/input';
+import  {MatInputModule} from '@angular/material/input';
+import { AbmNoticiasComponent } from './components/abm-noticias/abm-noticias.component';
+/**/ 
+import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
+
 /* import { MatCarouselModule } from '@ngmodule/material-carousel';
  */
 
 
 @NgModule({
   declarations: [
-    ToolbarComponent
+    ToolbarComponent,
+
+
   ],
   imports: [
     CommonModule,
@@ -33,7 +44,12 @@ import{MatInputModule} from '@angular/material/input';
     AppRoutingModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+
+    MatSelectModule,
+    MatCardModule,
+    HttpClientModule
+
     
   ],
   exports:[
@@ -46,6 +62,11 @@ import{MatInputModule} from '@angular/material/input';
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
+
+    MatSelectModule,
+    MatCardModule,
+
+
   ]
 })
 export class CoreModule { }

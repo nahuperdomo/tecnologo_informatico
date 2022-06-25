@@ -17,6 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { InicioComponent } from './core/components/inicio/inicio.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { CarouselComponent } from './core/components/carousel/carousel.component';
+import { AbmNoticiasComponent } from './core/components/abm-noticias/abm-noticias.component';
+
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { CarouselComponent } from './core/components/carousel/carousel.component
     InicioComponent,
     FooterComponent,
     CarouselComponent,
+    AbmNoticiasComponent
+
     
   ],
   imports: [
