@@ -10,8 +10,19 @@ import { MatSidenavModule} from  '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from '../app-routing.module';
-import{MatInputModule} from '@angular/material/input';
-import { AbmDocumentosComponent } from './components/abm-documentos/abm-documentos.component';
+import  {MatInputModule} from '@angular/material/input';
+import { AbmNoticiasComponent } from './components/abm-noticias/abm-noticias.component';
+/**/ 
+import {MatSelectModule} from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
+import {MatCardModule} from '@angular/material/card';
+
+
+
+
+
+
+
 /* import { MatCarouselModule } from '@ngmodule/material-carousel';
  */
 
@@ -19,7 +30,8 @@ import { AbmDocumentosComponent } from './components/abm-documentos/abm-document
 @NgModule({
   declarations: [
     ToolbarComponent,
-    AbmDocumentosComponent
+
+
   ],
   imports: [
     CommonModule,
@@ -35,7 +47,14 @@ import { AbmDocumentosComponent } from './components/abm-documentos/abm-document
     AppRoutingModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+
+    MatSelectModule,
+    MatCardModule,
+    HttpClientModule,
+
+    
+
     
   ],
   exports:[
@@ -48,6 +67,13 @@ import { AbmDocumentosComponent } from './components/abm-documentos/abm-document
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
+
+    MatSelectModule,
+    MatCardModule,
+
+
+
+
   ]
 })
 export class CoreModule { }

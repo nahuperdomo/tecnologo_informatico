@@ -1,0 +1,103 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+    <h1>ABM Noticias</h1>
+</div>
+<br> 
+<!-- fxLayoutAlign="space-around center"   -->
+<div fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
+
+    <div fxLayout="column" fxFlex="20" >
+        <h3>SELECCIONE UNA NOTICIA</h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select>
+            <mat-option  *ngFor="let x of noticias" (click)="setSelected(x)"  value={{x}}>{{x.id}}-{{x.titulo}}</mat-option>
+            </mat-select>
+
+        </mat-form-field>
+        <p *ngIf ="this.selected.id !=-1 ">Seleccino: {{selected}}</p>
+        <section>
+            <hr>
+            <br>
+            <div class="example-button-row">
+                <button (click)="setEleccion('Nuevo')" mat-raised-button>+Nueva Noticia</button>
+
+            </div>
+        </section>
+        
+        
+
+    </div>
+<!--Para Vista-->
+ 
+    <div *ngIf ="this.eleccion =='Vista'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+        <h3>Vista Preliminar:</h3>  
+        <mat-card class="example-card">
+            <mat-card-title>{{this.selected.titulo}}</mat-card-title>
+            <hr>
+            <mat-card-title-group>
+              <img mat-card-xl-image src="https://img2.rtv"  onerror='this.src="../../../assets/Noticia.png"' alt="https://img2.rtve.es/i/?w=1600&i=1591339409512.jpg">
+            </mat-card-title-group>
+            <hr>
+            
+            <mat-card-content>
+              <p>{{this.selected.descripcion}}</p>
+           <hr>
+                <button (click)="setEleccion('Modificar')" mat-raised-button color="primary">*Editar Noticia</button>
+                <button mat-raised-button color="warn">Borrar Noticia</button>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+<!--Para Modificar-->
+    <div *ngIf ="this.eleccion =='Modificar'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+        
+        <h3>MODIFICAR:</h3>
+        <hr>
+        <input type="file" value= "https://img2.rtve.es/i/?w=1600&i=1591339409512.jpg"/>
+        
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>TITULO:</mat-label>
+            <input matInput placeholder="Ex. Pizza" value="Sushi">
+        </mat-form-field>
+
+        <!-- input para subir una imagen( change)="onFileChanged($event)"-->
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>DESCRIPCION:</mat-label>
+            <textarea matInput size="10" placeholder="Descripcion">El formulario con el cual el label está asociado (su formulario dueño). El valor de este atributo debe ser un ID del elemento en el mismo documento. Si este atributo no es especificado, este elemento deberia ser descendiente de un elemento . Este atributo permite ubicar el elemento label en cualquier lugar dentro del documento y no solo como descendiente de su respectivo formulario.</textarea>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>TITULO:</mat-label>
+            <input type="date" matInput>
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary">*Editar</button>
+        <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+    </div>
+    <!--Para Nuevo-->
+    <div *ngIf ="this.eleccion =='Nuevo'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+        
+        <h3>CREAR NOTICIA:</h3>
+        <hr>
+        <input type="file">
+        
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>TITULO:</mat-label>
+            <input matInput placeholder="Titulo">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>DESCRIPCION:</mat-label>
+            <textarea matInput size="10" placeholder="Descripcion"></textarea>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>TITULO:</mat-label>
+            <input type="date" matInput>
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary">+ Crear</button>
+        <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+    </div>
+
+</div>
