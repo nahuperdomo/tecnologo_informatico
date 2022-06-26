@@ -10,6 +10,10 @@ import { MatSidenavModule} from  '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from '../app-routing.module';
+<<<<<<< HEAD
+import{MatInputModule} from '@angular/material/input';
+import { AbmDocumentosComponent } from './components/abm-documentos/abm-documentos.component';
+=======
 import  {MatInputModule} from '@angular/material/input';
 import { AbmNoticiasComponent } from './components/abm-noticias/abm-noticias.component';
 /**/ 
@@ -23,6 +27,7 @@ import {MatCardModule} from '@angular/material/card';
 
 
 
+>>>>>>> noticias
 /* import { MatCarouselModule } from '@ngmodule/material-carousel';
  */
 
@@ -30,8 +35,12 @@ import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     ToolbarComponent,
+<<<<<<< HEAD
+    AbmDocumentosComponent
+=======
 
 
+>>>>>>> noticias
   ],
   imports: [
     CommonModule,
