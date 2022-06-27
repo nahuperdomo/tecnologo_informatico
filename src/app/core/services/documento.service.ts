@@ -14,4 +14,8 @@ export class DocumentoService {
   getDocumentos(page: number, pageSize: number) {
     return this.http.get<DocumentoPagedListResponse>('https://ria2022.test.softtero.com/api/Documentos/Paged/'+ page +'/'+ pageSize);
   }
+
+  getDocumentosActivos(tipo: string) {
+    return this.http.get<DocumentoPagedListResponse>('https://ria2022.test.softtero.com/api/Documentos/Activos?tipo=' + tipo);
+  }
 }

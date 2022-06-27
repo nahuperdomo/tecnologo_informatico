@@ -1,0 +1,51 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+    <h1>Documentos de interes</h1>
+</div>
+
+<div fxLayout="column" fxLayoutAlign="space-around center" >
+        <mat-tab-group>
+            <mat-tab (click)="setTipo('INFORMACION_CARRERA')" label="Informacion Carrera" >
+                <mat-card *ngFor="let doc in documentos" class="example-card">
+                    <mat-card-title>{{doc.titulo}}</mat-card-title>
+                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                    <mat-card-content>
+                      <p>{{doc.documentoPDF}}</p>
+                      <p>{{doc.titulo}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-button>LIKE</button>
+                      <button mat-button>SHARE</button>
+                    </mat-card-actions>
+                  </mat-card>
+                
+            </mat-tab>
+            <mat-tab (click)="setTipo('OPORTUNIDADES_LABORALES')" label="Oportunidades Laborales">
+                <mat-card *ngFor="let doc of documentos" class="example-card">
+                    <mat-card-title>{{doc.titulo}}</mat-card-title>
+                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                    <mat-card-content>
+                      <p>{{doc.documentoPDF}}</p>
+                      <p>{{doc.titulo}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-button>LIKE</button>
+                      <button mat-button>SHARE</button>
+                    </mat-card-actions>
+                  </mat-card>
+            </mat-tab>
+            <mat-tab (click)="setTipo('DATOS_DE_INTERES')" label="Datos de interes">
+                <mat-card *ngFor="let doc of documentos" class="example-card">
+                    <mat-card-title>{{doc.titulo}}</mat-card-title>
+                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                    <mat-card-content>
+                      <p>{{doc.documentoPDF}}</p>
+                      <p>{{doc.titulo}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-button>LIKE</button>
+                      <button mat-button>SHARE</button>
+                    </mat-card-actions>
+                  </mat-card>
+            </mat-tab>
+          </mat-tab-group>
+</div>

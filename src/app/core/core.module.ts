@@ -15,23 +15,15 @@ import { AbmDocumentosComponent } from './components/abm-documentos/abm-document
 import {MatSelectModule} from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
 
-
-
-
-
-
-
-
-/* import { MatCarouselModule } from '@ngmodule/material-carousel';
- */
 
 
 
 @NgModule({
   declarations: [
     ToolbarComponent,
-    AbmDocumentosComponent
+    AbmDocumentosComponent,
 
   ],
   imports: [
@@ -49,14 +41,10 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-
     MatSelectModule,
     MatCardModule,
     HttpClientModule,
-
-    
-
-    
+    MatTabsModule,
   ],
   exports:[
     ToolbarComponent,
@@ -68,13 +56,9 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
-
     MatSelectModule,
     MatCardModule,
-
-
-
-
+    MatTabsModule,
   ]
 })
 export class CoreModule { }
