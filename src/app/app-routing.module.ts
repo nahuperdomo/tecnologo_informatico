@@ -7,6 +7,9 @@ import { AbmNoticiasComponent } from './core/components/abm-noticias/abm-noticia
 import { NoticiasComponent } from './core/components/noticias/noticias.component';
 import { AbmDocumentosComponent } from './core/components/abm-documentos/abm-documentos.component';
 import { VerDocumentosComponent } from './core/components/ver-documentos/ver-documentos.component';
+import { AbmMateriasComponent } from './core/components/abm-materias/abm-materias.component';
+import { AbmUnidadesCurricularesComponent } from './core/components/abm-unidades-curriculares/abm-unidades-curriculares.component';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent } ,
    { path: 'hola', component: ToolbarComponent } , 
@@ -15,7 +18,10 @@ const routes: Routes = [
   { path: 'noticias', component: NoticiasComponent },
   { path: 'abm-documento', component: AbmDocumentosComponent },
   {path: 'ver-documentos', component: VerDocumentosComponent},
+  { path: 'abm-materias', component: AbmMateriasComponent },
+  { path: 'abm-u-c', component: AbmUnidadesCurricularesComponent },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

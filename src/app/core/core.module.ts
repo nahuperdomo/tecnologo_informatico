@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 
+import { AbmUnidadesCurricularesComponent } from './components/abm-unidades-curriculares/abm-unidades-curriculares.component';
+import { AbmMateriasComponent } from './components/abm-materias/abm-materias.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 
@@ -24,6 +27,8 @@ import {MatTabsModule} from '@angular/material/tabs';
   declarations: [
     ToolbarComponent,
     AbmDocumentosComponent,
+    AbmUnidadesCurricularesComponent,
+    AbmMateriasComponent
 
   ],
   imports: [
@@ -45,6 +50,11 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatCardModule,
     HttpClientModule,
     MatTabsModule,
+    ScrollingModule
+
+    
+
+    
   ],
   exports:[
     ToolbarComponent,
@@ -59,6 +69,11 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSelectModule,
     MatCardModule,
     MatTabsModule,
+    ScrollingModule
+
+
+
+
   ]
 })
 export class CoreModule { }
