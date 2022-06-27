@@ -15,7 +15,9 @@ import { AbmDocumentosComponent } from './components/abm-documentos/abm-document
 import {MatSelectModule} from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
-
+import { AbmUnidadesCurricularesComponent } from './components/abm-unidades-curriculares/abm-unidades-curriculares.component';
+import { AbmMateriasComponent } from './components/abm-materias/abm-materias.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 
@@ -30,7 +32,9 @@ import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     ToolbarComponent,
-    AbmDocumentosComponent
+    AbmDocumentosComponent,
+    AbmUnidadesCurricularesComponent,
+    AbmMateriasComponent
 
   ],
   imports: [
@@ -52,6 +56,7 @@ import {MatCardModule} from '@angular/material/card';
     MatSelectModule,
     MatCardModule,
     HttpClientModule,
+    ScrollingModule
 
     
 
@@ -70,6 +75,7 @@ import {MatCardModule} from '@angular/material/card';
 
     MatSelectModule,
     MatCardModule,
+    ScrollingModule
 
 
 

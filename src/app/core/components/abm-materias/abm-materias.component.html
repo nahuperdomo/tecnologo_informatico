@@ -1,0 +1,109 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+    <h1>ABM Materias</h1>
+</div>
+<br> 
+
+<div fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
+
+    <div *ngIf="this.eleccion =='Vista'" fxLayout="column" fxFlex="20" >
+        <h3>SELECCIONE UNA MATERIA</h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select>
+            <mat-option>holaaaaa</mat-option>
+            <mat-option  *ngFor="let x of materias" (click)="setSelected(x)"  value={{x}}>{{x.id}}-{{x.nombre}}</mat-option>
+            </mat-select>
+
+        </mat-form-field>
+        <p *ngIf ="this.selected.id !=-1 ">Seleccino: {{selected}}</p>
+        <section>
+            <hr>
+            <br>
+            <div class="example-button-row">
+                <button (click)="setEleccion('Nuevo')" mat-raised-button>+Nueva Materia</button>
+
+            </div>
+        </section>
+        
+        
+
+    </div>
+<!--Para Vista-->
+ 
+    <div *ngIf ="this.eleccion =='Vista'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+       <hr>
+       <br>
+        <h3>Vista Preliminar:</h3>  
+        <mat-card class="example-card">
+            <mat-card-title> 
+                <h3><b>ID: </b>{{this.selected.id}}</h3>
+            </mat-card-title>
+            <h3><b>NOMBRE: </b>{{this.selected.nombre}}</h3>
+            <hr>
+            <mat-card-content>
+                <h4><b>DESCRIPCION:</b></h4>
+                <p>{{this.selected.descripcion}}</p>
+                <br>
+                <h4><b>CREDITOS MINIMOS:</b> {{this.selected.creditosMinimos}}</h4>
+
+
+
+           <hr>
+
+                <button (click)="setEleccion('Modificar')" mat-raised-button color="primary">*Editar Materia</button>
+                <button mat-raised-button color="warn">Borrar Materia</button>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+<!--Para Modificar-->
+    <div *ngIf ="this.eleccion =='Modificar'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+        
+        <h3>MODIFICAR:</h3>
+        <hr>
+        <br>
+        <mat-form-field class="example-full-width mi_formulario" appearance="fill">
+            <mat-label>NOMBRE:</mat-label>
+            <input matInput placeholder="Ex. Pizza" value="{{this.selected.nombre}}">
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width mi_formulario" appearance="fill">
+            <mat-label>DESCRIPCION:</mat-label>
+            <textarea matInput size="10" placeholder="Descripcion" value="{{this.selected.nombre}}"></textarea>
+        </mat-form-field>
+        <mat-form-field class="example-full-width mi_formulario" appearance="fill">
+            <mat-label>CREDITOS MINIMOS:</mat-label>
+            <input type="number" matInput value="{{this.selected.creditosMinimos}}">
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary">*Editar</button>
+        <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+    </div>
+    <!--Para Nuevo-->
+    <div *ngIf ="this.eleccion =='Nuevo'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+        
+        <h3>CREAR MATERIA:</h3>
+        <hr>
+           
+        <br>
+        <mat-form-field class="example-full-width mi_formulario " appearance="fill">
+            <mat-label>NOMBRE:</mat-label>
+            <input matInput placeholder="Nombre">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width mi_formulario " appearance="fill">
+            <mat-label>DESCRIPCION:</mat-label>
+            <textarea matInput size="10" placeholder="Descripcion"></textarea>
+        </mat-form-field>
+        <mat-form-field class="example-full-width mi_formulario " appearance="fill">
+            <mat-label>CREDITOS MINIMOS:</mat-label>
+            <input type="number" matInput>
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary">+ Crear</button>
+        <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+    </div>
+
+</div>
+
