@@ -16,10 +16,11 @@ import {MatSelectModule} from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
-
 import { AbmUnidadesCurricularesComponent } from './components/abm-unidades-curriculares/abm-unidades-curriculares.component';
 import { AbmMateriasComponent } from './components/abm-materias/abm-materias.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 
@@ -50,7 +51,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatCardModule,
     HttpClientModule,
     MatTabsModule,
-    ScrollingModule
+    ScrollingModule,
+    MatPaginatorModule
 
     
 
@@ -69,10 +71,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatSelectModule,
     MatCardModule,
     MatTabsModule,
-    ScrollingModule
-
-
-
+    ScrollingModule,
+    MatPaginatorModule
 
   ]
 })
