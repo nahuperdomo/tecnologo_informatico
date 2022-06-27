@@ -6,14 +6,22 @@ export class UnidadCurricular {
     nombre: string;
     descripcion: string;
     creditos: number;
+    semestre: number;
     materia: Materia;
     previas: Previatura [] = [];
     
-    constructor(id: number, nombre: string, descripcion: string, creditos: number, materia: Materia) {
+    constructor(id: number, nombre: string, descripcion: string, creditos: number, semestre: number, materia: Materia, previas?: Previatura []) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.creditos = creditos;
         this.materia = materia;
+        this.semestre = semestre;
+        if (previas) {
+        this.previas = previas;
+        }
+        else {
+            this.previas = [];
+        }	
     }
 }

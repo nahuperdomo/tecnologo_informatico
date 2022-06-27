@@ -5,7 +5,7 @@
 <div fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
 
     <div *ngIf="this.eleccion =='Vista'" fxLayout="column" fxFlex="20" >
-        <h3>SELECCIONE UNA MATERIA</h3>
+        <h3>SELECCIONE UNA UNIDAD CURRICULAR</h3>
         <mat-form-field appearance="fill">
             <mat-label>Select an option</mat-label>
             <mat-select>
@@ -39,6 +39,7 @@
                  <p>{{this.selected.descripcion}}</p>
                  <br>
                  <h4><b>CREDITOS:</b> {{this.selected.creditos}}</h4>
+                 <h4><b>SEMESTRE:</b> {{this.selected.semestre}}</h4>
                 <hr>
                     <h3><b>MATERIA:</b>{{this.selected.materia.id}} - {{this.selected.materia.nombre}}</h3>
                 <hr>
@@ -46,14 +47,34 @@
                     <ul>
                         <li *ngFor="let x of this.selected.previas">{{x.id}}</li>
                     </ul>
-
-
- 
- 
             <hr>
- 
-                 <button (click)="setEleccion('Modificar')" mat-raised-button color="primary">*Editar Materia</button>
+                  <button (click)="setEleccion('Modificar')" mat-raised-button color="primary">*Editar Materia</button>
                  <button mat-raised-button color="warn">Borrar Materia</button>
              </mat-card-content>
          </mat-card>
+    </div>
+<!--Para Modificar-->
+<div *ngIf ="this.eleccion =='Modificar'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+        
+    <h3>MODIFICAR:</h3>
+    <hr>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>NOMBRE:</mat-label>
+        <input matInput placeholder="Nombre" value="{{selected.nombre}}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>DESCRIPCION:</mat-label>
+        <textarea matInput size="10" placeholder="Descripcion">{{selected.descripcion}}</textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>CREDITOS:</mat-label>
+        <input type="number" placeholder="Nombre" value="{{selected.creditos}}">
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary">*Editar</button>
+    <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+</div>
+    
+
+         
 </div>

@@ -24,13 +24,16 @@ export class AbmNoticiasComponent implements OnInit {
     this.selected = noticia;
     console.log(this.selected);
   }
-  
-  ngOnInit(): void {
-    this.servNoticia.getNoticias().subscribe({
-      next: value => this.noticias = value,
+
+  public getAllNoticias(): void {
+    this.servNoticia.getNoticias(1,2000).subscribe({
+      next: value => this.noticias = value.list,
       error: err => { alert('Error al cargar las noticias: ' + err) }
     });
-
+  }
+  
+  ngOnInit(): void {
+    this.getAllNoticias();
   }
 
 }
