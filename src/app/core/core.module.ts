@@ -12,8 +12,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from '../app-routing.module';
 import{MatInputModule} from '@angular/material/input';
 import { AbmDocumentosComponent } from './components/abm-documentos/abm-documentos.component';
-/* import { MatCarouselModule } from '@ngmodule/material-carousel';
- */
+import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 @NgModule({
@@ -35,7 +36,9 @@ import { AbmDocumentosComponent } from './components/abm-documentos/abm-document
     AppRoutingModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule
     
   ],
   exports:[
@@ -48,6 +51,7 @@ import { AbmDocumentosComponent } from './components/abm-documentos/abm-document
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
+    AbmDocumentosComponent
   ]
 })
 export class CoreModule { }
