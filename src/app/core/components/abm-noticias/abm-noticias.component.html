@@ -14,7 +14,7 @@
             </mat-select>
 
         </mat-form-field>
-        <p *ngIf ="this.selected.id !=-1 ">Seleccino: {{selected}}</p>
+        
         <section>
             <hr>
             <br>
@@ -35,7 +35,7 @@
             <mat-card-title>{{this.selected.titulo}}</mat-card-title>
             <hr>
             <mat-card-title-group>
-              <img mat-card-xl-image src="https://img2.rtv"  onerror='this.src="../../../assets/Noticia.png"' alt="https://img2.rtve.es/i/?w=1600&i=1591339409512.jpg">
+              <img mat-card-xl-image src="{{this.selected.imagen}}"  onerror='this.src="../../../assets/Noticia.png"' alt="https://img2.rtve.es/i/?w=1600&i=1591339409512.jpg">
             </mat-card-title-group>
             <hr>
             
@@ -67,7 +67,7 @@
             <textarea matInput size="10" placeholder="Descripcion">El formulario con el cual el label está asociado (su formulario dueño). El valor de este atributo debe ser un ID del elemento en el mismo documento. Si este atributo no es especificado, este elemento deberia ser descendiente de un elemento . Este atributo permite ubicar el elemento label en cualquier lugar dentro del documento y no solo como descendiente de su respectivo formulario.</textarea>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>TITULO:</mat-label>
+            <mat-label>FECHA CADUCIDAD:</mat-label>
             <input type="date" matInput>
         </mat-form-field>
         
