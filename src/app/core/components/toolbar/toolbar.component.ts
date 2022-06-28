@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
   public opciones = 1;
+  public menu = 0;
   constructor() { }
   ngOnInit(): void {
   }
@@ -17,5 +18,16 @@ export class ToolbarComponent implements OnInit {
     }else{
       this.opciones=1;
     }
+    
   }
+
+
+  mostrarOpciones():void{
+      if(this.menu==1){
+        this.menu=0;
+      }else{
+        this.menu=1;
+      }
+  }
+
 }

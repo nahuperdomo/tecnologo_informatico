@@ -1,10 +1,13 @@
 <mat-toolbar color="primary" fxLayout="row">
-    <mat-toolbar-row>
+    <mat-toolbar-row >
         
       <span routerLink="/">
         <img src="../../../../assets/LogoUTEC.png" class="logo"alt="Logo Utec" width="45rem" height="45rem">
       </span>
       <span fxFlex="2 1 auto"></span>
+      <button fxLayoutAlign="center center" fxHide fxShow.gt-xs mat-button (click)="mostrarOpciones()"> 
+        <mat-icon>menu</mat-icon>
+      </button>
       <a routerLink="/login" fxLayoutAlign="center center" fxHide fxShow.gt-xs mat-button >
         Iniciar Sesion
       </a>
@@ -26,6 +29,35 @@
               </a>
         </div> 
     </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-toolbar color="primary" fxLayout="column"   fxShow *ngIf="this.menu == 1">
+  <mat-toolbar-row>
+     
+      <div class="menuOpciones">
+          <a class="btn-mio" routerLink="/abm-documento" fxLayoutAlign="center center" fxShow mat-button>
+             ABM Documentos de interes
+            </a>
+            <a routerLink="/abm-materias" fxLayoutAlign="center center" fxShow mat-button>
+             ABM Materias
+            </a>
+            <a routerLink="/abm-noticias" fxLayoutAlign="center center" fxShow mat-button>
+              ABM Noticias
+             </a>
+             <a routerLink="/abm-u-c" fxLayoutAlign="center center" fxShow mat-button>
+              ABM Unidades Curriculares
+             </a>
+             <a routerLink="/noticias" fxLayoutAlign="center center" fxShow mat-button>
+              Noticias
+             </a>
+             <a routerLink="/ver-documentos" fxLayoutAlign="center center" fxShow mat-button>
+              Documentos
+             </a>
+             <a routerLink="/contacto" fxLayoutAlign="center center" fxShow mat-button>
+              Contacto
+             </a>
+      </div> 
+  </mat-toolbar-row>
 </mat-toolbar>
 
 

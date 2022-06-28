@@ -20,6 +20,7 @@ import { AbmUnidadesCurricularesComponent } from './components/abm-unidades-curr
 import { AbmMateriasComponent } from './components/abm-materias/abm-materias.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ContactoComponent } from './components/contacto/contacto.component';
 
 
 
@@ -29,7 +30,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ToolbarComponent,
     AbmDocumentosComponent,
     AbmUnidadesCurricularesComponent,
-    AbmMateriasComponent
+    AbmMateriasComponent,
+    ContactoComponent
 
   ],
   imports: [

@@ -5,3 +5,15 @@ span{
 span:hover{
     cursor: pointer;
 }
+
+.menuOpciones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+a:hover{
+    
+    background-color: aliceblue;
+}
