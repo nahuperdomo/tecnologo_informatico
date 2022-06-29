@@ -8,7 +8,7 @@ import { UnidadCurricular } from '../../models/unidad-curricular';
   styleUrls: ['./ver-unidad.component.css']
 })
 export class VerUnidadComponent implements OnInit {
-  @Input() unidad: UnidadCurricular;
+  @Input() unidad: any;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,7 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Materia } from '../../models/materia';
 import { UnidadCurricular } from '../../models/unidad-curricular';
-import {UnidadesSemestrales} from '../../models/unidades-semestrales';
 import {UnidadesCurricularesService} from '../../services/unidades-curriculares.service';
 
 @Component({
