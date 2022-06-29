@@ -12,6 +12,7 @@ export class NoticiasComponent implements OnInit {
   public pageSize = 10;
   public pageIndex = 0;
   public noticias : Noticia[] = [];
+  
   constructor(private servNoticia: NoticiaService) { }
 
   ngOnInit(): void {

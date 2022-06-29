@@ -21,7 +21,9 @@ import { AbmMateriasComponent } from './components/abm-materias/abm-materias.com
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ContactoComponent } from './components/contacto/contacto.component';
-
+import { UnidadesCurricularesComponent } from './components/unidades-curriculares/unidades-curriculares.component';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { VerUnidadComponent } from './components/ver-unidad/ver-unidad.component';
 
 
 
@@ -31,7 +33,9 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     AbmDocumentosComponent,
     AbmUnidadesCurricularesComponent,
     AbmMateriasComponent,
-    ContactoComponent
+    ContactoComponent,
+    UnidadesCurricularesComponent,
+    VerUnidadComponent
 
   ],
   imports: [
@@ -54,7 +58,8 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     HttpClientModule,
     MatTabsModule,
     ScrollingModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    CdkAccordionModule
 
     
 
@@ -74,7 +79,8 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     MatCardModule,
     MatTabsModule,
     ScrollingModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    CdkAccordionModule
 
   ]
 })
