@@ -24,6 +24,8 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { UnidadesCurricularesComponent } from './components/unidades-curriculares/unidades-curriculares.component';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { VerUnidadComponent } from './components/ver-unidad/ver-unidad.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 
 
@@ -35,8 +37,8 @@ import { VerUnidadComponent } from './components/ver-unidad/ver-unidad.component
     AbmMateriasComponent,
     ContactoComponent,
     UnidadesCurricularesComponent,
-    VerUnidadComponent
-
+    VerUnidadComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,10 @@ import { VerUnidadComponent } from './components/ver-unidad/ver-unidad.component
     MatTabsModule,
     ScrollingModule,
     MatPaginatorModule,
-    CdkAccordionModule
+    CdkAccordionModule,
+    ReactiveFormsModule,
+    FormsModule,
+
 
     
 
@@ -80,7 +85,11 @@ import { VerUnidadComponent } from './components/ver-unidad/ver-unidad.component
     MatTabsModule,
     ScrollingModule,
     MatPaginatorModule,
-    CdkAccordionModule
+    CdkAccordionModule,
+    ReactiveFormsModule,
+    FormsModule,
+
+
 
   ]
 })

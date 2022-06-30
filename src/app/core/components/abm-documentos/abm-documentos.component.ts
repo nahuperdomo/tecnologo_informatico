@@ -29,7 +29,7 @@ export class AbmDocumentosComponent implements OnInit {
   
   ngOnInit(): void {
     this.servDocumento.getDocumentos(1, 200).subscribe({
-      next: value => this.documentos = value.list,
+      next: value => console.log(value),
       error: err => { alert('Error al cargar los documentos: ' + err) }
     });
   }

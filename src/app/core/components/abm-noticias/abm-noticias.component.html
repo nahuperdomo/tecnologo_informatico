@@ -3,9 +3,9 @@
 </div>
 <br> 
 <!-- fxLayoutAlign="space-around center"   -->
-<div fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
+<div  fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
 
-    <div fxLayout="column" fxFlex="20" >
+    <div *ngIf ="this.eleccion =='Vista'" fxLayout="column" fxFlex="20" >
         <h3>SELECCIONE UNA NOTICIA</h3>
         <mat-form-field appearance="fill">
             <mat-label>Select an option</mat-label>
@@ -29,7 +29,8 @@
     </div>
 <!--Para Vista-->
  
-    <div *ngIf ="this.eleccion =='Vista'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+    <div *ngIf = "this.eleccion =='Vista'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+       <div *ngIf = "this.selected.id > 0">
         <h3>Vista Preliminar:</h3>  
         <mat-card class="example-card">
             <mat-card-title>{{this.selected.titulo}}</mat-card-title>
@@ -43,61 +44,76 @@
               <p>{{this.selected.descripcion}}</p>
            <hr>
                 <button (click)="setEleccion('Modificar')" mat-raised-button color="primary">*Editar Noticia</button>
-                <button mat-raised-button color="warn">Borrar Noticia</button>
+                <button mat-raised-button color="warn" (click)="setEleccion('Borrar')" >Borrar Noticia</button>
             </mat-card-content>
         </mat-card>
+         </div>
+        <div *ngIf = "this.selected.id ==-1">
+            <h2>SELECCIONE UNA NOTICIA</h2>
+        </div>
+    </div>
+    <!-- Para Borrar-->
+    <div *ngIf ="this.eleccion =='Borrar'" fxLayout="column" fxFlex="50"  fxLayoutAlign="center">
+        <h2>Borrar Noticia:</h2>
+        <br>
+        <h3>Seguro desea borrar: {{this.selected.titulo}} </h3>
+        <hr>               
+        
+        <button mat-raised-button color="warn" (click)="deleteNoticia ();" >Si, seguro</button>  
+        <button (click)="setEleccion('Vista')" mat-raised-button>No, atras</button>
 
     </div>
 <!--Para Modificar-->
-    <div *ngIf ="this.eleccion =='Modificar'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
-        
-        <h3>MODIFICAR:</h3>
-        <hr>
-        <input type="file" value= "https://img2.rtve.es/i/?w=1600&i=1591339409512.jpg"/>
-        
+<div *ngIf ="this.eleccion =='Modificar'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">  
+    <h3>MODIFICAR NOTICIA:</h3>
+    <hr>
+    <input type="file" (change)="subirFoto($event)">
+    
         <br>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>TITULO:</mat-label>
-            <input matInput placeholder="Ex. Pizza" value="Sushi">
+            <input matInput type="text" formControlName="newTitulo" value = "{{this.selected.titulo}}" #titulo>
         </mat-form-field>
 
-        <!-- input para subir una imagen( change)="onFileChanged($event)"-->
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>DESCRIPCION:</mat-label>
-            <textarea matInput size="10" placeholder="Descripcion">El formulario con el cual el label está asociado (su formulario dueño). El valor de este atributo debe ser un ID del elemento en el mismo documento. Si este atributo no es especificado, este elemento deberia ser descendiente de un elemento . Este atributo permite ubicar el elemento label en cualquier lugar dentro del documento y no solo como descendiente de su respectivo formulario.</textarea>
+            <textarea matInput value = "{{this.selected.descripcion}}" placeholder="Descripcion" #descripcion >{{this.selected.descripcion}}</textarea>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>FECHA CADUCIDAD:</mat-label>
-            <input type="date" matInput>
+            <input type="date" matInput #fecha >
         </mat-form-field>
         
-        <button mat-raised-button color="primary">*Editar</button>
+        <button mat-raised-button color="primary" (click)="setNoticia(titulo.value, descripcion.value, fecha.value);">*Editar</button>
         <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+  
     </div>
+    
     <!--Para Nuevo-->
-    <div *ngIf ="this.eleccion =='Nuevo'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
-        
+    
+    <form [formGroup]="newNoticiaForm" *ngIf ="this.eleccion =='Nuevo'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">  
         <h3>CREAR NOTICIA:</h3>
         <hr>
-        <input type="file">
+        <input type="file" (change)="subirFoto($event)">
         
-        <br>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>TITULO:</mat-label>
-            <input matInput placeholder="Titulo">
-        </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>TITULO:</mat-label>
+                <input matInput placeholder="Titulo" formControlName="newTitulo">
+            </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>DESCRIPCION:</mat-label>
-            <textarea matInput size="10" placeholder="Descripcion"></textarea>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>TITULO:</mat-label>
-            <input type="date" matInput>
-        </mat-form-field>
-        
-        <button mat-raised-button color="primary">+ Crear</button>
-        <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
-    </div>
-
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>DESCRIPCION:</mat-label>
+                <textarea matInput size="10" placeholder="Descripcion" formControlName="newDescripcion"></textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>FECHA CADUCIDAD:</mat-label>
+                <input type="date" matInput formControlName="newFechaCaducidad">
+            </mat-form-field>
+            
+            <button mat-raised-button (click)="nuevaNoticia()" color="primary">+ Crear</button>
+            <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+      
+        </form>
+  
 </div>

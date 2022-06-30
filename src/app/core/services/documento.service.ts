@@ -18,4 +18,12 @@ export class DocumentoService {
   getDocumentosActivos(tipo: string) {
     return this.http.get<DocumentoPagedListResponse>('https://ria2022.test.softtero.com/api/Documentos/Activos?tipo=' + tipo);
   }
+
+  newDocumento(documento: Documento) {
+    return this.http.post<Documento>('https://ria2022.test.softtero.com/api/Documentos', documento);
+  }
+
+  updateDocumento(documento: Documento) {
+    return this.http.put<Documento>('https://ria2022.test.softtero.com/api/Documentos', documento);
+  }
 }

@@ -21,5 +21,22 @@ export class NoticiaService {
   getNoticiasActivas() {
     return this.http.get<Noticia[]>('https://ria2022.test.softtero.com/api/Noticias/Activas');
   }
+
+  getNoticia(id: number) {
+    return this.http.get<Noticia>('https://ria2022.test.softtero.com/api/Noticias/'+id);
+  }
+
+  newNoticia(noticia: Noticia) {
+    return this.http.post<Noticia>('https://ria2022.test.softtero.com/api/Noticias', noticia);
+  }
+
+  updateNoticia(noticia: Noticia) {
+    return this.http.put<Noticia>('https://ria2022.test.softtero.com/api/Noticias/'+noticia.id, noticia);
+  }
+
+  deleteNoticia (id: number) {
+    return this.http.delete<Noticia>('https://ria2022.test.softtero.com/api/Noticias/'+id);
+  }
+
 }
 

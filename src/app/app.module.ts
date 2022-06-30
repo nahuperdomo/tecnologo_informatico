@@ -15,6 +15,7 @@ import { AuthInterceptorService } from './core/services/auth-interceptor.service
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import { AuthInterceptorService } from './core/services/auth-interceptor.service
     CarouselComponent,
     AbmNoticiasComponent,
     NoticiasComponent,
-    VerDocumentosComponent
+    VerDocumentosComponent,
   ],
   imports: [
     CoreModule,

@@ -4,7 +4,6 @@ import { AuthenticateService } from '../../services/authenticate.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
-
 @Component({
   selector: 'ns-login',
   templateUrl: './login.component.html',
@@ -16,29 +15,25 @@ export class LoginComponent implements OnInit {
 
   constructor(private servLogin : AuthenticateService ) { }
   
-  public loginForm = new FormGroup ({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+  public loginForm : FormGroup = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
   public logear(): void {
-    console.log(this.loginForm.controls['username'].value);
-    console.log(this.loginForm.controls['password'].value);
     let log = new LoginModel(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value);
-
-
-
     console.log(this.loginForm.value);
     this.servLogin.logear(log).subscribe({
-      next: value => console.log(value),
-      error: err => { alert('Error al cargar las noticias: ' + err) }
-      
+      next: value => localStorage.setItem('token', value.token),
+      error: err => { alert('Error al logear revise su usuario o contraseña') }
     });
+   if (localStorage.getItem('token') != null) {
+    window.location.href = '';
+   }
+
   }
 
   ngOnInit(): void {
   }
-
-
 
 }
