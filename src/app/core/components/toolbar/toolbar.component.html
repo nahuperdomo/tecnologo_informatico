@@ -5,10 +5,8 @@
         <img src="../../../../assets/LogoUTEC.png" class="logo"alt="Logo Utec" width="45rem" height="45rem">
       </span>
       <span fxFlex="2 1 auto"></span>
-      <button fxLayoutAlign="center center" fxHide fxShow.gt-xs mat-button (click)="mostrarOpciones()"> 
-        <mat-icon>menu</mat-icon>
-      </button>
-      <a routerLink="/login" fxLayoutAlign="center center" fxHide fxShow.gt-xs mat-button >
+      <<button class="example-standalone-trigger">Click me!</button>
+      <a *ngIf="this.session==false" routerLink="/login" fxLayoutAlign="center center" fxHide fxShow.gt-xs mat-button >
         Iniciar Sesion
       </a>
 
@@ -24,7 +22,7 @@
     <mat-toolbar-row>
        
         <div>
-            <a routerLink="/login" fxLayoutAlign="center center" fxHide.gt-xs fxShow mat-button>
+            <a *ngIf="this.session==false"  routerLink="/login" fxLayoutAlign="center center" fxHide.gt-xs fxShow mat-button>
                 Iniciar Sesion
               </a>
         </div> 
@@ -35,16 +33,16 @@
   <mat-toolbar-row>
      
       <div class="menuOpciones">
-          <a class="btn-mio" routerLink="/abm-documento" fxLayoutAlign="center center" fxShow mat-button>
+          <a *ngIf="this.session==true"class="btn-mio" routerLink="/abm-documento" fxLayoutAlign="center center" fxShow mat-button>
              ABM Documentos de interes
             </a>
-            <a routerLink="/abm-materias" fxLayoutAlign="center center" fxShow mat-button>
+            <a *ngIf="this.session==true" routerLink="/abm-materias" fxLayoutAlign="center center" fxShow mat-button>
              ABM Materias
             </a>
-            <a routerLink="/abm-noticias" fxLayoutAlign="center center" fxShow mat-button>
+            <a  *ngIf="this.session==true" routerLink="/abm-noticias" fxLayoutAlign="center center" fxShow mat-button>
               ABM Noticias
              </a>
-             <a routerLink="/abm-u-c" fxLayoutAlign="center center" fxShow mat-button>
+             <a *ngIf="this.session==true" routerLink="/abm-u-c" fxLayoutAlign="center center" fxShow mat-button>
               ABM Unidades Curriculares
              </a>
              <a routerLink="/noticias" fxLayoutAlign="center center" fxShow mat-button>

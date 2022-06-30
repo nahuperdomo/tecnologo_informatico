@@ -2,7 +2,7 @@
     <h1>ABM Noticias</h1>
 </div>
 <br> 
-<!-- fxLayoutAlign="space-around center"   -->
+
 <div  fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
 
     <div *ngIf ="this.eleccion =='Vista'" fxLayout="column" fxFlex="20" >
@@ -72,13 +72,13 @@
         <br>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>TITULO:</mat-label>
-            <input matInput type="text" formControlName="newTitulo" value = "{{this.selected.titulo}}" #titulo>
+            <input matInput type="text" #titulo value="{{this.selected.titulo}}">
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>DESCRIPCION:</mat-label>
-            <textarea matInput value = "{{this.selected.descripcion}}" placeholder="Descripcion" #descripcion >{{this.selected.descripcion}}</textarea>
-        </mat-form-field>
+            <mat-label>DESCRIPCION</mat-label>
+            <textarea matInput #descripcion >{{this.selected.descripcion}}</textarea>
+          </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>FECHA CADUCIDAD:</mat-label>
             <input type="date" matInput #fecha >

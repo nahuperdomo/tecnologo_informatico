@@ -8,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarComponent implements OnInit {
   public opciones = 1;
   public menu = 0;
-  constructor() { }
+  public session: boolean;
+  constructor() { 
+    if(localStorage.getItem("token")==null){
+      this.session=false;
+    }else{
+      this.session=true;
+    }
+  }
+  
   ngOnInit(): void {
   }
 
@@ -21,7 +29,6 @@ export class ToolbarComponent implements OnInit {
     
   }
 
-
   mostrarOpciones():void{
       if(this.menu==1){
         this.menu=0;
@@ -31,3 +38,4 @@ export class ToolbarComponent implements OnInit {
   }
 
 }
+

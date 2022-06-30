@@ -61,7 +61,6 @@ export class AbmNoticiasComponent implements OnInit {
         next: value => this.selected = value,
         error: err => { alert('Error al actualizar: ') }
       });
-      this.getAllNoticias();
       this.ngOnInit();
     }else{
       alert("Todos los campos son obligatorios");
@@ -75,7 +74,6 @@ export class AbmNoticiasComponent implements OnInit {
         next: value => this.selected = value,
         error: err => { alert('Error al cargar las noticias: ') }
       });
-      this.getAllNoticias();
       this.ngOnInit();
     }else{
       alert('Error al agregar la noticia, revise los campos');
@@ -87,21 +85,16 @@ export class AbmNoticiasComponent implements OnInit {
 
       error: err => { alert('Error al eliminar la noticia: ') }
     });
-    this.getAllNoticias();
+
     this.ngOnInit();
-    this.selected.id=-1;
+    this.setSelected(new Noticia(-1, "", "", "", ""));
   }
 
-
-  public getAllNoticias(): void {
+  ngOnInit(): void {
     this.servNoticia.getNoticias(1,200).subscribe({
       next: value => this.noticias = value.list,
       error: err => { alert('Error al cargar las noticias: ' + err) }
     });
-  }
-  
-  ngOnInit(): void {
-     this.getAllNoticias();
      this.imgen64 = "";
      this.setEleccion ("Vista");
   }

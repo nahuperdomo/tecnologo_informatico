@@ -13,5 +13,15 @@ export class MateriaService {
   getMaterias() {
     return this.http.get<Materia[]>('https://ria2022.test.softtero.com/api/Materias');
   }
+  newMateria(materia: Materia) {
+    return this.http.post<Materia>('https://ria2022.test.softtero.com/api/Materias', materia);
+  }
+
+  updateMateria(materia: Materia) {
+    return this.http.put<Materia>('https://ria2022.test.softtero.com/api/Materias/' + materia.id, materia);
+  }
+  deleteMateria(id: number) {
+    return this.http.delete<Materia>('https://ria2022.test.softtero.com/api/Materias/' + id);
+  }
 
 }
