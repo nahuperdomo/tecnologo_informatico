@@ -11,5 +11,6 @@ export class ContactoComponent implements OnInit {
 
   ngOnInit(): void {
   }
+//redirigir a la pagina principal
 
 }
