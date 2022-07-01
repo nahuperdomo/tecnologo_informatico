@@ -18,11 +18,21 @@
         </p>
       </mat-card-content>
     </mat-card>
-    <mat-paginator (click)="onPageChange($event)"
-      [length]="this.length"
-      [pageIndex]="this.pageIndex"
-      [pageSize]="this.pageSize"
-      aria-label="Selecciona la pagina">
-    </mat-paginator>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event"
+               aria-label="Select page"
+               (click)="paginador(pageEvent.pageIndex,pageEvent.pageSize)">
+</mat-paginator>
+
+<div *ngIf="pageEvent">
+  <h5>Page Change Event Properties</h5>
+  <div>List length: {{pageEvent.length}}</div>
+  <div>Page size: {{pageEvent.pageSize}}</div>
+  <div>Page index: {{pageEvent.pageIndex}}</div>
+</div>
+
+
 </div>
  
