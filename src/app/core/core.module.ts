@@ -28,7 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CargandoComponent } from './components/cargando/cargando.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import { VerNoticiaComponent } from './components/ver-noticia/ver-noticia.component';
 
 
 
@@ -42,8 +42,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     UnidadesCurricularesComponent,
     VerUnidadComponent,
     CargandoComponent,
-    
-   
+    VerNoticiaComponent
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,7 @@ import { NoticiasComponent } from './core/components/noticias/noticias.component
 import { VerDocumentosComponent } from './core/components/ver-documentos/ver-documentos.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './core/services/auth-interceptor.service';
+import { VerNoticiaComponent } from './core/components/ver-noticia/ver-noticia.component';
 
 
 

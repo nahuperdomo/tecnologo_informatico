@@ -15,7 +15,7 @@
     </div>
 
     <div class="carousel-item" *ngFor="let noticia of noticias">
-      <img src="{{noticia.imagen}}" class="d-block w-100" alt="...">
+      <img src="{{noticia.imagen}}" onerror='this.src="../../../assets/Noticia.png"' class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
        <h3 class="text-secondary"><b>{{noticia.titulo}}</b></h3>
         <p class="text-secondary">{{noticia.descripcion}}</p>

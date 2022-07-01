@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import{LoginComponent} from '../app/core/components/login/login.component';
 import {ToolbarComponent} from '../app/core/components/toolbar/toolbar.component';
@@ -12,6 +12,7 @@ import { AbmUnidadesCurricularesComponent } from './core/components/abm-unidades
 import { ContactoComponent } from './core/components/contacto/contacto.component';
 import { UnidadesCurricularesComponent } from './core/components/unidades-curriculares/unidades-curriculares.component';
 import { AuthenticateService } from './core/services/authenticate.service';
+import { VerNoticiaComponent } from './core/components/ver-noticia/ver-noticia.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent } ,
@@ -24,8 +25,8 @@ const routes: Routes = [
   { path: 'abm-materias', component: AbmMateriasComponent },
   { path: 'abm-u-c', component: AbmUnidadesCurricularesComponent },
   { path:'contacto', component:ContactoComponent},
-  { path:'unidades-curriculares', component:UnidadesCurricularesComponent}
-
+  { path:'unidades-curriculares', component:UnidadesCurricularesComponent},
+  {path:'noticias/:id', component:VerNoticiaComponent}
  
 
 ];

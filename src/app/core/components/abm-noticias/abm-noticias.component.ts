@@ -3,6 +3,8 @@ import { NoticiaService } from '../../services/noticia.service';
 import { Noticia } from '../../models/noticia';
 import { Observable } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -22,17 +24,9 @@ export class AbmNoticiasComponent implements OnInit {
     newFechaCaducidad: new FormControl ('',[Validators.required, Validators.minLength(1)])
   });
 
-  constructor(private servNoticia: NoticiaService) {  }
+  constructor(private servNoticia: NoticiaService, private router: Router) {  }
 
-  public setEleccion (eleccion: string): void {
-    this.eleccion = eleccion;
-  }
-
-  public setSelected (noticia: Noticia): void {
-    this.selected = noticia;
-    console.log(this.selected);
-  }
-  
+ 
   subirFoto (event: any) {
     const file = event.target.files[0];
     if(!file){
@@ -46,7 +40,7 @@ export class AbmNoticiasComponent implements OnInit {
       }
     }
   }
-
+/* 
   public setNoticia(titulo:string, descripcion:string,fecha:string): void {
     if(titulo!="" && descripcion!=""){
       if(fecha!=""){
@@ -65,14 +59,19 @@ export class AbmNoticiasComponent implements OnInit {
     }else{
       alert("Todos los campos son obligatorios");
     }
-  }
+  } */
   
   public nuevaNoticia (){
     if(this.newNoticiaForm.valid && this.imgen64!=""){
       this.selected = new Noticia (0, this.newNoticiaForm.controls['newTitulo'].value, this.newNoticiaForm.controls['newDescripcion'].value,this.imgen64, this.newNoticiaForm.controls['newFechaCaducidad'].value);
       this.servNoticia.newNoticia(this.selected).subscribe({
-        next: value => this.selected = value,
-        error: err => { alert('Error al cargar las noticias: ') }
+        next: value => {let id = value.id;
+                        alert("Noticia creada")
+                        this.newNoticiaForm.reset();
+                        this.router.navigate(['/noticias/'+id]);
+
+                      },
+        error: err => { alert('Error al agregar la noticia: ') }
       });
       this.ngOnInit();
     }else{
@@ -80,23 +79,17 @@ export class AbmNoticiasComponent implements OnInit {
     }
   }
 
-  public deleteNoticia (){
+/*  public deleteNoticia (){
     this.servNoticia.deleteNoticia(this.selected.id).subscribe({
 
       error: err => { alert('Error al eliminar la noticia: ') }
-    });
+    }); 
 
     this.ngOnInit();
     this.setSelected(new Noticia(-1, "", "", "", ""));
-  }
+  }  */
 
   ngOnInit(): void {
-    this.servNoticia.getNoticias(1,200).subscribe({
-      next: value => this.noticias = value.list,
-      error: err => { alert('Error al cargar las noticias: ' + err) }
-    });
-     this.imgen64 = "";
-     this.setEleccion ("Vista");
   }
 
 }

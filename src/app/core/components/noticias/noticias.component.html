@@ -6,7 +6,10 @@
  <div *ngIf="cargando == true" class="spinner" >
   <ns-cargando></ns-cargando>
  </div>
- 
+ <div class="nueva">
+  <button mat-raised-button  color="primary" routerLink="/abm-noticias" >Nueva Noticia</button>
+ </div>
+
   <mat-card *ngFor="let noticia of noticias" fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" class="noticia">
     <div fxFlex="20" fxLayoutAlign="space-around center" class="s">
       <img mat-card-image src="{{noticia.imagen}}" onerror='this.src="../../../assets/Noticia.png"' alt="Photo of a Shiba Inu" class ="noticia-img">
@@ -16,36 +19,20 @@
         <hr>
         <mat-card-content>
           <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+           {{noticia.descripcion}}
           </p>
         </mat-card-content>
         <mat-card-actions align="end">
-          <button mat-button>VER NOTICIA</button>
+          
+          <button mat-button routerLink="/noticias/{{noticia.id}}">VER NOTICIA</button>
         </mat-card-actions>
       </div>
-    </mat-card>
+    </mat-card> 
+
+ 
   
     <br>
-  
-    
-    
-    <!-- >
-   -->
-<!-- 
-<mat-card class="example-card"  *ngFor="let noticia of noticias">
-  
-    <div fxLayoutAlign="space-around center">
-        <img mat-card-lg-image src="{{noticia.imagen}}" onerror='this.src="../../../assets/Noticia.png"' alt="Photo of a Shiba Inu">
-    </div>
-    <hr>
-        <mat-card-title>{{noticia.titulo}}</mat-card-title>
-      <mat-card-content>
-        <p>
-          {{noticia.descripcion}}
-        </p>
-      </mat-card-content>
-    </mat-card>
--->  
+
 <mat-paginator *ngIf="cargando == false" [length]="length"
                [pageSize]="pageSize"
                [pageSizeOptions]="pageSizeOptions"
