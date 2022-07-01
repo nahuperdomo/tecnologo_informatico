@@ -70,7 +70,17 @@
         <mat-label>CREDITOS:</mat-label>
         <input type="number" placeholder="Nombre" value="{{selected.creditos}}">
     </mat-form-field>
-    
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>CREDITOS:</mat-label>
+        <input type="number" placeholder="Nombre" value="{{selected.creditos}}">
+    </mat-form-field>
+    <mat-label>SELECCIONE MATERA</mat-label>
+        <mat-select>
+        <mat-option>holaaaaa</mat-option>
+        <!-- ACA TENGO QUE PEDIR TODAS LAS MATERIAS-->
+        <mat-option  *ngFor="let x of unidadesCurriculares" (click)="setSelected(x)"  value={{x}}>{{x.id}}-{{x.nombre}}</mat-option>
+    </mat-select>
+
     <button mat-raised-button color="primary">*Editar</button>
     <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
 </div>

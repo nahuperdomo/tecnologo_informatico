@@ -1,10 +1,34 @@
 
 <div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
   <h1>NOTICIAS</h1>
-
-<hr>
-
-
+  <hr>
+ <!--NOTICIA--> 
+ 
+  <mat-card *ngFor="let noticia of noticias" fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" class="noticia">
+    <div fxFlex="20" fxLayoutAlign="space-around center" class="s">
+      <img mat-card-image src="{{noticia.imagen}}" onerror='this.src="../../../assets/Noticia.png"' alt="Photo of a Shiba Inu" class ="noticia-img">
+    </div>
+    <div fxFlex="70">
+        <mat-card-title>{{noticia.titulo}}</mat-card-title>
+        <hr>
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button>VER NOTICIA</button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  
+    <br>
+  
+    
+    
+    <!-- >
+   -->
+<!-- 
 <mat-card class="example-card"  *ngFor="let noticia of noticias">
   
     <div fxLayoutAlign="space-around center">
@@ -18,11 +42,22 @@
         </p>
       </mat-card-content>
     </mat-card>
-    <mat-paginator (click)="onPageChange($event)"
-      [length]="this.length"
-      [pageIndex]="this.pageIndex"
-      [pageSize]="this.pageSize"
-      aria-label="Selecciona la pagina">
-    </mat-paginator>
+-->  
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event"
+               aria-label="Select page"
+               (click)="paginador(pageEvent.pageIndex,pageEvent.pageSize)">
+</mat-paginator>
+
+<div *ngIf="pageEvent">
+  <h5>Page Change Event Properties</h5>
+  <div>List length: {{pageEvent.length}}</div>
+  <div>Page size: {{pageEvent.pageSize}}</div>
+  <div>Page index: {{pageEvent.pageIndex}}</div>
 </div>
+
+
+
  

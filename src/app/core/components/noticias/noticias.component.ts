@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NoticiaService } from '../../services/noticia.service';
 import { Noticia } from '../../models/noticia';
+import {PageEvent} from '@angular/material/paginator';
+
+type NewType = PageEvent;
 
 @Component({
   selector: 'ns-noticias',
@@ -8,24 +11,44 @@ import { Noticia } from '../../models/noticia';
   styleUrls: ['./noticias.component.css']
 })
 export class NoticiasComponent implements OnInit {
-  public length = 100;
-  public pageSize = 10;
-  public pageIndex = 0;
+  length = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10]
+  page = 0;
+
+  
+  pageEvent !: NewType;
+
+
   public noticias : Noticia[] = [];
+  
   constructor(private servNoticia: NoticiaService) { }
 
-  ngOnInit(): void {
-    this.getNoticias(1,5);
+  paginador(pagina: number, cantidad: number){
+    this.page=pagina;
+    this.pageSize=cantidad;
+    this.ngOnInit();
+    console.log(this.page);
+    console.log(this.pageSize);
+
   }
 
-  public getNoticias(offset: number, limit: number):void {
-    this.servNoticia.getNoticias(offset,limit).subscribe({
-      next: value => this.noticias = value.list,
+
+
+  ngOnInit(): void {
+    let inicio = this.page * this.pageSize;
+    let fin = inicio + this.pageSize;
+    this.servNoticia.getNoticias(inicio,fin).subscribe({
+      next: value => {this.noticias = value.list,
+                      this.length = value.size
+      },
       error: err => { alert('Error al cargar las noticias: ' + err) }
     });
-  }
-
-  public onPageChange(event: any): void {
-    console.log(this.pageIndex);
+    
+    for (let i = 0 ; i < this.noticias.length; i++) {
+      let noticia = this.noticias[i];
+      this.noticias[i].descripcion = noticia.descripcion.substring(0, 100);
+      this.noticias[i].descripcion = this.noticias[i].descripcion.concat ("...");
+    }
   }
 }

@@ -1,0 +1,42 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+    <h1>UNIDADES CURRICULARES</h1>
+</div>
+<br> 
+<div fxLayout= "row"  fxLayoutAlign="space-around center" >
+    <div fxLayout="column" fxFlex="80" gt-xs.fxFlex ="99"  fxLayoutAlign="center" >
+        <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+            *ngFor="let item of items; let index = index;"
+            #accordionItem="cdkAccordionItem"
+            class="example-accordion-item"
+            role="button"
+            tabindex="0"
+            [attr.id]="'accordion-header-' + index"
+            [attr.aria-expanded]="accordionItem.expanded"
+            [attr.aria-controls]="'accordion-body-' + index">
+            <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+                {{ item }}
+                <span class="example-accordion-item-description">
+                Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+                </span>
+            </div>
+            <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                
+                <mat-selection-list #shoes [multiple]="false">
+                    <a href="https://www.twitter.com/">
+                    <mat-list-option *ngFor="let unidad of unidadSemestral[0]" [value]="unidad">
+                      {{unidad.nombre + index}}
+                    </mat-list-option>
+                </a>
+                  </mat-selection-list>
+            </div>
+            </cdk-accordion-item>
+        </cdk-accordion>
+    </div>
+    
+</div>

@@ -10,6 +10,9 @@ import { CarouselComponent } from './core/components/carousel/carousel.component
 import { AbmNoticiasComponent } from './core/components/abm-noticias/abm-noticias.component';
 import { NoticiasComponent } from './core/components/noticias/noticias.component';
 import { VerDocumentosComponent } from './core/components/ver-documentos/ver-documentos.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './core/services/auth-interceptor.service';
+
 
 
 
@@ -22,7 +25,7 @@ import { VerDocumentosComponent } from './core/components/ver-documentos/ver-doc
     CarouselComponent,
     AbmNoticiasComponent,
     NoticiasComponent,
-    VerDocumentosComponent
+    VerDocumentosComponent,
   ],
   imports: [
     CoreModule,
@@ -32,7 +35,13 @@ import { VerDocumentosComponent } from './core/components/ver-documentos/ver-doc
 
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

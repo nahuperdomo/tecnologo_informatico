@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Materia } from '../../models/materia';
 import { MateriaService } from '../../services/materia.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -15,8 +16,15 @@ export class AbmMateriasComponent implements OnInit {
   public materias: Materia[] = [];
 
   constructor(private servMateria: MateriaService) { 
-    this.selected= new Materia(21, "Redes e Internet Ricas", "En este curos aprenderas mucho lo que tiene que ver con el Frontend en las paginas web, asi como angular y a implementar Freamworck",30);
+    this.selected= new Materia(-1, "", "",0);
   }
+
+  public newMateriaForm : FormGroup = new FormGroup({
+    newNombre : new FormControl('', [Validators.required,Validators.minLength(1)]),
+    newDescripcion: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    newCreditosMinimos: new FormControl ('',[Validators.required, Validators.min(0)])
+  });
+
 
   public setEleccion (eleccion: string): void {
     this.eleccion = eleccion;
@@ -27,12 +35,47 @@ export class AbmMateriasComponent implements OnInit {
     console.log(this.selected);
   }
 
+  public newMateria(): void {
+    if(this.newMateriaForm.valid){
+      let nuevaMateria = new Materia(0, this.newMateriaForm.value.newNombre, this.newMateriaForm.value.newDescripcion, this.newMateriaForm.value.newCreditosMinimos);
+      this.servMateria.newMateria(nuevaMateria).subscribe({
+        next: value => this.selected = value,
+        error: err => { alert('Error al crear la materia: ' + err) }
+    });
+    this.ngOnInit();
+    }else{
+      alert("Falla! Revise que tenga todos los campos");
+    }	
+  }
+  
+
+  public setMateria(nombre:string, descripcion:string, creditosMinimos:string): void {
+    if(nombre!="" && descripcion!="" && creditosMinimos!=""){
+      ///cambiar string por number
+      let nuevaMateria = new Materia(this.selected.id, nombre, descripcion, parseInt(creditosMinimos));
+      this.servMateria.updateMateria(nuevaMateria).subscribe({
+        next: value => this.selected = value,
+        error: err => { alert('Error al crear la materia: ' + err) }
+    });
+    this.ngOnInit();
+    }else{
+      alert("Falla! Revise que tenga todos los campos");
+    }
+  }
+
+  public deleteMateria(): void {
+    this.servMateria.deleteMateria(this.selected.id).subscribe({
+        error: err => { alert('Error al eliminar la materia: ' + err) }
+    });
+    this.setSelected(new Materia(-1, "", "", 0));
+    this.ngOnInit();
+  }
+
   ngOnInit(): void {
     this.servMateria.getMaterias().subscribe({
       next: value => this.materias = value,
       error: err => { alert('Error al cargar las materias: ' + err) }
     });
-
+    this.eleccion = "Vista";
   }
-
 }

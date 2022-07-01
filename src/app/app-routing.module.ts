@@ -10,18 +10,24 @@ import { VerDocumentosComponent } from './core/components/ver-documentos/ver-doc
 import { AbmMateriasComponent } from './core/components/abm-materias/abm-materias.component';
 import { AbmUnidadesCurricularesComponent } from './core/components/abm-unidades-curriculares/abm-unidades-curriculares.component';
 import { ContactoComponent } from './core/components/contacto/contacto.component';
+import { UnidadesCurricularesComponent } from './core/components/unidades-curriculares/unidades-curriculares.component';
+import { AuthenticateService } from './core/services/authenticate.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent } ,
-   { path: 'toolbar', component: ToolbarComponent } , 
+  { path: 'toolbar', component: ToolbarComponent } , 
   { path: '', component:InicioComponent },
   { path: 'abm-noticias', component: AbmNoticiasComponent },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'abm-documento', component: AbmDocumentosComponent },
-  {path: 'ver-documentos', component: VerDocumentosComponent},
+  { path: 'ver-documentos', component: VerDocumentosComponent},
   { path: 'abm-materias', component: AbmMateriasComponent },
   { path: 'abm-u-c', component: AbmUnidadesCurricularesComponent },
-  {path:'contacto', component:ContactoComponent}
+  { path:'contacto', component:ContactoComponent},
+  { path:'unidades-curriculares', component:UnidadesCurricularesComponent}
+
+ 
+
 ];
 
 
