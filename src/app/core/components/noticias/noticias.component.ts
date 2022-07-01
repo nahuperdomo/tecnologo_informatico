@@ -44,7 +44,11 @@ export class NoticiasComponent implements OnInit {
       },
       error: err => { alert('Error al cargar las noticias: ' + err) }
     });
+    
+    for (let i = 0 ; i < this.noticias.length; i++) {
+      let noticia = this.noticias[i];
+      this.noticias[i].descripcion = noticia.descripcion.substring(0, 100);
+      this.noticias[i].descripcion = this.noticias[i].descripcion.concat ("...");
+    }
   }
-
-
 }
