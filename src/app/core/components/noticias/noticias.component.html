@@ -3,6 +3,9 @@
   <h1>NOTICIAS</h1>
   <hr>
  <!--NOTICIA--> 
+ <div *ngIf="cargando == true" class="spinner" >
+  <ns-cargando></ns-cargando>
+ </div>
  
   <mat-card *ngFor="let noticia of noticias" fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" class="noticia">
     <div fxFlex="20" fxLayoutAlign="space-around center" class="s">
@@ -43,7 +46,7 @@
       </mat-card-content>
     </mat-card>
 -->  
-<mat-paginator [length]="length"
+<mat-paginator *ngIf="cargando == false" [length]="length"
                [pageSize]="pageSize"
                [pageSizeOptions]="pageSizeOptions"
                (page)="pageEvent = $event"
@@ -51,7 +54,7 @@
                (click)="paginador(pageEvent.pageIndex,pageEvent.pageSize)">
 </mat-paginator>
 
-<div *ngIf="pageEvent">
+<div *ngIf="pageEvent" >
   <h5>Page Change Event Properties</h5>
   <div>List length: {{pageEvent.length}}</div>
   <div>Page size: {{pageEvent.pageSize}}</div>

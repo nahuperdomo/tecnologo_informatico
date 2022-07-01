@@ -26,6 +26,9 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { VerUnidadComponent } from './components/ver-unidad/ver-unidad.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { CargandoComponent } from './components/cargando/cargando.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 
@@ -38,6 +41,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     ContactoComponent,
     UnidadesCurricularesComponent,
     VerUnidadComponent,
+    CargandoComponent,
+    
    
   ],
   imports: [
@@ -64,6 +69,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     CdkAccordionModule,
     ReactiveFormsModule,
     FormsModule,
+    MatProgressSpinnerModule,
 
 
     
@@ -88,6 +94,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     CdkAccordionModule,
     ReactiveFormsModule,
     FormsModule,
+    MatProgressSpinnerModule,
+    CargandoComponent
 
 
 
