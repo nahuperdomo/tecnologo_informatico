@@ -7,7 +7,7 @@
   <ns-cargando></ns-cargando>
  </div>
  <div class="nueva">
-  <button mat-raised-button  color="primary" routerLink="/abm-noticias" >Nueva Noticia</button>
+  <button mat-raised-button  color="primary" routerLink="/abm-noticias/-1" >Nueva Noticia</button>
  </div>
 
   <mat-card *ngFor="let noticia of noticias" fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" class="noticia">
@@ -28,12 +28,6 @@
         </mat-card-actions>
       </div>
     </mat-card> 
-<<<<<<< HEAD
-=======
-
- 
-  
->>>>>>> estilos
     <br>
 
 <mat-paginator *ngIf="cargando == false" [length]="length"
