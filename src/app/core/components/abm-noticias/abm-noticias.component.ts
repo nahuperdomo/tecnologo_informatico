@@ -93,7 +93,7 @@ export class AbmNoticiasComponent implements OnInit {
         complete: () => { this.cargando = false; }
         
       });
-      this.ngOnInit();
+      
     }else{
       alert('Error al agregar la noticia, revise los campos');
     }

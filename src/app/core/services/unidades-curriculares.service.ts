@@ -15,5 +15,13 @@ export class UnidadesCurricularesService {
   getUnidadesCurriculares() {
     return this.http.get<UnidadCurricular[]>('https://gr5-ria2022.test.softtero.com/api/UnidadesCurriculares');
   }
+  
+  getUnidadCurricular(id: number) {
+    return this.http.get<UnidadCurricular>('https://gr5-ria2022.test.softtero.com/api/UnidadesCurriculares/' + id);
+  }
+
+  newUnidadCurricular(unidad: UnidadCurricular) {
+    return this.http.post<UnidadCurricular>('https://gr5-ria2022.test.softtero.com/api/UnidadesCurriculares', unidad);
+  }
 
 }

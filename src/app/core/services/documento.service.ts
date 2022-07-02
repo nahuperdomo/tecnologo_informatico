@@ -16,7 +16,7 @@ export class DocumentoService {
   }
 
   getDocumentosActivos(tipo: string) {
-    return this.http.get<DocumentoPagedListResponse>('https://gr5-ria2022.test.softtero.com/api/Documentos/Activos?tipo=' + tipo);
+    return this.http.get<Documento[]>('https://gr5-ria2022.test.softtero.com/api/Documentos/Activos?tipo=' + tipo);
   }
 
   newDocumento(documento: Documento) {
