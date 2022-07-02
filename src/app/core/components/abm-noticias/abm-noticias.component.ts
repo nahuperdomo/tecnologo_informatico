@@ -35,7 +35,8 @@ export class AbmNoticiasComponent implements OnInit {
           this.newNoticiaForm.controls['newFechaCaducidad'].setValue(this.selected.fechaCaducidad);
           this.imgen64=this.selected.imagen;
         },
-        error: err => { alert('Error al obtener la noticia: ') },
+        error: err => { alert('Error al obtener la noticia: '),
+                          this.router.navigate(['/']);},
         complete: () => { this.cargando = false; }
       });
     }
@@ -75,29 +76,8 @@ export class AbmNoticiasComponent implements OnInit {
         error: err => { alert('Error al actualizar: ') }
       });
     }
-
   }
-  /* 
-  public setNoticia(titulo:string, descripcion:string,fecha:string): void {
-    if(titulo!="" && descripcion!=""){
-      if(fecha!=""){
-        this.selected.fechaCaducidad=fecha;
-      }
-      if (this.imgen64!=""){
-        this.selected.imagen=this.imgen64;
-      }
-      this.selected.titulo=titulo;
-      this.selected.descripcion=descripcion;
-      this.servNoticia.updateNoticia(this.selected).subscribe({
-        next: value => this.selected = value,
-        error: err => { alert('Error al actualizar: ') }
-      });
-      this.ngOnInit();
-    }else{
-      alert("Todos los campos son obligatorios");
-    }
-  } */
-  
+   
   public nuevaNoticia (){
     if(this.newNoticiaForm.valid && this.imgen64!=""){
       this.selected = new Noticia (0, this.newNoticiaForm.controls['newTitulo'].value, this.newNoticiaForm.controls['newDescripcion'].value,this.imgen64, this.newNoticiaForm.controls['newFechaCaducidad'].value);
@@ -108,23 +88,15 @@ export class AbmNoticiasComponent implements OnInit {
                         this.router.navigate(['/noticias/'+id]);
 
                       },
-        error: err => { alert('Error al agregar la noticia: ') }
+        error: err => { alert('Error al agregar la noticia: '),
+                    this.router.navigate(['/']);}
+        
       });
       this.ngOnInit();
     }else{
       alert('Error al agregar la noticia, revise los campos');
     }
   }
-
-/*  public deleteNoticia (){
-    this.servNoticia.deleteNoticia(this.selected.id).subscribe({
-
-      error: err => { alert('Error al eliminar la noticia: ') }
-    }); 
-
-    this.ngOnInit();
-    this.setSelected(new Noticia(-1, "", "", "", ""));
-  }  */
 
   ngOnInit(): void {
   }
