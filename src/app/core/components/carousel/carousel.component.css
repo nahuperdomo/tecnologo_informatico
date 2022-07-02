@@ -1,4 +1,8 @@
 img{
-  width: 30rem;
-  height: 30rem;
+  width: 55rem;
+  height: 37rem;
+
+}
+.texto{
+  width: fit-content;
 }
