@@ -13,7 +13,7 @@ export class UnidadesCurricularesService {
   constructor(private http: HttpClient) { }
 
   getUnidadesCurriculares() {
-    return this.http.get<UnidadCurricular[]>('https://ria2022.test.softtero.com/api/UnidadesCurriculares');
+    return this.http.get<UnidadCurricular[]>('https://gr5-ria2022.test.softtero.com/api/UnidadesCurriculares');
   }
 
 }

@@ -14,6 +14,7 @@ export class AbmMateriasComponent implements OnInit {
   public eleccion = "Vista";
   public selected: Materia;
   public materias: Materia[] = [];
+  cargando = true;
 
   constructor(private servMateria: MateriaService) { 
     this.selected= new Materia(-1, "", "",0);
@@ -27,7 +28,17 @@ export class AbmMateriasComponent implements OnInit {
 
 
   public setEleccion (eleccion: string): void {
-    this.eleccion = eleccion;
+    if(eleccion=="Modificar"){
+      this.newMateriaForm.controls['newNombre'].setValue(this.selected.nombre);
+      this.newMateriaForm.controls['newDescripcion'].setValue(this.selected.descripcion);
+      this.newMateriaForm.controls['newCreditosMinimos'].setValue(this.selected.creditosMinimos);
+    }
+    if(eleccion =="Nuevo"){
+      this.newMateriaForm.controls['newNombre'].setValue("");
+      this.newMateriaForm.controls['newDescripcion'].setValue("");
+      this.newMateriaForm.controls['newCreditosMinimos'].setValue("");
+    }
+    this.eleccion = eleccion;      
   }
 
   public setSelected (materia: Materia): void {
@@ -49,13 +60,12 @@ export class AbmMateriasComponent implements OnInit {
   }
   
 
-  public setMateria(nombre:string, descripcion:string, creditosMinimos:string): void {
-    if(nombre!="" && descripcion!="" && creditosMinimos!=""){
-      ///cambiar string por number
-      let nuevaMateria = new Materia(this.selected.id, nombre, descripcion, parseInt(creditosMinimos));
+  public setMateria(): void {
+    if(this.newMateriaForm.valid){
+      let nuevaMateria = new Materia(this.selected.id, this.newMateriaForm.value.newNombre, this.newMateriaForm.value.newDescripcion, this.newMateriaForm.value.newCreditosMinimos);
       this.servMateria.updateMateria(nuevaMateria).subscribe({
         next: value => this.selected = value,
-        error: err => { alert('Error al crear la materia: ' + err) }
+        error: err => { alert('Error al crear la materia: ' + err) },
     });
     this.ngOnInit();
     }else{
@@ -68,13 +78,16 @@ export class AbmMateriasComponent implements OnInit {
         error: err => { alert('Error al eliminar la materia: ' + err) }
     });
     this.setSelected(new Materia(-1, "", "", 0));
+    this.selected = new Materia(-1, "", "",0);
     this.ngOnInit();
   }
 
   ngOnInit(): void {
+    this.cargando= true;
     this.servMateria.getMaterias().subscribe({
       next: value => this.materias = value,
-      error: err => { alert('Error al cargar las materias: ' + err) }
+      error: err => { alert('Error al cargar las materias: ' + err) },
+      complete: () => { this.cargando = false; }
     });
     this.eleccion = "Vista";
   }
