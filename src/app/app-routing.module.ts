@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent } ,
   { path: 'toolbar', component: ToolbarComponent } , 
   { path: '', component:InicioComponent },
-  { path: 'abm-noticias', component: AbmNoticiasComponent },
+  { path: 'abm-noticias/:id', component: AbmNoticiasComponent },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'abm-documento', component: AbmDocumentosComponent },
   { path: 'ver-documentos', component: VerDocumentosComponent},

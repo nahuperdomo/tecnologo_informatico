@@ -12,8 +12,8 @@ type NewType = PageEvent;
 })
 export class NoticiasComponent implements OnInit {
   length = 0;
-  pageSize = 5;
-  pageSizeOptions: number[] = [5, 10]
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10];
   page = 0;
   cargando = true;
   

@@ -1,14 +1,17 @@
 <div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
-    <h1>Crear Noticia</h1>
+    <h1 *ngIf="selected.id == -1">CREAR NOTICIA</h1>
+    <h1 *ngIf="selected.id != -1">MODIFICAR NOTICIA</h1>
 </div>
 <br> 
+<div class="" *ngIf="cargando == true">
+    <ns-cargando></ns-cargando>
+</div>
 
     <!--Para Nuevo-->
-    <div class="example-container" fxLayoutAlign="center" class="crearNoticia">
+    <div *ngIf="cargando == false" class="example-container" fxLayoutAlign="center" class="crearNoticia">
     <form [formGroup]="newNoticiaForm" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">  
-        <h3>CREAR NOTICIA:</h3>
-        <hr>
-        <input type="file" (change)="subirFoto($event)">
+            <hr>
+            <input type="file" (change)="subirFoto($event)">
         
             <br>
             <mat-form-field class="example-full-width" appearance="fill">
@@ -18,16 +21,18 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>DESCRIPCION:</mat-label>
-                <textarea matInput size="10" placeholder="Descripcion" formControlName="newDescripcion"></textarea>
+                <textarea matInput size="10" placeholder="Descripcion" formControlName="newDescripcion"><p>{{this.selected.descripcion}}</p></textarea>
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>FECHA CADUCIDAD:</mat-label>
                 <input type="date" matInput formControlName="newFechaCaducidad">
             </mat-form-field>
             
-            <button mat-raised-button (click)="nuevaNoticia()" color="primary">+ Crear</button>
-            <button routerLink="/noticias" mat-raised-button  >Atras</button>
+            <button *ngIf="selected.id == -1" mat-raised-button (click)="nuevaNoticia()" color="primary">+ CREAR</button>
+            <button *ngIf="selected.id == -1" routerLink="/noticias" mat-raised-button  >ATRAS</button>
+            <button *ngIf="selected.id != -1" mat-raised-button (click)="setNoticia()" color="primary">EDITAR</button>
+            <button *ngIf="selected.id != -1" routerLink="/noticias/{{this.selected.id}}" mat-raised-button  >ATRAS</button>
       
-        </form>
+    </form>
 
 </div>

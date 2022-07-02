@@ -4,6 +4,7 @@ import { Noticia } from '../../models/noticia';
 import { Observable } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -14,9 +15,8 @@ import { Router } from '@angular/router';
 })
 export class AbmNoticiasComponent implements OnInit {
   public selected :Noticia = new Noticia(-1, "", "", "", "");
-  public eleccion = "Vista";
-  public noticias : Noticia[] = [];
   public imgen64: string = "";
+  cargando = false;
 
   public newNoticiaForm : FormGroup = new FormGroup({
     newTitulo : new FormControl('', [Validators.required,Validators.minLength(1)]),
@@ -24,7 +24,22 @@ export class AbmNoticiasComponent implements OnInit {
     newFechaCaducidad: new FormControl ('',[Validators.required, Validators.minLength(1)])
   });
 
-  constructor(private servNoticia: NoticiaService, private router: Router) {  }
+  constructor(private servNoticia: NoticiaService, private router: Router,private rutaActiva: ActivatedRoute) {  
+    if (this.rutaActiva.snapshot.params['id']>=0) {
+      this.cargando = true;
+      this.servNoticia.getNoticia(this.rutaActiva.snapshot.params['id']).subscribe({
+        next: value => {
+          this.selected = value;
+          this.newNoticiaForm.controls['newTitulo'].setValue(this.selected.titulo);
+          this.newNoticiaForm.controls['newDescripcion'].setValue(this.selected.descripcion);
+          this.newNoticiaForm.controls['newFechaCaducidad'].setValue(this.selected.fechaCaducidad);
+          this.imgen64=this.selected.imagen;
+        },
+        error: err => { alert('Error al obtener la noticia: ') },
+        complete: () => { this.cargando = false; }
+      });
+    }
+  }
 
  
   subirFoto (event: any) {
@@ -40,7 +55,29 @@ export class AbmNoticiasComponent implements OnInit {
       }
     }
   }
-/* 
+  public setNoticia():void{
+    if(this.newNoticiaForm.valid){
+      if(this.newNoticiaForm.controls['newFechaCaducidad'].value!=""){
+        this.selected.fechaCaducidad=this.newNoticiaForm.controls['newFechaCaducidad'].value;
+      }
+      if(this.imgen64!=""){
+        this.selected.imagen=this.imgen64;
+      }
+      this.selected.titulo=this.newNoticiaForm.controls['newTitulo'].value;
+      this.selected.descripcion=this.newNoticiaForm.controls['newDescripcion'].value;
+      this.servNoticia.updateNoticia(this.selected).subscribe({
+        next: value => {let id = value.id;
+                          alert("Noticia Modificada")
+                          this.newNoticiaForm.reset();
+                          this.router.navigate(['/noticias/'+id]);
+
+                        },
+        error: err => { alert('Error al actualizar: ') }
+      });
+    }
+
+  }
+  /* 
   public setNoticia(titulo:string, descripcion:string,fecha:string): void {
     if(titulo!="" && descripcion!=""){
       if(fecha!=""){
