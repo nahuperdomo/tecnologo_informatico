@@ -15,6 +15,6 @@ export class PreviasService {
 
   agregarPrevia(unidadCurricular: number, previa: number, tipoPrevia: string ) {
     let p = new PreviaCreateDTO(unidadCurricular, previa, tipoPrevia);
-    return this.http.post<Previatura>('https://ria2022.test.softtero.com/api/Previaturas', p);
+    return this.http.post<Previatura>('https://gr5-ria2022.test.softtero.com/api/Previaturas', p);
   }
 }
