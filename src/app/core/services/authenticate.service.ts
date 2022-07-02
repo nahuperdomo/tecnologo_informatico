@@ -11,6 +11,6 @@ export class AuthenticateService {
   constructor(private http: HttpClient) { }
 
   logear (login: LoginModel): Observable<any> {
-    return this.http.post<string>('https://ria2022.test.softtero.com/api/Authenticate/login', login);
+    return this.http.post<string>('https://gr5-ria2022.test.softtero.com/api/Authenticate/login', login);
   }
 }
