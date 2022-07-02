@@ -1,8 +1,8 @@
 <div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
     <h1>Documentos de interes</h1>
 </div>
-
 <div fxLayout="column" fxLayoutAlign="space-around center" >
+  <button  mat-raised-button color='primary' routerLink="/abm-documento" >Nuevo documento</button>
         <mat-tab-group>
             <mat-tab (click)="setTipo('INFORMACION_CARRERA')" label="Informacion Carrera" >
                 <mat-card *ngFor="let doc in documentos" class="example-card">

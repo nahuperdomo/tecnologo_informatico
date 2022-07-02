@@ -22,10 +22,7 @@ export class NoticiasComponent implements OnInit {
   public noticias : Noticia[] = [];
   
   constructor(private servNoticia: NoticiaService) {
-    let completo = "hsakljghlkdfsjlksdfajlksdfajlsdfkjfdslkjsdflkjsdfalkdjsflksdfajklsdfjldfksjsdlfkjsdljsadlkjsdafljsdaflksadfjlsadfkdgff"
-    completo = completo.slice(0,5);
-    completo=completo.concat ("...");
-      console.log(completo);    
+
    }
 
   paginador(pagina: number, cantidad: number){
@@ -66,11 +63,6 @@ export class NoticiasComponent implements OnInit {
       error: err => { alert('Error al cargar las noticias: ' + err)},
       complete: () => {this.cargando  = false;}
     });
-    /*
-    for (let i = 0 ; i <this.noticias.length; i++) {
-      this.noticias[i].descripcion = this.noticias[i].descripcion.slice(0,100);
-      this.noticias[i].descripcion.concat ("...");
-    }
-    this.cargando = bool;*/
+
   }
 }

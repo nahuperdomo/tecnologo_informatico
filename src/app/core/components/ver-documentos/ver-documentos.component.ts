@@ -17,6 +17,7 @@ export class VerDocumentosComponent implements OnInit {
   constructor(private servDocumento: DocumentoService) { }
 
   ngOnInit(): void {
+
     this.servDocumento.getDocumentosActivos(this.tipo).subscribe({
       next: value => this.documentos = value.list,
       error: err => { alert('Error al cargar las noticias: ' + err) }

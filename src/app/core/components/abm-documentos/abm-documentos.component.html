@@ -1,111 +1,38 @@
 <div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
-    <h1>ABM Documentos</h1>
+    <h1>CREAR DOCUMENTO</h1>
 </div>
 <br> 
-<!-- fxLayoutAlign="space-around center"  -->
 <div fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
+<!--Para crear-->
+    <div fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
 
-    <div fxLayout="column" fxFlex="20" *ngIf="this.eleccion =='Vista' or this.eleccion == 'Modificar'" >
-        <h3>SELECCIONE UN DOCUMENTO</h3>
-        <mat-form-field appearance="fill">
-            <mat-label>Select an option</mat-label>
-            <mat-select>
-            <mat-option  *ngFor="let x of documentos" (click)="setSelected(x)"  value={{x}}>{{x.id}}-{{x.titulo}}</mat-option>
-            </mat-select>
-
-        </mat-form-field>
-        <p *ngIf ="this.selected.id !=-1 ">Selecciono: {{selected}}</p>
-        <section>
-            <hr>
-            <br>
-            <div class="example-button-row">
-                <button (click)="setEleccion('Nuevo')" mat-raised-button>+Nuevo Documento</button>
-
-            </div>
-        </section>
-        
-        
-
-    </div>
-<!--Para Vista-->
- 
-    <div *ngIf ="this.eleccion =='Vista'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
-        <h3>Vista Preliminar:</h3>  
-        <mat-card class="example-card">
-            <mat-card-title>{{this.selected.titulo}}</mat-card-title>
-            <hr>
-            <mat-card-title-group>
-              <img mat-card-xl-image src="https://img2.rtv"  onerror='this.src="../../../assets/Noticia.png"' alt="https://img2.rtve.es/i/?w=1600&i=1591339409512.jpg">
-            </mat-card-title-group>
-            <hr>
-            
-            <mat-card-content>
-              <p>{{this.selected.titulo}}</p>
-           <hr>
-                <button (click)="setEleccion('Modificar')" mat-raised-button color="primary">*Editar Documento</button>
-                <button mat-raised-button color="warn">Borrar Documento</button>
-            </mat-card-content>
-        </mat-card>
-
-    </div>
-<!--Para Modificar-->
-    <div *ngIf ="this.eleccion =='Modificar'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
-        
-        <h3>MODIFICAR:</h3>
         <hr>
         <br>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>TITULO:</mat-label>
-            <input matInput placeholder="Ex. Pizza" value="Sushi">
-        </mat-form-field>
-
-        <!-- input para subir una documento( change)="onFileChanged($event)"-->
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>CATEGORIA:</mat-label>
-            <mat-select>
-                <mat-option value="INFORMACION_CARRERA">INFORMACION_CARRERA</mat-option>
-                <mat-option value="OPORTUNIDADES_LABORALES">OPORTUNIDADES_LABORALES</mat-option>
-                <mat-option value="DATOS_DE_INTERES">DATOS_DE_INTERES</mat-option>
-           </mat-select>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>ESTADO:</mat-label>
-            <mat-select>
-                <mat-option value="true">Activo</mat-option>
-                <mat-option value="false">Inactivo</mat-option>
-           </mat-select>
-        </mat-form-field>
-        
-        <button mat-raised-button color="primary">*Editar</button>
-        <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+        <form action="" fxLayout="column" fxFlex="60"  fxLayoutAlign="center" [formGroup]="newDocumentoForm" >
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>TITULO:</mat-label>
+                <input formControlName="newTitulo" matInput placeholder="Ej. Teorico RIA">
+            </mat-form-field>
+    
+            <!-- input para subir una documento( change)="onFileChanged($event)"-->
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>CATEGORIA:</mat-label>
+                <mat-select formControlName="newTipo">
+                    <mat-option selected value="INFORMACION_CARRERA">INFORMACION_CARRERA</mat-option>
+                    <mat-option value="OPORTUNIDADES_LABORALES">OPORTUNIDADES_LABORALES</mat-option>
+                    <mat-option value="DATOS_DE_INTERES">DATOS_DE_INTERES</mat-option>
+               </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>ESTADO:</mat-label>
+                <mat-select formControlName="newEstado" >
+                    <mat-option  value="true">Activo</mat-option>
+                    <mat-option value="false">Inactivo</mat-option>
+               </mat-select>
+            </mat-form-field>
+            
+            <button mat-raised-button color="primary" (click)="newDocumento()">Crear</button>
+            <button mat-raised-button routerLink="/ver-documentos">Atras</button>
+        </form>
     </div>
-    <!--Para Nuevo-->
-    <div *ngIf ="this.eleccion =='Nuevo'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
-        
-        <h3>CREAR DOCUMENTO:</h3>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>TITULO:</mat-label>
-            <input matInput placeholder="Titulo">
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>CATEGORIA:</mat-label>
-            <mat-select>
-                <mat-option value="INFORMACION_CARRERA">INFORMACION_CARRERA</mat-option>
-                <mat-option value="OPORTUNIDADES_LABORALES">OPORTUNIDADES_LABORALES</mat-option>
-                <mat-option value="DATOS_DE_INTERES">DATOS_DE_INTERES</mat-option>
-           </mat-select>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>ESTADO:</mat-label>
-            <mat-select>
-                <mat-option value="true">Activo</mat-option>
-                <mat-option value="false">Inactivo</mat-option>
-           </mat-select>
-        </mat-form-field>
-        
-        <button mat-raised-button color="primary">+ Crear</button>
-        <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
-    </div>
-
 </div>
