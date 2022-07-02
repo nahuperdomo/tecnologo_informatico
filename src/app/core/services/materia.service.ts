@@ -11,17 +11,17 @@ export class MateriaService {
   constructor(private http: HttpClient) { }
 
   getMaterias() {
-    return this.http.get<Materia[]>('https://ria2022.test.softtero.com/api/Materias');
+    return this.http.get<Materia[]>('https://gr5-ria2022.test.softtero.com/api/Materias');
   }
   newMateria(materia: Materia) {
-    return this.http.post<Materia>('https://ria2022.test.softtero.com/api/Materias', materia);
+    return this.http.post<Materia>('https://gr5-ria2022.test.softtero.com/api/Materias', materia);
   }
 
   updateMateria(materia: Materia) {
-    return this.http.put<Materia>('https://ria2022.test.softtero.com/api/Materias/' + materia.id, materia);
+    return this.http.put<Materia>('https://gr5-ria2022.test.softtero.com/api/Materias/' + materia.id, materia);
   }
   deleteMateria(id: number) {
-    return this.http.delete<Materia>('https://ria2022.test.softtero.com/api/Materias/' + id);
+    return this.http.delete<Materia>('https://gr5-ria2022.test.softtero.com/api/Materias/' + id);
   }
 
 }

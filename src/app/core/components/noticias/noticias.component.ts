@@ -16,16 +16,16 @@ export class NoticiasComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10];
   page = 0;
   cargando = true;
-  
   pageEvent !: NewType;
 
 
   public noticias : Noticia[] = [];
   
   constructor(private servNoticia: NoticiaService) {
-    if(this.cargando == true){
-      
-    }
+    let completo = "hsakljghlkdfsjlksdfajlksdfajlsdfkjfdslkjsdflkjsdfalkdjsflksdfajklsdfjldfksjsdlfkjsdljsadlkjsdafljsdaflksadfjlsadfkdgff"
+    completo = completo.slice(0,5);
+    completo=completo.concat ("...");
+      console.log(completo);    
    }
 
   paginador(pagina: number, cantidad: number){
@@ -37,24 +37,40 @@ export class NoticiasComponent implements OnInit {
 
   }
 
+  public cortadorString(not:Noticia[]): Noticia[]{
+    for (let i = 0 ; i <not.length; i++) {
+      if(not[i].titulo.length>100){
+      not[i].titulo = not[i].titulo.slice(0,100);
+      not[i].titulo = not[i].titulo.concat ("...");
+      }
+      if(not[i].descripcion.length>300){
+      not[i].descripcion = not[i].descripcion.slice(0,350);
+      not[i].descripcion = not[i].descripcion.concat ("...");
+      }
+    }
+    return not
+    
+  }
+  
 
 
 
   ngOnInit(): void {
+    let bool=true;
     let inicio = this.page * this.pageSize;
     let fin = inicio + this.pageSize;
     this.servNoticia.getNoticias(inicio,fin).subscribe({
-      next: value => {this.noticias = value.list,
+      next: value => {this.noticias = this.cortadorString(value.list) ,
                       this.length = value.size
       },
       error: err => { alert('Error al cargar las noticias: ' + err)},
-      complete: () => {this.cargando = false;}
+      complete: () => {this.cargando  = false;}
     });
-    
-    for (let i = 0 ; i < this.noticias.length; i++) {
-      let noticia = this.noticias[i];
-      this.noticias[i].descripcion = noticia.descripcion.substring(0, 100);
-      this.noticias[i].descripcion = this.noticias[i].descripcion.concat ("...");
+    /*
+    for (let i = 0 ; i <this.noticias.length; i++) {
+      this.noticias[i].descripcion = this.noticias[i].descripcion.slice(0,100);
+      this.noticias[i].descripcion.concat ("...");
     }
+    this.cargando = bool;*/
   }
 }

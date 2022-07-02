@@ -89,7 +89,8 @@ export class AbmNoticiasComponent implements OnInit {
 
                       },
         error: err => { alert('Error al agregar la noticia: '),
-                    this.router.navigate(['/']);}
+                    this.router.navigate(['/']);},
+        complete: () => { this.cargando = false; }
         
       });
       this.ngOnInit();
