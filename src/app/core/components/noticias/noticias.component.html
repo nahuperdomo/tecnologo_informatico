@@ -1,0 +1,53 @@
+
+<div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+  <h1>NOTICIAS</h1>
+  <hr>
+ <!--NOTICIA--> 
+ <div *ngIf="cargando == true" class="spinner" >
+  <ns-cargando></ns-cargando>
+ </div>
+ <div class="nueva">
+  <button mat-raised-button  color="primary" routerLink="/abm-noticias" >Nueva Noticia</button>
+ </div>
+
+  <mat-card *ngFor="let noticia of noticias" fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" class="noticia">
+    <div fxFlex="20" fxLayoutAlign="space-around center" class="s">
+      <img mat-card-image src="{{noticia.imagen}}" onerror='this.src="../../../assets/Noticia.png"' alt="Photo of a Shiba Inu" class ="noticia-img">
+    </div>
+    <div fxFlex="70">
+        <mat-card-title>{{noticia.titulo}}</mat-card-title>
+        <hr>
+        <mat-card-content>
+          <p>
+           {{noticia.descripcion}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          
+          <button mat-button routerLink="/noticias/{{noticia.id}}">VER NOTICIA</button>
+        </mat-card-actions>
+      </div>
+    </mat-card> 
+
+ 
+  
+    <br>
+
+<mat-paginator *ngIf="cargando == false" [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event"
+               aria-label="Select page"
+               (click)="paginador(pageEvent.pageIndex,pageEvent.pageSize)">
+</mat-paginator>
+
+<div *ngIf="pageEvent" >
+  <h5>Page Change Event Properties</h5>
+  <div>List length: {{pageEvent.length}}</div>
+  <div>Page size: {{pageEvent.pageSize}}</div>
+  <div>Page index: {{pageEvent.pageIndex}}</div>
+</div>
+
+
+
+ 
