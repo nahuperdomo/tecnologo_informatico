@@ -10,10 +10,10 @@
     </div>
 
     <div *ngIf="this.eleccion =='Vista' && this.cargando == false" fxLayout="column" fxFlex="20" >
-        <h3 *ngIf="this.materias.length" > 0" >SELECCIONE UNA MATERIA</h3>
+        <h3 *ngIf="this.materias.length" >SELECCIONE UNA MATERIA</h3>
         <mat-form-field appearance="fill">
             <mat-label *ngIf="this.materias.length" >Select an option</mat-label>
-                <mat-select>
+            <mat-select>
                 <mat-option  *ngFor="let x of materias" (click)="setSelected(x)"  value={{x}}>{{x.id}}-{{x.nombre}}</mat-option>
             </mat-select>
 

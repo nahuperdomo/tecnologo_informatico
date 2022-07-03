@@ -21,6 +21,7 @@ export class AbmDocumentosComponent implements OnInit {
   public selected :Documento = new Documento(0, "Documento1", "Programacion", "soyunpdf", true);
   public eleccion = "Vista";
   public documentos : Documento[] = [];
+  public pdf64 = "";
 
   constructor(private servDocumento: DocumentoService,  private router: Router) { }
 
@@ -34,12 +35,21 @@ export class AbmDocumentosComponent implements OnInit {
   }
 
   public newDocumento():void{
-    if(this.newDocumentoForm.valid){
+    if(this.newDocumentoForm.valid && this.pdf64.length > 0){
       this.selected.titulo=this.newDocumentoForm.controls['newTitulo'].value;
       this.selected.tipo=this.newDocumentoForm.controls['newTipo'].value;
       this.selected.activo=this.newDocumentoForm.controls['newEstado'].value;
+      this.selected.documentoPDF = this.pdf64;
+      if(this.newDocumentoForm.controls['newEstado'].value=="true"){
+        this.selected.activo=true;
+      } else {
+        this.selected.activo=false;
+      }
+    
+      console.log(this.selected.activo);
+      console.log(this.selected);
       this.servDocumento.newDocumento(this.selected).subscribe({
-        next: value => {let id = value.id;
+        next: value =>  {let id = value.id;
                           alert("Noticia Modificada")
                           this.newDocumentoForm.reset();
                           this.router.navigate(['/documentos/']);
@@ -49,12 +59,38 @@ export class AbmDocumentosComponent implements OnInit {
       });
     }
   }
-  
-  ngOnInit(): void {
-    this.servDocumento.getDocumentos(1, 200).subscribe({
-      next: value => console.log(value),
-      error: err => { alert('Error al cargar los documentos: ' + err) }
+/* por si lo necesitamos
+  modificar(){
+    this.selected.titulo = "Tablas de inportancia, todos los estudiantes descarguen";
+    this.selected.tipo = "INFORMACION_CARRERA";
+    this.selected.documentoPDF = this.pdf64;
+    this.selected.activo = true;
+    this.selected.id = 6;
+    this.servDocumento.updateDocumento(this.selected.id,this.selected).subscribe({
+      next: value =>  {let id = value.id;
+                        alert("Documento Modificada")
+                        this.router.navigate(['/documentos/']);
+                      },
+      error: err => { alert('Error al modificar documento: ' + err) }
     });
+  }
+*/
+  subirPDF (event: any) {
+    const file = event.target.files[0];
+    if(!file){
+      console.log("ERROR: No se selecciono ninguna imagen");
+    }
+    else{
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.pdf64 = reader.result as string;
+      }
+    }
+  }
+
+  ngOnInit(): void {
+
   }
 
 

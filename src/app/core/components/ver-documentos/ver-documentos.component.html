@@ -1,51 +1,64 @@
 <div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
-    <h1>Documentos de interes</h1>
+    <h1>DOCUMENTOS DE INTERES</h1>
 </div>
 <div fxLayout="column" fxLayoutAlign="space-around center" >
   <button  mat-raised-button color='primary' routerLink="/abm-documento" >Nuevo documento</button>
-        <mat-tab-group>
+        <mat-tab-group (selectedIndexChange) ="setTipo (''+$event)">
             <mat-tab (click)="setTipo('INFORMACION_CARRERA')" label="Informacion Carrera" >
-                <mat-card *ngFor="let doc in documentos" class="example-card">
-                    <mat-card-title>{{doc.titulo}}</mat-card-title>
-                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                    <mat-card-content>
-                      <p>{{doc.documentoPDF}}</p>
-                      <p>{{doc.titulo}}</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                      <button mat-button>LIKE</button>
-                      <button mat-button>SHARE</button>
-                    </mat-card-actions>
+          <br>
+              <div *ngIf="cargando == true" class="spinner" >
+                <ns-cargando></ns-cargando>
+               </div>
+               <div *ngFor="let doc of documentosInformacion">
+                <mat-card  class="example-card">
+                    <mat-card-title-group>
+                      <mat-card-title>{{doc.titulo}}</mat-card-title>
+                      <mat-card-subtitle>
+                         <button  mat-raised-button color='primary' (click)="onClickDownloadPdf(doc.documentoPDF,doc.titulo)">DESCARGAR</button> 
+                      </mat-card-subtitle>
+                      <img mat-card-sm-image src="../../../../assets/documentoPDF.png" >
+                    </mat-card-title-group>
                   </mat-card>
-                
+                  <br>
+                </div>
             </mat-tab>
+            
             <mat-tab (click)="setTipo('OPORTUNIDADES_LABORALES')" label="Oportunidades Laborales">
-                <mat-card *ngFor="let doc of documentos" class="example-card">
-                    <mat-card-title>{{doc.titulo}}</mat-card-title>
-                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                    <mat-card-content>
-                      <p>{{doc.documentoPDF}}</p>
-                      <p>{{doc.titulo}}</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                      <button mat-button>LIKE</button>
-                      <button mat-button>SHARE</button>
-                    </mat-card-actions>
+              <br>
+              <div *ngIf="cargando == true" class="spinner" >
+                <ns-cargando></ns-cargando>
+               </div>
+              <div *ngFor="let doc of documentosOportunidades">
+                <mat-card  class="example-card">
+                    <mat-card-title-group>
+                      <mat-card-title>{{doc.titulo}}</mat-card-title>
+                      <mat-card-subtitle>
+                         <button  mat-raised-button color='primary' (click)="onClickDownloadPdf(doc.documentoPDF,doc.titulo)">DESCARGAR</button> 
+                      </mat-card-subtitle>
+                      <img mat-card-sm-image src="../../../../assets/documentoPDF.png" >
+                    </mat-card-title-group>
                   </mat-card>
+                  <br>
+                </div>
             </mat-tab>
-            <mat-tab (click)="setTipo('DATOS_DE_INTERES')" label="Datos de interes">
-                <mat-card *ngFor="let doc of documentos" class="example-card">
-                    <mat-card-title>{{doc.titulo}}</mat-card-title>
-                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                    <mat-card-content>
-                      <p>{{doc.documentoPDF}}</p>
-                      <p>{{doc.titulo}}</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                      <button mat-button>LIKE</button>
-                      <button mat-button>SHARE</button>
-                    </mat-card-actions>
+            <mat-tab (event)="setTipo('DATOS_DE_INTERES')" label="Datos de interes">
+              <br>
+              <div *ngIf="cargando == true" class="spinner" >
+                <ns-cargando></ns-cargando>
+               </div>
+              <div *ngFor="let doc of documentosInteres">
+                <mat-card  class="example-card">
+                    <mat-card-title-group>
+                      <mat-card-title>{{doc.titulo}}</mat-card-title>
+                      <mat-card-subtitle>
+                         <button  mat-raised-button color='primary' (click)="onClickDownloadPdf(doc.documentoPDF,doc.titulo)">DESCARGAR</button> 
+                      </mat-card-subtitle>
+                      <img mat-card-sm-image src="../../../../assets/documentoPDF.png" >
+                    </mat-card-title-group>
                   </mat-card>
+                  <br>
+                </div>
             </mat-tab>
           </mat-tab-group>
+
 </div>

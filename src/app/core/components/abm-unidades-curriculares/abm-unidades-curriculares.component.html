@@ -1,9 +1,65 @@
 <div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
-    <h1>ABM UNIDADES CURRICULARES</h1>
+    <h1>NUEVA UNIDADES CURRICULARES</h1>
 </div>
 <br> 
-<div fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
+<div *ngIf="cargando == false" class="example-container" fxLayoutAlign="center" class="crearNoticia">
+    <form [formGroup]="newUnidadForm" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">  
+            <hr>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>NOMBRE:</mat-label>
+                <input matInput placeholder="Titulo" formControlName="newNombre">
+            </mat-form-field>
 
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>DESCRIPCION:</mat-label>
+                <textarea matInput size="10" placeholder="Descripcion" formControlName="newDescripcion"></textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>CREDITOS</mat-label>
+                <input matInput type="number" #creditos formControlName="newCreditos">
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+           
+                <mat-label>SEMESTRE:</mat-label>
+                <mat-select formControlName = "newSemestre">
+                    <mat-option value="1">Semestre 1</mat-option>
+                    <mat-option value="2">Semestre 2</mat-option>
+                    <mat-option value="3">Semestre 3</mat-option>
+                    <mat-option value="4">Semestre 4</mat-option>
+                    <mat-option value="5">Semestre 5</mat-option>
+                    <mat-option value="6">Semestre 6</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>SELECCIONE MATERIA</mat-label>
+                <mat-select formControlName = "newMateria">
+                    <mat-option *ngFor="let m of materias" value="{{m.id}}">{{m.nombre}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+            <mat-select *ngIf="this.previas.length > 0"  formControlName="newPrevias" multiple>
+                <mat-option *ngFor="let p of previas" value="{{p.id}}">{{p.nombre}}</mat-option>
+            </mat-select>
+          
+           
+     
+            
+            <button *ngIf="selected.id == -1" mat-raised-button (click)="nuevaUnidad()" color="primary">+ CREAR</button>
+            <button *ngIf="selected.id == -1" routerLink="/noticias" mat-raised-button  >ATRAS</button>
+
+            
+      <!--     <button *ngIf="selected.id != -1" mat-raised-button (click)="setNoticia()" color="primary">EDITAR</button>
+            <button *ngIf="selected.id != -1" routerLink="/noticias/{{this.selected.id}}" mat-raised-button  >ATRAS</button>
+         -->
+
+    </form>
+
+</div>
+
+
+<!--
     <div *ngIf="this.eleccion =='Vista'" fxLayout="column" fxFlex="20" >
         <h3>SELECCIONE UNA UNIDAD CURRICULAR</h3>
         <mat-form-field appearance="fill">
@@ -23,7 +79,7 @@
             </div>
         </section>
     </div>
-<!--Para Vista-->
+Para Vista
     <div *ngIf ="this.eleccion =='Vista'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
         <hr>
         <br>
@@ -53,7 +109,7 @@
              </mat-card-content>
          </mat-card>
     </div>
-<!--Para Modificar-->
+Para Modificar
 <div *ngIf ="this.eleccion =='Modificar'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
         
     <h3>MODIFICAR:</h3>
@@ -77,7 +133,7 @@
     <mat-label>SELECCIONE MATERA</mat-label>
         <mat-select>
         <mat-option>holaaaaa</mat-option>
-        <!-- ACA TENGO QUE PEDIR TODAS LAS MATERIAS-->
+        <ACA TENGO QUE PEDIR TODAS LAS MATERIAS
         <mat-option  *ngFor="let x of unidadesCurriculares" (click)="setSelected(x)"  value={{x}}>{{x.id}}-{{x.nombre}}</mat-option>
     </mat-select>
 
@@ -86,5 +142,8 @@
 </div>
     
 
+        
+-->
+
          
-</div>
+

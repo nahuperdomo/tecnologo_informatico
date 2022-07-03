@@ -29,6 +29,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CargandoComponent } from './components/cargando/cargando.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { VerNoticiaComponent } from './components/ver-noticia/ver-noticia.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -69,6 +71,8 @@ import { VerNoticiaComponent } from './components/ver-noticia/ver-noticia.compon
     ReactiveFormsModule,
     FormsModule,
     MatProgressSpinnerModule,
+    MatAutocompleteModule,
+    MatSlideToggleModule
 
 
     
@@ -94,7 +98,9 @@ import { VerNoticiaComponent } from './components/ver-noticia/ver-noticia.compon
     ReactiveFormsModule,
     FormsModule,
     MatProgressSpinnerModule,
-    CargandoComponent
+    CargandoComponent,
+    MatAutocompleteModule,
+    MatSlideToggleModule
 
 
 

@@ -8,6 +8,11 @@
 
         <hr>
         <br>
+   
+            <hr>
+            <input type="file" (change)="subirPDF($event)">
+        
+            <br>
         <form action="" fxLayout="column" fxFlex="60"  fxLayoutAlign="center" [formGroup]="newDocumentoForm" >
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>TITULO:</mat-label>
@@ -33,6 +38,7 @@
             
             <button mat-raised-button color="primary" (click)="newDocumento()">Crear</button>
             <button mat-raised-button routerLink="/ver-documentos">Atras</button>
+
         </form>
     </div>
 </div>
