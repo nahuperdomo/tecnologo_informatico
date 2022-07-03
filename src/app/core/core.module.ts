@@ -31,6 +31,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { VerNoticiaComponent } from './components/ver-noticia/ver-noticia.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { TodosDocumentosComponent } from './components/todos-documentos/todos-documentos.component';
 
 
 
@@ -44,7 +45,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     UnidadesCurricularesComponent,
     VerUnidadComponent,
     CargandoComponent,
-    VerNoticiaComponent
+    VerNoticiaComponent,
+    TodosDocumentosComponent
   ],
   imports: [
     CommonModule,

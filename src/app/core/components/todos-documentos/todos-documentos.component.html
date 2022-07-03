@@ -1,0 +1,46 @@
+
+<div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+    <h1>DOCUMENTOS</h1>
+    <hr>
+   <!--NOTICIA--> 
+   <div *ngIf="cargando == true" class="spinner" >
+    <ns-cargando></ns-cargando>
+   </div>
+   <div class="nueva">
+    <button mat-raised-button  color="primary" routerLink="/abm-noticias" >Nuevo Documento</button>
+   </div>
+  
+    <mat-card *ngFor="let documento of documentos" fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" class="noticia">
+
+      <div fxFlex="70">
+          <mat-card-title>{{documento.titulo}}</mat-card-title>
+          <hr>
+          <mat-card-actions align="end">
+            <button mat-button>Modificar</button>
+            <button mat-button>Eliminar</button>
+            <button mat-button >Ver Documento</button>
+          </mat-card-actions>
+        </div>
+      </mat-card> 
+  
+   
+      <br>
+  
+  <mat-paginator *ngIf="cargando == false" [length]="length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="pageEvent = $event"
+                 aria-label="Select page"
+                 (click)="paginador(pageEvent.pageIndex,pageEvent.pageSize)">
+  </mat-paginator>
+  
+  <div *ngIf="pageEvent" >
+    <h5>Page Change Event Properties</h5>
+    <div>List length: {{pageEvent.length}}</div>
+    <div>Page size: {{pageEvent.pageSize}}</div>
+    <div>Page index: {{pageEvent.pageIndex}}</div>
+  </div>
+  
+  
+  
+   

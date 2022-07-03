@@ -13,6 +13,7 @@ import { ContactoComponent } from './core/components/contacto/contacto.component
 import { UnidadesCurricularesComponent } from './core/components/unidades-curriculares/unidades-curriculares.component';
 import { AuthenticateService } from './core/services/authenticate.service';
 import { VerNoticiaComponent } from './core/components/ver-noticia/ver-noticia.component';
+import { TodosDocumentosComponent } from './core/components/todos-documentos/todos-documentos.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent } ,
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path:'contacto', component:ContactoComponent},
   { path:'unidades-curriculares', component:UnidadesCurricularesComponent},
   {path:'noticias/:id', component:VerNoticiaComponent},
-  
+  {path:'todos-los-documentos', component:TodosDocumentosComponent}
  
 
 ];

@@ -9,7 +9,7 @@
         <ns-cargando></ns-cargando>
     </div>
 
-    <div *ngIf="this.eleccion =='Vista' && this.cargando == false" fxLayout="column" fxFlex="20" >
+    <div class="estilo" *ngIf="this.eleccion =='Vista' && this.cargando == false" fxLayout="column" fxFlex="20" >
         <h3 *ngIf="this.materias.length" >SELECCIONE UNA MATERIA</h3>
         <mat-form-field appearance="fill">
             <mat-label *ngIf="this.materias.length" >Select an option</mat-label>
@@ -73,8 +73,8 @@
     <button (click)="setEleccion('Vista')" mat-raised-button>No, atras</button>
 </div>
 <!--Para Modificar/Nuevo-->
-    <form *ngIf ="this.eleccion =='Modificar'||this.eleccion == 'Nuevo' && this.cargando == false" fxLayout="column" fxFlex="60"  fxLayoutAlign="center" [formGroup]="newMateriaForm">
-        <div  fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+    <form class="estilo"  *ngIf ="this.eleccion =='Modificar'||this.eleccion == 'Nuevo' && this.cargando == false" fxLayout="column" fxFlex="60"  fxLayoutAlign="center" [formGroup]="newMateriaForm">
+        <div class="estilo" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
             <h3 *ngIf ="this.eleccion=='Modificar'">MODIFICAR:</h3>
             <h3 *ngIf ="this.eleccion=='Nuevo'"> CREAR MATERIA:</h3>
             <hr>
