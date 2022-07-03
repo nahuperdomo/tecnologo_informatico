@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Documento } from '../../models/documento';
 import { DocumentoService } from '../../services/documento.service';
+import {CargandoComponent} from '../../components/cargando/cargando.component';
+
 @Component({
   selector: 'ns-ver-documentos',
   templateUrl: './ver-documentos.component.html',
@@ -11,6 +13,7 @@ export class VerDocumentosComponent implements OnInit {
   public documentosInteres : Documento[] = [];
   public documentosOportunidades : Documento[] = [];
   public documentosInformacion : Documento[] = [];
+  public cargando = true;
 
   public tipo = "INFORMACION_CARRERA";
 
@@ -45,10 +48,12 @@ export class VerDocumentosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cargando = true;
     let documentos: Documento[] = [];
     this.servDocumento.getDocumentosActivos(this.tipo).subscribe({
       next: value =>{ this.reparto(value)  },
-      error: err => { alert('Error al cargar las noticias: ' + err) }
+      error: err => { alert('Error al cargar las noticias: ' + err) },
+      complete: () => { this.cargando = false; }
     });
 
 

@@ -31,7 +31,6 @@ export class NoticiasComponent implements OnInit {
     this.ngOnInit();
     console.log(this.page);
     console.log(this.pageSize);
-
   }
 
   public cortadorString(not:Noticia[]): Noticia[]{
@@ -48,9 +47,6 @@ export class NoticiasComponent implements OnInit {
     return not
     
   }
-  
-
-
 
   ngOnInit(): void {
     let bool=true;

@@ -5,6 +5,9 @@
   <button  mat-raised-button color='primary' routerLink="/abm-documento" >Nuevo documento</button>
         <mat-tab-group>
             <mat-tab (click)="setTipo('INFORMACION_CARRERA')" label="Informacion Carrera" >
+              <div *ngIf="cargando == true" class="spinner" >
+                <ns-cargando></ns-cargando>
+               </div>
                <div *ngFor="let doc of documentosInformacion">
                 <mat-card  class="example-card">
                     <mat-card-title-group>
@@ -12,13 +15,16 @@
                       <mat-card-subtitle>
                          <button  mat-raised-button color='primary' (click)="onClickDownloadPdf(doc.documentoPDF,doc.titulo)">DESCARGAR</button> 
                       </mat-card-subtitle>
-                      <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+                      <img mat-card-sm-image src="../../../../assets/documentoPDF.png" >
                     </mat-card-title-group>
                   </mat-card>
                   <br>
                 </div>
             </mat-tab>
             <mat-tab (click)="setTipo('OPORTUNIDADES_LABORALES')" label="Oportunidades Laborales">
+              <div *ngIf="cargando == true" class="spinner" >
+                <ns-cargando></ns-cargando>
+               </div>
               <div *ngFor="let doc of documentosOportunidades">
                 <mat-card  class="example-card">
                     <mat-card-title-group>
@@ -26,13 +32,16 @@
                       <mat-card-subtitle>
                          <button  mat-raised-button color='primary' (click)="onClickDownloadPdf(doc.documentoPDF,doc.titulo)">DESCARGAR</button> 
                       </mat-card-subtitle>
-                      <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+                      <img mat-card-sm-image src="../../../../assets/documentoPDF.png" >
                     </mat-card-title-group>
                   </mat-card>
                   <br>
                 </div>
             </mat-tab>
             <mat-tab (click)="setTipo('DATOS_DE_INTERES')" label="Datos de interes">
+              <div *ngIf="cargando == true" class="spinner" >
+                <ns-cargando></ns-cargando>
+               </div>
               <div *ngFor="let doc of documentosInteres">
                 <mat-card  class="example-card">
                     <mat-card-title-group>
@@ -40,7 +49,7 @@
                       <mat-card-subtitle>
                          <button  mat-raised-button color='primary' (click)="onClickDownloadPdf(doc.documentoPDF,doc.titulo)">DESCARGAR</button> 
                       </mat-card-subtitle>
-                      <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+                      <img mat-card-sm-image src="../../../../assets/documentoPDF.png" >
                     </mat-card-title-group>
                   </mat-card>
                   <br>

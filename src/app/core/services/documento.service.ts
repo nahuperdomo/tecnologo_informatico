@@ -15,6 +15,10 @@ export class DocumentoService {
     return this.http.get<DocumentoPagedListResponse>('https://gr5-ria2022.test.softtero.com/api/Documentos/Paged/'+ page +'/'+ pageSize);
   }
 
+  getDocumento(id: number) {
+    return this.http.get<Documento>('https://gr5-ria2022.test.softtero.com/api/Documentos/'+ id);
+  }
+
   getDocumentosActivos(tipo: string) {
     return this.http.get<Documento[]>('https://gr5-ria2022.test.softtero.com/api/Documentos/Activos?tipo=' + tipo);
   }

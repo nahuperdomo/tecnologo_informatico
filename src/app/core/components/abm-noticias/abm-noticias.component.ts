@@ -66,14 +66,15 @@ export class AbmNoticiasComponent implements OnInit {
       }
       this.selected.titulo=this.newNoticiaForm.controls['newTitulo'].value;
       this.selected.descripcion=this.newNoticiaForm.controls['newDescripcion'].value;
+      this.cargando = true;
       this.servNoticia.updateNoticia(this.selected).subscribe({
         next: value => {let id = value.id;
                           alert("Noticia Modificada")
                           this.newNoticiaForm.reset();
                           this.router.navigate(['/noticias/'+id]);
-
                         },
-        error: err => { alert('Error al actualizar: ') }
+        error: err => { alert('Error al actualizar: ') },
+        complete: () => { this.cargando = false; }
       });
     }
   }
@@ -81,9 +82,10 @@ export class AbmNoticiasComponent implements OnInit {
   public nuevaNoticia (){
     if(this.newNoticiaForm.valid && this.imgen64!=""){
       this.selected = new Noticia (0, this.newNoticiaForm.controls['newTitulo'].value, this.newNoticiaForm.controls['newDescripcion'].value,this.imgen64, this.newNoticiaForm.controls['newFechaCaducidad'].value);
+      this.cargando = true;
       this.servNoticia.newNoticia(this.selected).subscribe({
         next: value => {let id = value.id;
-                        alert("Noticia creada")
+                        alert("NOTICIA CREADA")
                         this.newNoticiaForm.reset();
                         this.router.navigate(['/noticias/'+id]);
 
@@ -93,6 +95,7 @@ export class AbmNoticiasComponent implements OnInit {
         complete: () => { this.cargando = false; }
         
       });
+      this.newNoticiaForm.reset();
       
     }else{
       alert('Error al agregar la noticia, revise los campos');

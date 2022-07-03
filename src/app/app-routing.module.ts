@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'toolbar', component: ToolbarComponent } , 
   { path: '', component:InicioComponent },
   { path: 'abm-noticias/:id', component: AbmNoticiasComponent },
+  { path: 'abm-noticias', component: AbmNoticiasComponent },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'abm-documento', component: AbmDocumentosComponent },
   { path: 'ver-documentos', component: VerDocumentosComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'abm-u-c', component: AbmUnidadesCurricularesComponent },
   { path:'contacto', component:ContactoComponent},
   { path:'unidades-curriculares', component:UnidadesCurricularesComponent},
-  {path:'noticias/:id', component:VerNoticiaComponent}
+  {path:'noticias/:id', component:VerNoticiaComponent},
+  
  
 
 ];

@@ -30,6 +30,7 @@ import { CargandoComponent } from './components/cargando/cargando.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { VerNoticiaComponent } from './components/ver-noticia/ver-noticia.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -70,7 +71,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ReactiveFormsModule,
     FormsModule,
     MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSlideToggleModule
 
 
     
@@ -97,7 +99,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     FormsModule,
     MatProgressSpinnerModule,
     CargandoComponent,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSlideToggleModule
 
 
 
