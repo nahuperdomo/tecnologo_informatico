@@ -39,13 +39,9 @@
                 <mat-option *ngFor="let m of materias" value="{{m.id}}">{{m.nombre}}</mat-option>
             </mat-select>
             </mat-form-field>
-            <mat-select *ngIf="this.previas.length > 0"  formControlName="newPrevias" multiple>
-                <mat-option *ngFor="let p of previas" value="{{p.id}}">{{p.nombre}}</mat-option>
-            </mat-select>
-          
-           
-     
-            
+
+    
+                 
             <button *ngIf="selected.id == -1" mat-raised-button (click)="nuevaUnidad()" color="primary">+ CREAR</button>
             <button *ngIf="selected.id == -1" routerLink="/noticias" mat-raised-button  >ATRAS</button>
 

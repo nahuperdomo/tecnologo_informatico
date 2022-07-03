@@ -41,7 +41,8 @@ console.log(item);
   ngOnInit(): void {
     this.servUnidad.getUnidadesCurriculares().subscribe({
       next: value => { console.log(value),
-                    this.filtradoPorSemestre(value)},
+                    this.filtradoPorSemestre(value),
+                  this.unidadesCurriculares=value},
       error: err => { alert('Error al cargar las unidades: ' + err) }
     });
   }

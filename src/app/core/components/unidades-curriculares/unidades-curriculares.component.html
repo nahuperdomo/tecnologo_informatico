@@ -28,7 +28,8 @@
                 [style.display]="accordionItem.expanded ? '' : 'none'"
                 [attr.id]="'accordion-body-' + index"
                 [attr.aria-labelledby]="'accordion-header-' + index+1">
-                
+                <p>holaaaa</p>
+                <p *ngFor="let j of this.unidadesCurriculares">{{j.nombre}}</p>
                
                 
           <!--     <mat-selection-list #shoes [multiple]="false">

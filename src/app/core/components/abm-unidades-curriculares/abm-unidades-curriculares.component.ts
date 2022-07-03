@@ -22,8 +22,6 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
   public materias: Materia[] = [];
   public cargando = true;
   public previas: UnidadCurricular[] = [];
-  public previaturas: Previatura[] = [];
-
 
   
 
