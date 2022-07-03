@@ -32,8 +32,11 @@ public unidadesCurriculares: UnidadCurricular[] = [];
     this.unidadSemestral[4]=this.unidadesCurriculares.filter(unidad => unidad.semestre == 5);
     this.unidadSemestral[5]=this.unidadesCurriculares.filter(unidad => unidad.semestre == 6);
   }
+  
 
-
+con(item :string){
+console.log(item);
+}
 
   ngOnInit(): void {
     this.servUnidad.getUnidadesCurriculares().subscribe({

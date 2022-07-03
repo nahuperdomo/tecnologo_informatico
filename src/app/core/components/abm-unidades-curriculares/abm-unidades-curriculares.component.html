@@ -6,11 +6,11 @@
     <form [formGroup]="newUnidadForm" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">  
             <hr>
             <br>
+            <input type="file" (change)="subirDocumento($event)" />
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>NOMBRE:</mat-label>
                 <input matInput placeholder="Titulo" formControlName="newNombre">
             </mat-form-field>
-
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>DESCRIPCION:</mat-label>
                 <textarea matInput size="10" placeholder="Descripcion" formControlName="newDescripcion"></textarea>
@@ -36,7 +36,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>SELECCIONE MATERIA</mat-label>
                 <mat-select formControlName = "newMateria">
-                    <mat-option *ngFor="let m of materias" value="{{m.id}}">{{m.nombre}}</mat-option>
+                <mat-option *ngFor="let m of materias" value="{{m.id}}">{{m.nombre}}</mat-option>
             </mat-select>
             </mat-form-field>
             <mat-select *ngIf="this.previas.length > 0"  formControlName="newPrevias" multiple>

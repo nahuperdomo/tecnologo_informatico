@@ -16,7 +16,7 @@
             [attr.id]="'accordion-header-' + index"
             [attr.aria-expanded]="accordionItem.expanded"
             [attr.aria-controls]="'accordion-body-' + index">
-            <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+            <div class="example-accordion-item-header" (click)="accordionItem.toggle();">
                 {{ item }}
                 <span class="example-accordion-item-description">
                 Click to {{ accordionItem.expanded ? 'close' : 'open' }}
@@ -27,15 +27,18 @@
                 role="region"
                 [style.display]="accordionItem.expanded ? '' : 'none'"
                 [attr.id]="'accordion-body-' + index"
-                [attr.aria-labelledby]="'accordion-header-' + index">
+                [attr.aria-labelledby]="'accordion-header-' + index+1">
                 
-                <mat-selection-list #shoes [multiple]="false">
-                    <a href="https://www.twitter.com/">
-                    <mat-list-option *ngFor="let unidad of unidadSemestral[0]" [value]="unidad">
+               
+                
+          <!--     <mat-selection-list #shoes [multiple]="false">
+                <a href="https://www.twitter.com/">
+                <mat-list-option *ngFor="let unidad of unidadSemestral[0]" [value]="unidad">
                       {{unidad.nombre + index}}
-                    </mat-list-option>
+                </mat-list-option>
                 </a>
                   </mat-selection-list>
+        --> 
             </div>
             </cdk-accordion-item>
         </cdk-accordion>
