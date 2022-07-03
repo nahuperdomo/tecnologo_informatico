@@ -3,8 +3,9 @@
 </div>
 <div fxLayout="column" fxLayoutAlign="space-around center" >
   <button  mat-raised-button color='primary' routerLink="/abm-documento" >Nuevo documento</button>
-        <mat-tab-group>
+        <mat-tab-group (selectedIndexChange) ="setTipo (''+$event)">
             <mat-tab (click)="setTipo('INFORMACION_CARRERA')" label="Informacion Carrera" >
+          <br>
               <div *ngIf="cargando == true" class="spinner" >
                 <ns-cargando></ns-cargando>
                </div>
@@ -21,7 +22,9 @@
                   <br>
                 </div>
             </mat-tab>
+            
             <mat-tab (click)="setTipo('OPORTUNIDADES_LABORALES')" label="Oportunidades Laborales">
+              <br>
               <div *ngIf="cargando == true" class="spinner" >
                 <ns-cargando></ns-cargando>
                </div>
@@ -38,7 +41,8 @@
                   <br>
                 </div>
             </mat-tab>
-            <mat-tab (click)="setTipo('DATOS_DE_INTERES')" label="Datos de interes">
+            <mat-tab (event)="setTipo('DATOS_DE_INTERES')" label="Datos de interes">
+              <br>
               <div *ngIf="cargando == true" class="spinner" >
                 <ns-cargando></ns-cargando>
                </div>

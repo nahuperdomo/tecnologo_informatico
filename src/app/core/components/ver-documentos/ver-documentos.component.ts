@@ -18,8 +18,19 @@ export class VerDocumentosComponent implements OnInit {
   public tipo = "INFORMACION_CARRERA";
 
   public setTipo (tipo: string): void {
-    this.tipo = tipo;
-    this.ngOnInit();
+    if(tipo == "0"){
+      this.tipo = "INFORMACION_CARRERA";
+    }
+    if(tipo == "1"){
+      this.tipo = "OPORTUNIDADES_LABORALES";
+    }
+    if(tipo == "2"){
+      this.tipo = "DATOS_DE_INTERES";
+    }
+      console.log(tipo);
+      this.ngOnInit();
+
+ 
   }
   constructor(private servDocumento: DocumentoService) { }
   
@@ -35,27 +46,29 @@ export class VerDocumentosComponent implements OnInit {
     this.downloadPdf(base64String,fileName);
   }
 
-  reparto(docs: Documento[]): void {
+  reparto(docs: Documento[],tipo:string): void {
     if(this.tipo == "INFORMACION_CARRERA"){
       this.documentosInformacion = docs;
+      for(let doc of this.documentosInformacion){
+        console.log(doc.id,doc.titulo);
+      }
     }
-    if(this.tipo == "OPORTUNIDADES_CARRERA"){
+    if(this.tipo == "OPORTUNIDADES_LABORALES"){
         this.documentosOportunidades = docs;
     }
-    if(this.tipo == "INTERES_CARRERA"){
+    if(this.tipo == "DATOS_DE_INTERES"){
         this.documentosInteres = docs;
     }
   }
 
   ngOnInit(): void {
     this.cargando = true;
+    let tipo = this.tipo;
     let documentos: Documento[] = [];
     this.servDocumento.getDocumentosActivos(this.tipo).subscribe({
-      next: value =>{ this.reparto(value)  },
+      next: value =>{ this.reparto(value,tipo) },
       error: err => { alert('Error al cargar las noticias: ' + err) },
       complete: () => { this.cargando = false; }
     });
-
-
   }
 }

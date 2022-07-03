@@ -59,7 +59,22 @@ export class AbmDocumentosComponent implements OnInit {
       });
     }
   }
-
+/* por si lo necesitamos
+  modificar(){
+    this.selected.titulo = "Tablas de inportancia, todos los estudiantes descarguen";
+    this.selected.tipo = "INFORMACION_CARRERA";
+    this.selected.documentoPDF = this.pdf64;
+    this.selected.activo = true;
+    this.selected.id = 6;
+    this.servDocumento.updateDocumento(this.selected.id,this.selected).subscribe({
+      next: value =>  {let id = value.id;
+                        alert("Documento Modificada")
+                        this.router.navigate(['/documentos/']);
+                      },
+      error: err => { alert('Error al modificar documento: ' + err) }
+    });
+  }
+*/
   subirPDF (event: any) {
     const file = event.target.files[0];
     if(!file){
@@ -75,10 +90,7 @@ export class AbmDocumentosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.servDocumento.getDocumentos(1, 200).subscribe({
-      next: value => console.log(value),
-      error: err => { alert('Error al cargar los documentos: ' + err) }
-    });
+
   }
 
 

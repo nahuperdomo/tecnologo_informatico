@@ -27,7 +27,7 @@ export class DocumentoService {
     return this.http.post<Documento>('https://gr5-ria2022.test.softtero.com/api/Documentos', documento);
   }
 
-  updateDocumento(documento: Documento) {
-    return this.http.put<Documento>('https://gr5-ria2022.test.softtero.com/api/Documentos', documento);
+  updateDocumento(id:number, documento: Documento) {
+    return this.http.put<Documento>('https://gr5-ria2022.test.softtero.com/api/Documentos/'+ id, documento);
   }
 }
