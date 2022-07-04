@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Materia } from '../../models/materia';
 import { MateriaService } from '../../services/materia.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CargandoComponent } from '../cargando/cargando.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,14 +18,14 @@ export class AbmMateriasComponent implements OnInit {
   public materias: Materia[] = [];
   cargando = true;
 
-  constructor(private servMateria: MateriaService) { 
+  constructor(private servMateria: MateriaService,private router: Router) { 
     this.selected= new Materia(-1, "", "",0);
   }
 
   public newMateriaForm : FormGroup = new FormGroup({
     newNombre : new FormControl('', [Validators.required,Validators.minLength(1)]),
     newDescripcion: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    newCreditosMinimos: new FormControl ('',[Validators.required, Validators.min(0)])
+    newCreditosMinimos: new FormControl ('',[Validators.required])
   });
 
 
@@ -48,12 +50,16 @@ export class AbmMateriasComponent implements OnInit {
 
   public newMateria(): void {
     if(this.newMateriaForm.valid){
-      let nuevaMateria = new Materia(0, this.newMateriaForm.value.newNombre, this.newMateriaForm.value.newDescripcion, this.newMateriaForm.value.newCreditosMinimos);
+      this.cargando= true;
+      let nuevaMateria = new Materia(0, this.newMateriaForm.controls['newNombre'].value, this.newMateriaForm.controls['newDescripcion'].value, this.newMateriaForm.controls['newCreditosMinimos'].value);
       this.servMateria.newMateria(nuevaMateria).subscribe({
-        next: value => this.selected = value,
-        error: err => { alert('Error al crear la materia: ' + err) }
+        next: value => {this.selected = value,
+                         this.ngOnInit();
+                        this.router.navigate(['/abm-materias']); },
+        error: err => { alert('Error al crear la materia: ' + err)},
+        complete: () => { this.cargando= false; }
     });
-    this.ngOnInit();
+      this.newMateriaForm.reset();
     }else{
       alert("Falla! Revise que tenga todos los campos");
     }	
@@ -62,27 +68,40 @@ export class AbmMateriasComponent implements OnInit {
 
   public setMateria(): void {
     if(this.newMateriaForm.valid){
-      let nuevaMateria = new Materia(this.selected.id, this.newMateriaForm.value.newNombre, this.newMateriaForm.value.newDescripcion, this.newMateriaForm.value.newCreditosMinimos);
+      this.cargando= true;
+      let nuevaMateria = new Materia(this.selected.id, this.newMateriaForm.controls['newNombre'].value, this.newMateriaForm.controls['newDescripcion'].value, this.newMateriaForm.controls['newCreditosMinimos'].value);
       this.servMateria.updateMateria(nuevaMateria).subscribe({
-        next: value => this.selected = value,
+        next: value =>{ this.selected = value,
+                        this.ngOnInit();
+                        this.eleccion = "Vista",
+                        this.router.navigate(['/abm-materias']); },
         error: err => { alert('Error al crear la materia: ' + err) },
+        complete: () => { this.cargando= false; }
     });
     this.ngOnInit();
+    this.newMateriaForm.reset();
     }else{
       alert("Falla! Revise que tenga todos los campos");
     }
   }
 
   public deleteMateria(): void {
+    this.cargando= true;
     this.servMateria.deleteMateria(this.selected.id).subscribe({
-        error: err => { alert('Error al eliminar la materia: ' + err) }
+      next: value => { this.selected = value,
+                      this.ngOnInit();
+                        this.selected = new Materia(-1, "", "",0);
+                        this.eleccion = "Vista",
+                      this.router.navigate(['/abm-materias']); },
+        error: err => { alert('Error al eliminar la materia: ' + err) },
+        complete: () => { this.cargando= false; }
     });
-    this.setSelected(new Materia(-1, "", "", 0));
-    this.selected = new Materia(-1, "", "",0);
+   
     this.ngOnInit();
   }
 
   ngOnInit(): void {
+    this.materias=[];
     this.cargando= true;
     this.servMateria.getMaterias().subscribe({
       next: value => this.materias = value,

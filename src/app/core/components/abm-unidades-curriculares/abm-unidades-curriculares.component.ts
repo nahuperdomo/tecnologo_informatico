@@ -5,9 +5,9 @@ import {UnidadesCurricularesService} from '../../services/unidades-curriculares.
 import { MateriaService } from '../../services/materia.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 import {Previatura} from '../../models/previatura';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -18,7 +18,7 @@ import {Previatura} from '../../models/previatura';
 export class AbmUnidadesCurricularesComponent implements OnInit {
   public unidadesCurriculares: UnidadCurricular [] = [];
   public selected: UnidadCurricular = new UnidadCurricular (-1,"","",0,"",0,new Materia (-1, "", "",0));
-  public eleccion = "Vista";
+  public eleccion = "Nuevo";
   public materias: Materia[] = [];
   public cargando = true;
   public previas: UnidadCurricular[] = [];
@@ -36,7 +36,26 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
   });
   public doc64 = "";
 
-  constructor(private router: Router, private servUnidadesCurriculares : UnidadesCurricularesService, private servMateria : MateriaService  ) { }
+  constructor(private router: Router,private rutaActiva: ActivatedRoute , private servUnidadesCurriculares : UnidadesCurricularesService, private servMateria : MateriaService) {
+      if(this.rutaActiva.snapshot.params['id'] >= 0){
+        this.cargando = true;
+        this.servUnidadesCurriculares.getUnidadCurricular(this.rutaActiva.snapshot.params['id']).subscribe({
+        next: value => {this.selected = value,
+                        this.newUnidadForm.controls['newNombre'].setValue(this.selected.nombre),
+                        this.newUnidadForm.controls['newDescripcion'].setValue(this.selected.descripcion),
+                        this.newUnidadForm.controls['newCreditos'].setValue(this.selected.creditos),
+                        this.newUnidadForm.controls['newSemestre'].setValue(""+this.selected.semestre),
+                        this.newUnidadForm.controls['newMateria'].setValue(this.selected.materia.id),
+                        this.doc64 = this.selected.documento},
+        error: err => { alert('Error al cargar la unidad curricular: ' + err),
+                        this.router.navigate(['/unidad/'+this.rutaActiva.snapshot.params['id']])},
+        complete: () => { this.cargando = false }
+      });
+      this.eleccion="Modificar";
+      console.log(this.selected);
+    }
+   }
+
 
   public nuevaUnidad (){
     console.log(this.doc64);
@@ -52,23 +71,43 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
         parseInt(this.newUnidadForm.controls['newSemestre'].value),
         materia
         );
-  
-        this.mostrarTodo();
-        console.log(materia);
+        this.cargando = true;
         this.servUnidadesCurriculares.newUnidadCurricular(this.selected).subscribe({
-        next: value => { console.log("bien"); },
+        next: value => { alert('Unidad curricular creada con éxito'),
+                        this.selected = value,
+                        this.router.navigate(['/unidad/'+this.selected.id])},
         error: err => { alert('Error al crear la unidad curricular: ') },
+        complete: () => { this.cargando = false }
       });
-      console.log("hola");
     }else{
       alert ("Complete todos los campos");
     }
   }
-  public mostrarTodo(): void {
-    console.log(this.selected);
-    console.log (this.newUnidadForm.controls['newMateria'].value);     
-    
+
+  public modificarUnidad (){
+    if(this.newUnidadForm.valid){
+      if(this.doc64 != ""){
+        this.selected.documento = this.doc64;
+      }
+      if(this.newUnidadForm.controls['newMateria'].value){
+        let idMateria = parseInt(this.newUnidadForm.controls['newMateria'].value);
+        let materia = this.materias.find(materia => materia.id == idMateria)!;
+      }
+      this.selected.nombre = this.newUnidadForm.controls['newNombre'].value;
+      this.selected.descripcion = this.newUnidadForm.controls['newDescripcion'].value;
+      this.selected.creditos = parseInt(this.newUnidadForm.controls['newCreditos'].value);
+      this.selected.semestre = parseInt(this.newUnidadForm.controls['newSemestre'].value);
+      this.servUnidadesCurriculares.updateUnidadCurricular(this.selected).subscribe({
+        next: value => { alert ("Unidad curricular modificada") 
+                        this.router.navigate(['/unidad/'+this.selected.id]); },
+        error: err => { alert('Error al modificar la unidad curricular: ') },
+      });
+    }else{
+      alert ("Complete todos los campos");
+    }
   }
+
+
 
   subirDocumento (event: any) {
     const file = event.target.files[0];
@@ -106,10 +145,6 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
       complete: () => { this.cargando = false; }
     });
 
-    /*if(this.materias.length == 0){
-      alert ('Primero tiene que crear una MATERIA');
-      this.router.navigate (['/abm-materias']);
-    }*/
     this.newUnidadForm.controls['newSemestre'].setValue('1');
 
   }

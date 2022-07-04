@@ -1,20 +1,23 @@
 <div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
     <h1>ABM Materias</h1>
+    <br> 
+    <div class="" *ngIf="cargando == true">
+        <ns-cargando></ns-cargando>
+    </div>
 </div>
-<br> 
 
-<div fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
+<div *ngIf="cargando == false" fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
 
-    <div *ngIf="this.eleccion =='Vista'" fxLayout="column" fxFlex="20" >
-        <h3>SELECCIONE UNA MATERIA</h3>
-        <mat-form-field appearance="fill">
+    <div *ngIf="this.eleccion =='Vista'&& materias.length >0" fxLayout="column" fxFlex="20" >
+        <h3><b>SELECCIONE UNA MATERIA</b></h3>
+        <mat-form-field *ngIf="materias.length >0" appearance="fill">
             <mat-label>Select an option</mat-label>
-            <mat-select>
+            <mat-select ngModel="this.materias">
             <mat-option  *ngFor="let x of materias" (click)="setSelected(x)"  value={{x}}>{{x.id}}-{{x.nombre}}</mat-option>
             </mat-select>
 
         </mat-form-field>
-        <p *ngIf ="this.selected.id !=-1 ">Seleccino: {{selected}}</p>
+
         <section>
             <hr>
             <br>
@@ -23,13 +26,10 @@
 
             </div>
         </section>
-        
-        
-
     </div>
 <!--Para Vista-->
  
-    <div *ngIf ="this.eleccion =='Vista'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+    <div *ngIf ="this.eleccion =='Vista'&& this.selected.id!=-1" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
        <hr>
        <br>
         <h3>Vista Preliminar:</h3>  
@@ -44,65 +44,50 @@
                 <p>{{this.selected.descripcion}}</p>
                 <br>
                 <h4><b>CREDITOS MINIMOS:</b> {{this.selected.creditosMinimos}}</h4>
-
-
-
            <hr>
-
                 <button (click)="setEleccion('Modificar')" mat-raised-button color="primary">*Editar Materia</button>
-                <button mat-raised-button color="warn">Borrar Materia</button>
+                <button (click)="deleteMateria()" mat-raised-button color="warn" >Borrar Materia</button>
             </mat-card-content>
         </mat-card>
 
     </div>
-<!--Para Modificar-->
-    <div *ngIf ="this.eleccion =='Modificar'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
-        
-        <h3>MODIFICAR:</h3>
+    <div *ngIf ="this.selected.id==-1 && materias.length > 0 &&  eleccion =='Vista'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+        <h2><b>NO HAY MATERIAS SELECCIONADAS</b></h2>
+    </div>
+    <div *ngIf= "materias.length == 0 && eleccion =='Vista'">
+        <h2><b>NO HAY MATERIAS CREE UNA</b></h2>
+    </div>
+<!--Para Modificar o Nuevo-->
+
+    <form [formGroup]="newMateriaForm" *ngIf ="this.eleccion =='Modificar' || this.eleccion == 'Nuevo'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center"> 
+
+        <h3 *ngIf ="this.eleccion =='Modificar'">MODIFICAR:</h3>
+        <h3 *ngIf ="this.eleccion =='Nuevo'">CREAR MATERIA:</h3>
+
         <hr>
         <br>
         <mat-form-field class="example-full-width mi_formulario" appearance="fill">
             <mat-label>NOMBRE:</mat-label>
-            <input matInput placeholder="Ex. Pizza" value="{{this.selected.nombre}}">
+            <input matInput formControlName="newNombre">
         </mat-form-field>
 
 
         <mat-form-field class="example-full-width mi_formulario" appearance="fill">
             <mat-label>DESCRIPCION:</mat-label>
-            <textarea matInput size="10" placeholder="Descripcion" value="{{this.selected.descripcion}}"></textarea>
+            <textarea matInput size="10" placeholder="Descripcion" formControlName="newDescripcion"></textarea>
         </mat-form-field>
         <mat-form-field class="example-full-width mi_formulario" appearance="fill">
             <mat-label>CREDITOS MINIMOS:</mat-label>
-            <input type="number" matInput value="{{this.selected.creditosMinimos}}">
+            <input type="number" matInput formControlName="newCreditosMinimos">
         </mat-form-field>
         
-        <button mat-raised-button color="primary">*Editar</button>
-        <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
-    </div>
-    <!--Para Nuevo-->
-    <div *ngIf ="this.eleccion =='Nuevo'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
-        
-        <h3>CREAR MATERIA:</h3>
-        <hr>
-           
-        <br>
-        <mat-form-field class="example-full-width mi_formulario " appearance="fill">
-            <mat-label>NOMBRE:</mat-label>
-            <input matInput placeholder="Nombre">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width mi_formulario " appearance="fill">
-            <mat-label>DESCRIPCION:</mat-label>
-            <textarea matInput size="10" placeholder="Descripcion"></textarea>
-        </mat-form-field>
-        <mat-form-field class="example-full-width mi_formulario " appearance="fill">
-            <mat-label>CREDITOS MINIMOS:</mat-label>
-            <input type="number" matInput>
-        </mat-form-field>
-        
-        <button mat-raised-button color="primary">+ Crear</button>
-        <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
-    </div>
+        <button *ngIf ="this.eleccion =='Modificar'" (click)="setMateria()" mat-raised-button color="primary">*Editar</button>
+        <button *ngIf ="this.eleccion =='Modificar'" (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+  
+        <button *ngIf ="this.eleccion =='Nuevo'" (click)="newMateria()" mat-raised-button color="primary">+ Crear</button>
+        <button *ngIf ="this.eleccion =='Nuevo'" (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+    </form>
 
 </div>
+
 
