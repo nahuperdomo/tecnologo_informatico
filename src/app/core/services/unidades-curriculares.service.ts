@@ -24,4 +24,12 @@ export class UnidadesCurricularesService {
     return this.http.post<UnidadCurricular>('https://gr5-ria2022.test.softtero.com/api/UnidadesCurriculares', unidad);
   }
 
+  updateUnidadCurricular(unidad: UnidadCurricular) {
+    return this.http.put<UnidadCurricular>('https://gr5-ria2022.test.softtero.com/api/UnidadesCurriculares/' + unidad.id, unidad);
+  }
+
+  deleteUnidadCurricular(id: number) {
+    return this.http.delete<UnidadCurricular>('https://gr5-ria2022.test.softtero.com/api/UnidadesCurriculares/' + id);
+  }
+  
 }

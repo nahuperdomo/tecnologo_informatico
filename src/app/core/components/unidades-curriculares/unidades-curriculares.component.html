@@ -1,9 +1,12 @@
 <div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
     <h1>UNIDADES CURRICULARES</h1>
-    <button  mat-raised-button color='primary' routerLink="/abm-u-c" >Nuevo documento</button>
+    <button  mat-raised-button color='primary' routerLink="/abm-u-c" >Nueva Unidad</button>
+</div>
+<div class="" *ngIf="cargando == true">
+    <ns-cargando></ns-cargando>
 </div>
 <br> 
-<div fxLayout= "row"  fxLayoutAlign="space-around center" >
+<div class="" *ngIf="cargando == false" fxLayout= "row"  fxLayoutAlign="space-around center" >
     
     <div fxLayout="column" fxFlex="80" gt-xs.fxFlex ="99"  fxLayoutAlign="center" >
         <cdk-accordion class="example-accordion">
@@ -16,7 +19,7 @@
             [attr.id]="'accordion-header-' + index"
             [attr.aria-expanded]="accordionItem.expanded"
             [attr.aria-controls]="'accordion-body-' + index">
-            <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+            <div class="example-accordion-item-header" (click)="accordionItem.toggle();">
                 {{ item }}
                 <span class="example-accordion-item-description">
                 Click to {{ accordionItem.expanded ? 'close' : 'open' }}
@@ -27,15 +30,16 @@
                 role="region"
                 [style.display]="accordionItem.expanded ? '' : 'none'"
                 [attr.id]="'accordion-body-' + index"
-                [attr.aria-labelledby]="'accordion-header-' + index">
-                
+                [attr.aria-labelledby]="'accordion-header-' + index+1">
+                     
                 <mat-selection-list #shoes [multiple]="false">
-                    <a href="https://www.twitter.com/">
-                    <mat-list-option *ngFor="let unidad of unidadSemestral[0]" [value]="unidad">
-                      {{unidad.nombre + index}}
+                    <div *ngFor="let u of unidadesCurriculares">
+                    <mat-list-option *ngIf="'SEMESTRE '+u.semestre == item" routerLink="/unidad/{{u.id}}">
+                     {{u.nombre}}
                     </mat-list-option>
-                </a>
+                </div>
                   </mat-selection-list>
+
             </div>
             </cdk-accordion-item>
         </cdk-accordion>

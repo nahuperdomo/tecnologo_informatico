@@ -14,6 +14,7 @@ import { UnidadesCurricularesComponent } from './core/components/unidades-curric
 import { AuthenticateService } from './core/services/authenticate.service';
 import { VerNoticiaComponent } from './core/components/ver-noticia/ver-noticia.component';
 import { TodosDocumentosComponent } from './core/components/todos-documentos/todos-documentos.component';
+import { VerUnidadComponent } from './core/components/ver-unidad/ver-unidad.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent } ,
@@ -26,10 +27,12 @@ const routes: Routes = [
   { path: 'ver-documentos', component: VerDocumentosComponent},
   { path: 'abm-materias', component: AbmMateriasComponent },
   { path: 'abm-u-c', component: AbmUnidadesCurricularesComponent },
+  { path: 'abm-u-c/:id', component: AbmUnidadesCurricularesComponent },
   { path:'contacto', component:ContactoComponent},
   { path:'unidades-curriculares', component:UnidadesCurricularesComponent},
   {path:'noticias/:id', component:VerNoticiaComponent},
-  {path:'todos-los-documentos', component:TodosDocumentosComponent}
+  {path:'todos-los-documentos', component:TodosDocumentosComponent},
+  {path: 'unidad/:id', component: VerUnidadComponent},
  
 
 ];

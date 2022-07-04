@@ -1,1 +1,45 @@
-<p>ver-unidad works!</p>
+<div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+<div class="" *ngIf="cargando == true">
+    <ns-cargando></ns-cargando>
+  </div>
+    <mat-card class="example-card" class="card">
+      <mat-card-actions>
+       <button color="primary" mat-raised-button routerLink="/abm-u-c/{{this.unidad.id}}">EDITAR</button> 
+        <button color="warn" (click)="deleteUnidad()" mat-raised-button>BORRAR</button>
+        <button  mat-raised-button routerLink="/unidades-curriculares">ATRAS</button>
+      </mat-card-actions>
+   
+          <mat-card-title fxLayoutAlign="space-around center"><h2><b>{{unidad.nombre}}</b></h2></mat-card-title>
+          <hr>
+          <mat-card-content>
+            <h4><b>SEMESTRE:</b>{{unidad.semestre}}</h4>
+            <h4><b>CREDITOS:</b>{{unidad.creditos}}</h4>
+            <hr>
+            <h3><b>DESCRIPCION DE LA UNIDAD:</b></h3>
+            <p>
+                {{unidad.descripcion}}
+            </p>
+            <hr>
+            <h3><b>MATERIA:</b></h3>
+            <h4>{{unidad.materia.nombre}}</h4>
+            <h4>{{unidad.materia.descripcion}}</h4>
+            <h4><b>Creditos minimos en materia</b>{{unidad.materia.creditosMinimos}}</h4>
+            <hr>
+            <h3><b>PREVIAS:</b></h3>
+            <h4 *ngIf="unidad.previas.length ==0">No tiene materias previas</h4>
+            <div *ngFor="let previa of unidad.previas">
+                <h4>{{previa.previa.nombre}}</h4>
+            </div>
+         </mat-card-content>
+        <mat-card-actions>
+          <button  color="primary" mat-raised-button >AGREGAR PREVIA</button> 
+           <button *ngIf="unidad.previas.length > 0" color="warn" (click)="deleteUnidad()" mat-raised-button>QUITAR PREVIA</button>
+           <hr>
+           <button  mat-raised-button routerLink="/unidades-curriculares">ATRAS</button>
+         </mat-card-actions>
+
+  
+      </mat-card>
+
+</div>
+<br>

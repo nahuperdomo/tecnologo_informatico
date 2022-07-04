@@ -39,6 +39,7 @@ export class TodosDocumentosComponent implements OnInit {
     this.servDocumento.getDocumentos(inicio,fin).subscribe({
       next: value => {
         this.length = value.size
+        this.documentos = value.list;
       },
       error: err => { alert('Error al cargar los documentos: ' + err)},
       complete: () => {this.cargando  = false;}

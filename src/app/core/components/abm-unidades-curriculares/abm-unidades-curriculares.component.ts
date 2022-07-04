@@ -5,9 +5,9 @@ import {UnidadesCurricularesService} from '../../services/unidades-curriculares.
 import { MateriaService } from '../../services/materia.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 import {Previatura} from '../../models/previatura';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -17,13 +17,11 @@ import {Previatura} from '../../models/previatura';
 })
 export class AbmUnidadesCurricularesComponent implements OnInit {
   public unidadesCurriculares: UnidadCurricular [] = [];
-  public selected: UnidadCurricular = new UnidadCurricular (-1,"Programacion Avamzada","Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original.",10,1,new Materia (-1, "", "",0));
-  public eleccion = "Vista";
+  public selected: UnidadCurricular = new UnidadCurricular (-1,"","",0,"",0,new Materia (-1, "", "",0));
+  public eleccion = "Nuevo";
   public materias: Materia[] = [];
   public cargando = true;
   public previas: UnidadCurricular[] = [];
-  public previaturas: Previatura[] = [];
-
 
   
 
@@ -36,20 +34,93 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
     newMateria : new FormControl ('',[Validators.required]),
     newPrevias : new FormControl ('')
   });
+  public doc64 = "";
 
-  constructor(private router: Router, private servUnidadesCurriculares : UnidadesCurricularesService, private servMateria : MateriaService  ) { }
+  constructor(private router: Router,private rutaActiva: ActivatedRoute , private servUnidadesCurriculares : UnidadesCurricularesService, private servMateria : MateriaService) {
+      if(this.rutaActiva.snapshot.params['id'] >= 0){
+        this.cargando = true;
+        this.servUnidadesCurriculares.getUnidadCurricular(this.rutaActiva.snapshot.params['id']).subscribe({
+        next: value => {this.selected = value,
+                        this.newUnidadForm.controls['newNombre'].setValue(this.selected.nombre),
+                        this.newUnidadForm.controls['newDescripcion'].setValue(this.selected.descripcion),
+                        this.newUnidadForm.controls['newCreditos'].setValue(this.selected.creditos),
+                        this.newUnidadForm.controls['newSemestre'].setValue(""+this.selected.semestre),
+                        this.newUnidadForm.controls['newMateria'].setValue(this.selected.materia.id),
+                        this.doc64 = this.selected.documento},
+        error: err => { alert('Error al cargar la unidad curricular: ' + err),
+                        this.router.navigate(['/unidad/'+this.rutaActiva.snapshot.params['id']])},
+        complete: () => { this.cargando = false }
+      });
+      this.eleccion="Modificar";
+      console.log(this.selected);
+    }
+   }
+
 
   public nuevaUnidad (){
-    if(this.newUnidadForm.valid){
-      let materia  = this.materias.find(m => m.id == this.newUnidadForm.controls['newMateria'].value)!;
-      this.previas[0] = new UnidadCurricular(0,"Proo","ddddd",0, 1, this.materias[0], this.previaturas );
-      this.servUnidadesCurriculares.newUnidadCurricular(this.previas[0]).subscribe({
-        next: value => { console.log("bien"); },
-        error: err => { alert('Error al crear la unidad curricular: ' + err) },
+    console.log(this.doc64);
+    if(this.newUnidadForm.valid && this.doc64 != ""){
+        let idMateria = parseInt(this.newUnidadForm.controls['newMateria'].value);
+
+        let materia = this.materias.find(materia => materia.id == idMateria)!;
+        this.selected= new UnidadCurricular (0,
+        this.newUnidadForm.controls['newNombre'].value,
+        this.newUnidadForm.controls['newDescripcion'].value,
+        parseInt(this.newUnidadForm.controls['newCreditos'].value),
+        "",        
+        parseInt(this.newUnidadForm.controls['newSemestre'].value),
+        materia
+        );
+        this.cargando = true;
+        this.servUnidadesCurriculares.newUnidadCurricular(this.selected).subscribe({
+        next: value => { alert('Unidad curricular creada con éxito'),
+                        this.selected = value,
+                        this.router.navigate(['/unidad/'+this.selected.id])},
+        error: err => { alert('Error al crear la unidad curricular: ') },
+        complete: () => { this.cargando = false }
       });
-      console.log("hola");
+    }else{
+      alert ("Complete todos los campos");
     }
-    
+  }
+
+  public modificarUnidad (){
+    if(this.newUnidadForm.valid){
+      if(this.doc64 != ""){
+        this.selected.documento = this.doc64;
+      }
+      if(this.newUnidadForm.controls['newMateria'].value){
+        let idMateria = parseInt(this.newUnidadForm.controls['newMateria'].value);
+        let materia = this.materias.find(materia => materia.id == idMateria)!;
+      }
+      this.selected.nombre = this.newUnidadForm.controls['newNombre'].value;
+      this.selected.descripcion = this.newUnidadForm.controls['newDescripcion'].value;
+      this.selected.creditos = parseInt(this.newUnidadForm.controls['newCreditos'].value);
+      this.selected.semestre = parseInt(this.newUnidadForm.controls['newSemestre'].value);
+      this.servUnidadesCurriculares.updateUnidadCurricular(this.selected).subscribe({
+        next: value => { alert ("Unidad curricular modificada") 
+                        this.router.navigate(['/unidad/'+this.selected.id]); },
+        error: err => { alert('Error al modificar la unidad curricular: ') },
+      });
+    }else{
+      alert ("Complete todos los campos");
+    }
+  }
+
+
+
+  subirDocumento (event: any) {
+    const file = event.target.files[0];
+    if(!file){
+      console.log("ERROR: No se selecciono ningun documento");
+    }
+    else{
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.doc64 = reader.result as string;
+      }
+    }
   }
 
   public setSelected (unidadesCurricular: UnidadCurricular): void {
@@ -74,10 +145,6 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
       complete: () => { this.cargando = false; }
     });
 
-    /*if(this.materias.length == 0){
-      alert ('Primero tiene que crear una MATERIA');
-      this.router.navigate (['/abm-materias']);
-    }*/
     this.newUnidadForm.controls['newSemestre'].setValue('1');
 
   }
