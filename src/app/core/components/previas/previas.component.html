@@ -1,0 +1,68 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+    <h1>PREVIATURAS:</h1>
+<br>
+
+
+<div class="" *ngIf="cargando == true">
+    <ns-cargando></ns-cargando>
+</div>
+<div fxLayout="column" fxFlex="90"  fxLayoutAlign="center">
+    <h2 *ngIf="cargando == false">{{this.unidad.nombre}}</h2>
+    <mat-card class="example-card">
+        <div *ngIf="unidad.previas.length == 0 && cargando == false" fxLayout="row" fxLayoutAlign="space-around center" class="example-container">
+            <h3><b>NO HAY PREVIAS</b></h3>
+        </div>
+        <div *ngFor="let p of this.unidad.previas" fxLayout="row" fxLayoutAlign="space-around center" class="example-container">
+            <hr>
+            <div fxLayout="column" fxFlex="70"  fxLayoutAlign="center">
+            <h3 >{{p.previa.nombre}}</h3>
+            </div>
+            <div fxLayout="column" fxFlex="20" fxLayoutAlign="center">
+                <button (click)="eliminarPrevia(p.id)" mat-raised-button color="warn" >🗑️</button>
+            </div>
+        </div>
+        
+    </mat-card>
+</div>
+</div>
+<div *ngIf="cargando == false" fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+<br>
+    <button *ngIf="cargando == false && eleccion=='Vista'"(click)="setEleccion('Nuevo')" mat-raised-button  color="primary">Agregar previa</button>
+</div>
+<div *ngIf="cargando == false" class="example-container" fxLayoutAlign="center" class="crearNoticia estilo">
+       
+        <mat-card  *ngIf="cargando == false && eleccion=='Nuevo' && unidades.length > 0" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">  
+            
+            <hr>
+            <br>
+                <mat-form-field appearance="fill">
+                    <mat-label>SELECCIONE PREVIA:</mat-label>
+                    <mat-select #previa>
+                        <mat-option *ngFor = "let u of unidades" value="{{u.id}}">{{u.nombre}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field appearance="fill">
+                    <mat-label>TIPO DE PREVIA:</mat-label>
+                    <mat-select #tipo>
+                        <mat-option value="Examen Aprobado">Examen Aprobado</mat-option>
+                        <mat-option value="Curso Aprobado">Curso Aprobado</mat-option>
+    
+                    </mat-select>
+                </mat-form-field>
+                <br>
+                <button (click)="setEleccion('Vista');crearPrevia(previa.value,tipo.value)" mat-raised-button  color="primary">Crear previa</button>
+                <button (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
+        </mat-card> 
+        <mat-card  *ngIf="cargando == false && eleccion=='Nuevo' && unidades.length == 0" fxLayout="row" fxFlex="100" fxFlex.gt-xs="60" fxLayoutAlign="space-between center">  
+            <p><b>NO QUEDAN MATERIAS PARA AGREGAR</b></p>
+            <button *ngIf="eleccion=='Nuevo'" mat-raised-button routerLink="/unidad/{{this.unidad.id}}">Ver Unidad</button>
+        </mat-card>
+        <div *ngIf="cargando == false" fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+            <br>
+                <button *ngIf="eleccion=='Vista'" mat-raised-button routerLink="/unidad/{{this.unidad.id}}">Ver Unidad</button>
+        </div>
+        <div  class="example-container" fxLayoutAlign="center" class="crearNoticia estilo">
+</div>
+
+            

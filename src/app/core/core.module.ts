@@ -32,6 +32,7 @@ import { VerNoticiaComponent } from './components/ver-noticia/ver-noticia.compon
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { TodosDocumentosComponent } from './components/todos-documentos/todos-documentos.component';
+import { PreviasComponent } from './components/previas/previas.component';
 
 
 
@@ -46,7 +47,8 @@ import { TodosDocumentosComponent } from './components/todos-documentos/todos-do
     VerUnidadComponent,
     CargandoComponent,
     VerNoticiaComponent,
-    TodosDocumentosComponent
+    TodosDocumentosComponent,
+    PreviasComponent
   ],
   imports: [
     CommonModule,
@@ -74,7 +76,8 @@ import { TodosDocumentosComponent } from './components/todos-documentos/todos-do
     FormsModule,
     MatProgressSpinnerModule,
     MatAutocompleteModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+
 
 
     
@@ -102,7 +105,8 @@ import { TodosDocumentosComponent } from './components/todos-documentos/todos-do
     MatProgressSpinnerModule,
     CargandoComponent,
     MatAutocompleteModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+
 
 
 

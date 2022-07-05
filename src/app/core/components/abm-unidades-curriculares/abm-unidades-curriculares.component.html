@@ -50,7 +50,7 @@
             <button *ngIf="eleccion=='Nuevo'" mat-raised-button (click)="nuevaUnidad()" color="primary">+ CREAR</button>
             <button *ngIf="eleccion=='Nuevo'" routerLink="/unidades-curriculares" mat-raised-button  >ATRAS</button>
             <button *ngIf="eleccion=='Modificar'" mat-raised-button (click)="modificarUnidad()" color="primary">EDITAR</button>
-            <button *ngIf="eleccion=='Modificar'" routerLink="/noticias/{{this.selected.id}}" mat-raised-button  >ATRAS</button>
+            <button *ngIf="eleccion=='Modificar'" routerLink="/unidad/{{this.selected.id}}" mat-raised-button  >ATRAS</button>
          
 
     </form>
