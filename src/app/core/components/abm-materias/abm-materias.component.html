@@ -21,18 +21,17 @@
         <section>
             <hr>
             <br>
-            <div class="example-button-row">
+            <div class="nuevo">
                 <button (click)="setEleccion('Nuevo')" mat-raised-button>+Nueva Materia</button>
+                
 
             </div>
         </section>
     </div>
 <!--Para Vista-->
  
-    <div *ngIf ="this.eleccion =='Vista'&& this.selected.id!=-1" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
-       <hr>
-       <br>
-        <h3>Vista Preliminar:</h3>  
+    <div class="card" *ngIf ="this.eleccion =='Vista'&& this.selected.id!=-1" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+
         <mat-card class="example-card">
             <mat-card-title> 
                 <h3><b>ID: </b>{{this.selected.id}}</h3>
@@ -87,6 +86,7 @@
         <button *ngIf ="this.eleccion =='Nuevo'" (click)="newMateria()" mat-raised-button color="primary">+ Crear</button>
         <button *ngIf ="this.eleccion =='Nuevo'" (click)="setEleccion('Vista')" mat-raised-button>Atras</button>
     </form>
+    <br>
 
 </div>
 

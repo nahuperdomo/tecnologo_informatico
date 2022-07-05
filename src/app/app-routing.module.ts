@@ -15,6 +15,7 @@ import { AuthenticateService } from './core/services/authenticate.service';
 import { VerNoticiaComponent } from './core/components/ver-noticia/ver-noticia.component';
 import { TodosDocumentosComponent } from './core/components/todos-documentos/todos-documentos.component';
 import { VerUnidadComponent } from './core/components/ver-unidad/ver-unidad.component';
+import { PreviasComponent } from './core/components/previas/previas.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent } ,
@@ -33,8 +34,7 @@ const routes: Routes = [
   {path:'noticias/:id', component:VerNoticiaComponent},
   {path:'todos-los-documentos', component:TodosDocumentosComponent},
   {path: 'unidad/:id', component: VerUnidadComponent},
- 
-
+  {path: 'previas/:id', component: PreviasComponent},
 ];
 
 
