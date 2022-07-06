@@ -18,12 +18,16 @@ export class AbmDocumentosComponent implements OnInit {
     newEstado : new FormControl(''),
     newTipo : new FormControl(''),
   });
-  public selected :Documento = new Documento(0, "Documento1", "Programacion", "soyunpdf", true);
+  public selected :Documento = new Documento(-1, "", "", "", true);
   public eleccion = "Vista";
   public documentos : Documento[] = [];
   public pdf64 = "";
+  public cargando: boolean = false;
 
-  constructor(private servDocumento: DocumentoService,  private router: Router) { }
+  constructor(private servDocumento: DocumentoService,  private router: Router, private rutaActiva: ActivatedRoute) { 
+  }
+
+  
 
   public setEleccion (eleccion: string): void {
     this.eleccion = eleccion;
@@ -59,22 +63,7 @@ export class AbmDocumentosComponent implements OnInit {
       });
     }
   }
-/* por si lo necesitamos
-  modificar(){
-    this.selected.titulo = "Tablas de inportancia, todos los estudiantes descarguen";
-    this.selected.tipo = "INFORMACION_CARRERA";
-    this.selected.documentoPDF = this.pdf64;
-    this.selected.activo = true;
-    this.selected.id = 6;
-    this.servDocumento.updateDocumento(this.selected.id,this.selected).subscribe({
-      next: value =>  {let id = value.id;
-                        alert("Documento Modificada")
-                        this.router.navigate(['/documentos/']);
-                      },
-      error: err => { alert('Error al modificar documento: ' + err) }
-    });
-  }
-*/
+
   subirPDF (event: any) {
     const file = event.target.files[0];
     if(!file){

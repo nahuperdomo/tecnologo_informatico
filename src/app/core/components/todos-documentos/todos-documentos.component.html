@@ -6,43 +6,58 @@
    <div *ngIf="cargando == true" class="spinner" >
     <ns-cargando></ns-cargando>
    </div>
-   <div class="nueva">
+   <div *ngIf="cargando==false"class="nueva">
     <button mat-raised-button  color="primary" routerLink="/abm-noticias" >Nuevo Documento</button>
    </div>
-  
-    <mat-card *ngFor="let documento of documentos" fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" class="noticia">
+</div>
 
-      <div fxFlex="70">
-          <mat-card-title>{{documento.titulo}}</mat-card-title>
-          <mat-card-title>{{documento.tipo}}</mat-card-title>
-          <mat-card-title>{{documento.activo}}</mat-card-title>
-          <hr>
-          <mat-card-actions align="end">
-            <button mat-button>Modificar</button>
-            <button mat-button>Eliminar</button>
-            <button mat-button >Ver Documento</button>
-          </mat-card-actions>
-        </div>
+<div *ngIf="cargando == false" fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+    <mat-card *ngFor="let documento of documentos" fxLayout= "column" fxLayout.gt-xs="column" fxLayoutAlign="space-around center" class="noticia">
+
+
+              <mat-card-title>
+                {{documento.titulo}}
+              </mat-card-title>
+              <hr>
+              <mat-card-subtitle>
+                {{documento.tipo}}
+               <p *ngIf = "documento.activo == true">Estado activo</p>
+                <p *ngIf = "documento.activo == false">Estado inactivo</p>
+              <hr>
+              </mat-card-subtitle>
+            <mat-card-actions align="end">
+              
+                <button mat-raised-button color="warn" *ngIf="documento.activo" (click)="activarDesactivar(documento);">Desactivar</button>
+                <button mat-raised-button color="accent" *ngIf="documento.activo == false" (click)="activarDesactivar(documento);">Activar</button>
+
+                <button mat-raised-button color="primary"  routerLink="/abm-documento/{{documento.id}}" >Modificar</button>
+                <button mat-raised-button  >Ver</button>
+              </mat-card-actions>
+              
+
       </mat-card> 
-  
-   
-      <br>
-  
-  <mat-paginator *ngIf="cargando == false" [length]="length"
-                 [pageSize]="pageSize"
-                 [pageSizeOptions]="pageSizeOptions"
-                 (page)="pageEvent = $event"
-                 aria-label="Select page"
-                 (click)="paginador(pageEvent.pageIndex,pageEvent.pageSize)">
-  </mat-paginator>
-  
+      
+      
+          <br>
+
+      <mat-paginator *ngIf="cargando == false" [length]="length"
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page)="pageEvent = $event"
+                    aria-label="Select page"
+                    (click)="paginador(pageEvent.pageIndex,pageEvent.pageSize)">
+      </mat-paginator>
+</div>
+<div *ngIf="cargando == false" fxLayout="column" fxLayoutAlign="space-around center" class="example-container"></div>
+
+  <!--
   <div *ngIf="pageEvent" >
     <h5>Page Change Event Properties</h5>
     <div>List length: {{pageEvent.length}}</div>
     <div>Page size: {{pageEvent.pageSize}}</div>
     <div>Page index: {{pageEvent.pageIndex}}</div>
   </div>
-  
+  -->
   
   
    

@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'abm-noticias', component: AbmNoticiasComponent },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'abm-documento', component: AbmDocumentosComponent },
+  { path: 'abm-documento/:id', component: AbmDocumentosComponent },
   { path: 'ver-documentos', component: VerDocumentosComponent},
   { path: 'abm-materias', component: AbmMateriasComponent },
   { path: 'abm-u-c', component: AbmUnidadesCurricularesComponent },
