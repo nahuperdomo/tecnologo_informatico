@@ -3,7 +3,7 @@
 </div>
 <div class="card">
   <mat-card class="example-card" class="card">
-    <mat-card-actions>
+    <mat-card-actions *ngIf="localStorage.getItem('token') != null">
       <button color="primary" mat-raised-button routerLink="/abm-noticias/{{this.noticia.id}}">EDITAR</button>
       <button color="warn" (click)="deleteNoticia()" mat-raised-button>BORRAR</button>
       <button  mat-raised-button routerLink="/noticias">ATRAS</button>

@@ -20,6 +20,7 @@ export class VerNoticiaComponent implements OnInit {
   constructor(private rutaActiva: ActivatedRoute, private servNoticia: NoticiaService, private router: Router) { }
   public noticia = new Noticia(0,'','','','');
   public cargando = true;
+  public localStorage =  localStorage;
   ngOnInit(): void {
     let id : any;
     id = this.rutaActiva.snapshot.params['id'];

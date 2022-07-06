@@ -8,7 +8,8 @@ body{
    
 }
 body{
- background-image: url('https://img.freepik.com/vector-gratis/fondo-tecnologia-digital-alambre-malla-red_1017-27428.jpg?w=2000');   
+ background-image: url('https://img.freepik.com/vector-gratis/fondo-tecnologia-digital-alambre-malla-red_1017-27428.jpg?w=2000');
+ width: 100%;   
 }
 h1,h2,h3,h4,h4,p{
     font-family: 'Roboto', sans-serif;
