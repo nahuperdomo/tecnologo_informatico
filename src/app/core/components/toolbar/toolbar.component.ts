@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuMobileComponent } from '../menu-mobile/menu-mobile.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'ns-toolbar',
   templateUrl: './toolbar.component.html',
@@ -10,6 +11,7 @@ export class ToolbarComponent implements OnInit {
   public menu = 0;
   public session: boolean;
   public localStorage = localStorage;
+  router: any;
   constructor() { 
     if(localStorage.getItem("token")==null){
       this.session=false;
@@ -41,6 +43,7 @@ export class ToolbarComponent implements OnInit {
   cerrarSesion(){
     localStorage.removeItem("token");
     this.session=false;
+    this.router.navigate(['']);
   }
 
 }
