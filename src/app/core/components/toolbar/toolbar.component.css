@@ -10,6 +10,9 @@ span:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    height: auto;
+    
 }
 
 
@@ -59,4 +62,11 @@ example-menu {
   }
   .example-standalone-item[aria-expanded='true'] {
     background-color: rgb(208, 208, 208);
+  }
+
+  .centrado-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }

@@ -5,17 +5,15 @@
         <img src="../../../../assets/LogoUTEC.png" class="logo"alt="Logo Utec" width="45rem" height="45rem">
       </span>
       <span fxFlex="2 1 auto"></span>
-      <button fxLayoutAlign="center center" fxHide fxShow.gt-xs mat-button (click)="mostrarOpciones()"> 
+      <button fxLayoutAlign="center center" fxHide fxShow.gt-sm mat-button (click)="mostrarOpciones()"> 
         <mat-icon>menu</mat-icon>
       </button>
+      <ns-menu-mobile fxHide.gt-sm fxShow></ns-menu-mobile>
       <a *ngIf="this.session==false" routerLink="/login" fxLayoutAlign="center center" fxHide fxShow.gt-xs mat-button >
         Iniciar Sesion
       </a>
 
-      <button fxLayoutAlign="center center" fxHide.gt-xs fxShow mat-button (click)="mostrarMenu()"> 
-        <mat-icon>menu</mat-icon>
-      </button>
-       
+
     </mat-toolbar-row>
 
 </mat-toolbar>
@@ -31,15 +29,15 @@
     </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-toolbar color="primary" fxLayout="column"   fxShow *ngIf="this.menu == 1">
-  <mat-toolbar-row>
+<mat-toolbar class="centrado-wrap" color="primary" fxLayout="column"   fxShow *ngIf="this.menu == 1">
+  <mat-toolbar-row class="centrado-wrap" fxShow.gt-sm fxHide>
      
       <div class="menuOpciones">
           <a *ngIf="this.session==true"class="btn-mio" routerLink="/abm-documento" fxLayoutAlign="center center" fxShow mat-button>
-             ABM Documentos de interes
+             Documentos de interes
             </a>
             <a *ngIf="this.session==true" routerLink="/abm-materias" fxLayoutAlign="center center" fxShow mat-button>
-             ABM Materias
+             Materias
             </a>
              <a *ngIf="this.session==true" routerLink="/unidades-curriculares" fxLayoutAlign="center center" fxShow mat-button>
               Unidades Curriculares
@@ -55,6 +53,9 @@
              </a>
       </div> 
   </mat-toolbar-row>
+
+
+
 </mat-toolbar>
 
 

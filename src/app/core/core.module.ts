@@ -33,6 +33,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { TodosDocumentosComponent } from './components/todos-documentos/todos-documentos.component';
 import { PreviasComponent } from './components/previas/previas.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { MenuMobileComponent } from './components/menu-mobile/menu-mobile.component';
 
 
 
@@ -48,7 +50,8 @@ import { PreviasComponent } from './components/previas/previas.component';
     CargandoComponent,
     VerNoticiaComponent,
     TodosDocumentosComponent,
-    PreviasComponent
+    PreviasComponent,
+    MenuMobileComponent
   ],
   imports: [
     CommonModule,
@@ -77,6 +80,8 @@ import { PreviasComponent } from './components/previas/previas.component';
     MatProgressSpinnerModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
+    MatMenuModule,
+    
 
 
 
@@ -106,6 +111,7 @@ import { PreviasComponent } from './components/previas/previas.component';
     CargandoComponent,
     MatAutocompleteModule,
     MatSlideToggleModule,
+    MatMenuModule,
 
 
 
