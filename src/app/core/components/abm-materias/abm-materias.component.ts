@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./abm-materias.component.css']
 })
 export class AbmMateriasComponent implements OnInit {
-
+  public localStorage = localStorage;
   public eleccion = "Vista";
   public selected: Materia;
   public materias: Materia[] = [];

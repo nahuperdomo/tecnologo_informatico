@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./noticias.component.css']
 })
 export class NoticiasComponent implements OnInit {
+  public localStorage = localStorage;
   length = 0;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10];

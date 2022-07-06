@@ -9,6 +9,7 @@ export class ToolbarComponent implements OnInit {
   public opciones = 1;
   public menu = 0;
   public session: boolean;
+  public localStorage = localStorage;
   constructor() { 
     if(localStorage.getItem("token")==null){
       this.session=false;
@@ -35,6 +36,11 @@ export class ToolbarComponent implements OnInit {
       }else{
         this.menu=1;
       }
+  }
+
+  cerrarSesion(){
+    localStorage.removeItem("token");
+    this.session=false;
   }
 
 }

@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./ver-documentos.component.css']
 })
 export class VerDocumentosComponent implements OnInit {
-
+  public localStorage = localStorage;
   public documentosInteres : Documento[] = [];
   public documentosOportunidades : Documento[] = [];
   public documentosInformacion : Documento[] = [];

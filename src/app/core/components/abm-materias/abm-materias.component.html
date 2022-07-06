@@ -44,8 +44,10 @@
                 <br>
                 <h4><b>CREDITOS MINIMOS:</b> {{this.selected.creditosMinimos}}</h4>
            <hr>
-                <button (click)="setEleccion('Modificar')" mat-raised-button color="primary">*Editar Materia</button>
-                <button (click)="deleteMateria()" mat-raised-button color="warn" >Borrar Materia</button>
+                <div *ngIf="localStorage.getItem('token') != null">
+                    <button (click)="setEleccion('Modificar')" mat-raised-button color="primary">*Editar Materia</button>
+                    <button (click)="deleteMateria()" mat-raised-button color="warn" >Borrar Materia</button>
+                </div>
             </mat-card-content>
         </mat-card>
 

@@ -2,7 +2,9 @@
     <h1>DOCUMENTOS DE INTERES</h1>
 </div>
 <div fxLayout="column" fxLayoutAlign="space-around center" >
-  <button  mat-raised-button color='primary' routerLink="/abm-documento" >Nuevo documento</button>
+  <div *ngIf="localStorage.getItem('token') != null">
+    <button  mat-raised-button color='primary' routerLink="/abm-documento" >Nuevo documento</button>
+  </div>
         <mat-tab-group (selectedIndexChange) ="setTipo (''+$event)">
             <mat-tab (click)="setTipo('INFORMACION_CARRERA')" label="Informacion Carrera" >
           <br>

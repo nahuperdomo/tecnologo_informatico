@@ -8,6 +8,11 @@
       <button fxLayoutAlign="center center" fxHide fxShow.gt-sm mat-button (click)="mostrarOpciones()"> 
         <mat-icon>menu</mat-icon>
       </button>
+      <div *ngIf="localStorage.getItem('token') != null" >
+        <button mat-button (click)="cerrarSesion()">
+          Cerrar Sesion 
+        </button>
+      </div>
       <ns-menu-mobile fxHide.gt-sm fxShow></ns-menu-mobile>
       <a *ngIf="this.session==false" routerLink="/login" fxLayoutAlign="center center" fxHide fxShow.gt-xs mat-button >
         Iniciar Sesion

@@ -6,7 +6,7 @@
  <div *ngIf="cargando == true" class="spinner" >
   <ns-cargando></ns-cargando>
  </div>
- <div class="nueva">
+ <div class="nueva" *ngIf="localStorage.getItem('token') != null" >
   <button mat-raised-button  color="primary" routerLink="/abm-noticias" >Nueva Noticia</button>
  </div>
 
