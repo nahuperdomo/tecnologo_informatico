@@ -14,8 +14,8 @@ import Swal from 'sweetalert2';
 export class NoticiasComponent implements OnInit {
   public localStorage = localStorage;
   length = 0;
-  pageSize = 10;
-  pageSizeOptions: number[] = [5, 10];
+  pageSize = 5;
+  pageSizeOptions: number[] = [];
   page = 0;
   cargando = true;
   pageEvent !: NewType;
@@ -31,8 +31,7 @@ export class NoticiasComponent implements OnInit {
     this.page=pagina;
     this.pageSize=cantidad;
     this.ngOnInit();
-    console.log(this.page);
-    console.log(this.pageSize);
+
   }
 
   public cortadorString(not:Noticia[]): Noticia[]{
@@ -51,11 +50,12 @@ export class NoticiasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let bool=true;
+    this.cargando = true;
     let inicio = this.page * this.pageSize;
     let fin = inicio + this.pageSize;
     this.servNoticia.getNoticias(inicio,fin).subscribe({
-      next: value => {this.noticias = this.cortadorString(value.list) ,
+      next: value => {this.noticias = [];
+                      this.noticias = this.cortadorString(value.list) ,
                       this.length = value.size
       },
       error: err => { Swal.fire('Error al cargar las noticias: ' + err)},

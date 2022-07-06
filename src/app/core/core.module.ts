@@ -35,6 +35,7 @@ import { TodosDocumentosComponent } from './components/todos-documentos/todos-do
 import { PreviasComponent } from './components/previas/previas.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { MenuMobileComponent } from './components/menu-mobile/menu-mobile.component';
+import { PantallaErrorComponent } from './components/pantalla-error/pantalla-error.component';
 
 
 
@@ -51,7 +52,8 @@ import { MenuMobileComponent } from './components/menu-mobile/menu-mobile.compon
     VerNoticiaComponent,
     TodosDocumentosComponent,
     PreviasComponent,
-    MenuMobileComponent
+    MenuMobileComponent,
+    PantallaErrorComponent
   ],
   imports: [
     CommonModule,

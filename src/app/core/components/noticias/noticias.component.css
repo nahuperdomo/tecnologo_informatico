@@ -44,3 +44,8 @@
   margin-top: 1.5rem;
   margin-bottom: 1rem;
 }
+.envolvedor{
+max-width: 100%;
+min-width: 100%;
+min-height: 10rem;
+}

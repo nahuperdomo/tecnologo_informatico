@@ -12,37 +12,53 @@
   
     <mat-card *ngFor="let documento of documentos" fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" class="noticia">
 
-      <div fxFlex="70">
+      <div *ngIf="cargando == false && eleccion=='Vista'" fxFlex="70">
           <mat-card-title>{{documento.titulo}}</mat-card-title>
           <mat-card-title>{{documento.tipo}}</mat-card-title>
           <mat-card-title>{{documento.activo}}</mat-card-title>
           <hr>
           <mat-card-actions align="end">
-            <button mat-button>Modificar</button>
+            <button mat-button (click)="mostrarModificaciones(documento)">Modificar</button>
             <button mat-button>Eliminar</button>
             <button mat-button >Ver Documento</button>
           </mat-card-actions>
         </div>
-      </mat-card> 
+    </mat-card>
+        <form *ngIf="cargando == false && eleccion=='Modificar'" action="" fxLayout="column" fxFlex="60"  fxLayoutAlign="center" [formGroup]="DocumentoForm" >
+        
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>TITULO:</mat-label>
+            <input formControlName="Titulo" matInput placeholder="Ej. Teorico RIA">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>CATEGORIA:</mat-label>
+            <mat-select formControlName="Tipo">
+                <mat-option selected value="INFORMACION_CARRERA">INFORMACION_CARRERA</mat-option>
+                <mat-option value="OPORTUNIDADES_LABORALES">OPORTUNIDADES_LABORALES</mat-option>
+                <mat-option value="DATOS_DE_INTERES">DATOS_DE_INTERES</mat-option>
+           </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>ESTADO:</mat-label>
+            <mat-select formControlName="Estado" >
+                <mat-option  value="true">Activo</mat-option>
+                <mat-option value="false">Inactivo</mat-option>
+           </mat-select>
+        </mat-form-field>
+        </form>
+
   
    
       <br>
   
-  <mat-paginator *ngIf="cargando == false" [length]="length"
+  <mat-paginator *ngIf="cargando == false && eleccion=='Vista'" [length]="length"
                  [pageSize]="pageSize"
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="pageEvent = $event"
                  aria-label="Select page"
                  (click)="paginador(pageEvent.pageIndex,pageEvent.pageSize)">
   </mat-paginator>
-  
-  <div *ngIf="pageEvent" >
-    <h5>Page Change Event Properties</h5>
-    <div>List length: {{pageEvent.length}}</div>
-    <div>Page size: {{pageEvent.pageSize}}</div>
-    <div>Page index: {{pageEvent.pageIndex}}</div>
-  </div>
-  
-  
+
   
    

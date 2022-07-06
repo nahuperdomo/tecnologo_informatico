@@ -16,11 +16,14 @@ import { VerNoticiaComponent } from './core/components/ver-noticia/ver-noticia.c
 import { TodosDocumentosComponent } from './core/components/todos-documentos/todos-documentos.component';
 import { VerUnidadComponent } from './core/components/ver-unidad/ver-unidad.component';
 import { PreviasComponent } from './core/components/previas/previas.component';
+import { CarouselComponent } from './core/components/carousel/carousel.component';
+import { PantallaErrorComponent } from './core/components/pantalla-error/pantalla-error.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent } ,
   { path: 'toolbar', component: ToolbarComponent } , 
-  { path: '', component:InicioComponent },
+  { path: '', component: InicioComponent },
   { path: 'abm-noticias/:id', component: AbmNoticiasComponent },
   { path: 'abm-noticias', component: AbmNoticiasComponent },
   { path: 'noticias', component: NoticiasComponent },
@@ -35,6 +38,8 @@ const routes: Routes = [
   {path:'todos-los-documentos', component:TodosDocumentosComponent},
   {path: 'unidad/:id', component: VerUnidadComponent},
   {path: 'previas/:id', component: PreviasComponent},
+
+
 ];
 
 
