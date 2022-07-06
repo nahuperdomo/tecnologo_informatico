@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuMobileComponent } from '../menu-mobile/menu-mobile.component';
 import { Router } from '@angular/router';
+import { switchAll } from 'rxjs';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'ns-toolbar',
   templateUrl: './toolbar.component.html',
@@ -43,6 +45,11 @@ export class ToolbarComponent implements OnInit {
   cerrarSesion(){
     localStorage.removeItem("token");
     this.session=false;
+    Swal.fire(
+      'Sesion cerrada con exito',
+      'Nos vemos pronto !! ',
+      'success'
+    )
     this.router.navigate(['']);
   }
 
