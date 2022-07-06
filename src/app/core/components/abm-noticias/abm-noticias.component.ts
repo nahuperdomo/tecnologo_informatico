@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 
@@ -35,7 +36,7 @@ export class AbmNoticiasComponent implements OnInit {
           this.newNoticiaForm.controls['newFechaCaducidad'].setValue(this.selected.fechaCaducidad);
           this.imgen64=this.selected.imagen;
         },
-        error: err => { alert('Error al obtener la noticia: '),
+        error: err => { Swal.fire('Error al obtener la noticia: '),
                           this.router.navigate(['/']);},
         complete: () => { this.cargando = false; }
       });
@@ -69,11 +70,11 @@ export class AbmNoticiasComponent implements OnInit {
       this.cargando = true;
       this.servNoticia.updateNoticia(this.selected).subscribe({
         next: value => {let id = value.id;
-                          alert("Noticia Modificada")
+                          Swal.fire("Noticia Modificada")
                           this.newNoticiaForm.reset();
                           this.router.navigate(['/noticias/'+id]);
                         },
-        error: err => { alert('Error al actualizar: ') },
+        error: err => { Swal.fire('Error al actualizar: ') },
         complete: () => { this.cargando = false; }
       });
     }
@@ -85,12 +86,12 @@ export class AbmNoticiasComponent implements OnInit {
       this.cargando = true;
       this.servNoticia.newNoticia(this.selected).subscribe({
         next: value => {let id = value.id;
-                        alert("NOTICIA CREADA")
+                        Swal.fire("NOTICIA CREADA")
                         this.newNoticiaForm.reset();
                         this.router.navigate(['/noticias/'+id]);
 
                       },
-        error: err => { alert('Error al agregar la noticia: '),
+        error: err => { Swal.fire('Error al agregar la noticia: '),
                     this.router.navigate(['/']);},
         complete: () => { this.cargando = false; }
         
@@ -98,7 +99,7 @@ export class AbmNoticiasComponent implements OnInit {
       this.newNoticiaForm.reset();
       
     }else{
-      alert('Error al agregar la noticia, revise los campos');
+      Swal.fire('Error al agregar la noticia, revise los campos');
     }
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginModel } from '../../models/login-model';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.servLogin.logear(log).subscribe({
       next: value => localStorage.setItem('token', value.token),
-      error: err => { alert('Error al logear revise su usuario o contraseña') }
+      error: err => { Swal.fire('Error al logear revise su usuario o contraseña') }
     });
    if (localStorage.getItem('token') != null) {
     window.location.href = '';

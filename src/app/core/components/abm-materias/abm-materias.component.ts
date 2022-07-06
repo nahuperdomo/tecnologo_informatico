@@ -4,6 +4,7 @@ import { MateriaService } from '../../services/materia.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CargandoComponent } from '../cargando/cargando.component';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -56,12 +57,12 @@ export class AbmMateriasComponent implements OnInit {
         next: value => {this.selected = value,
                          this.ngOnInit();
                         this.router.navigate(['/abm-materias']); },
-        error: err => { alert('Error al crear la materia: ' + err)},
+        error: err => { Swal.fire('Error al crear la materia: ' + err)},
         complete: () => { this.cargando= false; }
     });
       this.newMateriaForm.reset();
     }else{
-      alert("Falla! Revise que tenga todos los campos");
+      Swal.fire("Falla! Revise que tenga todos los campos");
     }	
   }
   
@@ -75,13 +76,13 @@ export class AbmMateriasComponent implements OnInit {
                         this.ngOnInit();
                         this.eleccion = "Vista",
                         this.router.navigate(['/abm-materias']); },
-        error: err => { alert('Error al crear la materia: ' + err) },
+        error: err => { Swal.fire('Error al crear la materia: ' + err) },
         complete: () => { this.cargando= false; }
     });
     this.ngOnInit();
     this.newMateriaForm.reset();
     }else{
-      alert("Falla! Revise que tenga todos los campos");
+      Swal.fire("Falla! Revise que tenga todos los campos");
     }
   }
 
@@ -93,7 +94,7 @@ export class AbmMateriasComponent implements OnInit {
                         this.selected = new Materia(-1, "", "",0);
                         this.eleccion = "Vista",
                       this.router.navigate(['/abm-materias']); },
-        error: err => { alert('Error al eliminar la materia: ' + err) },
+        error: err => { Swal.fire('Error al eliminar la materia: ' + err) },
         complete: () => { this.cargando= false; }
     });
    
@@ -105,7 +106,7 @@ export class AbmMateriasComponent implements OnInit {
     this.cargando= true;
     this.servMateria.getMaterias().subscribe({
       next: value => this.materias = value,
-      error: err => { alert('Error al cargar las materias: ' + err) },
+      error: err => { Swal.fire('Error al cargar las materias: ' + err) },
       complete: () => { this.cargando = false; }
     });
     this.eleccion = "Vista";

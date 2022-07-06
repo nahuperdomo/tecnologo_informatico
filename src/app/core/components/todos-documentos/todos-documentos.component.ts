@@ -4,6 +4,8 @@ import {CargandoComponent} from '../../components/cargando/cargando.component';
 type NewType = PageEvent;
 import { Documento } from '../../models/documento';
 import { DocumentoService } from '../../services/documento.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'ns-todos-documentos',
   templateUrl: './todos-documentos.component.html',
@@ -41,7 +43,7 @@ export class TodosDocumentosComponent implements OnInit {
         this.length = value.size
         this.documentos = value.list;
       },
-      error: err => { alert('Error al cargar los documentos: ' + err)},
+      error: err => { Swal.fire('Error al cargar los documentos: ' + err)},
       complete: () => {this.cargando  = false;}
     });
 

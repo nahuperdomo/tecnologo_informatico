@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CargandoComponent } from '../cargando/cargando.component';
 import { UnidadesCurricularesService} from '../../services/unidades-curriculares.service';
 import { Materia } from '../../models/materia';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ns-ver-unidad',
@@ -23,9 +24,9 @@ export class VerUnidadComponent implements OnInit {
    public deleteUnidad(){
     this.cargando = true;
     this.servUnidadesCurriculares.deleteUnidadCurricular(this.unidad.id).subscribe({
-      next: value => {alert('Unidad eliminada'),
+      next: value => {Swal.fire('Unidad eliminada'),
                       this.router.navigate(['/unidades-curriculares'])},
-      error: err => { alert('Error al eliminar la unidad curricular: ' + err)},
+      error: err => { Swal.fire('Error al eliminar la unidad curricular: ' + err)},
       complete: () => { this.cargando = false }
     });
   }
@@ -36,7 +37,7 @@ export class VerUnidadComponent implements OnInit {
         next: value => {
           this.unidad = value;
         },
-        error: err => { alert('Error al cargar las noticias: ' + err)},
+        error: err => { Swal.fire('Error al cargar las noticias: ' + err)},
         complete: () => {this.cargando = false;}
       });
   }

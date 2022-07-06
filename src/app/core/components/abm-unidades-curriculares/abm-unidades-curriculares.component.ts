@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 import {Previatura} from '../../models/previatura';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
                         this.newUnidadForm.controls['newSemestre'].setValue(""+this.selected.semestre),
                         this.newUnidadForm.controls['newMateria'].setValue(this.selected.materia.id),
                         this.doc64 = this.selected.documento},
-        error: err => { alert('Error al cargar la unidad curricular: ' + err),
+        error: err => { Swal.fire('Error al cargar la unidad curricular: ' + err),
                         this.router.navigate(['/unidad/'+this.rutaActiva.snapshot.params['id']])},
         complete: () => { this.cargando = false }
       });
@@ -73,14 +74,14 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
         );
         this.cargando = true;
         this.servUnidadesCurriculares.newUnidadCurricular(this.selected).subscribe({
-        next: value => { alert('Unidad curricular creada con éxito'),
+        next: value => { Swal.fire('Unidad curricular creada con éxito'),
                         this.selected = value,
                         this.router.navigate(['/unidad/'+this.selected.id])},
-        error: err => { alert('Error al crear la unidad curricular: ') },
+        error: err => { Swal.fire('Error al crear la unidad curricular: ') },
         complete: () => { this.cargando = false }
       });
     }else{
-      alert ("Complete todos los campos");
+      Swal.fire ("Complete todos los campos");
     }
   }
 
@@ -98,12 +99,12 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
       this.selected.creditos = parseInt(this.newUnidadForm.controls['newCreditos'].value);
       this.selected.semestre = parseInt(this.newUnidadForm.controls['newSemestre'].value);
       this.servUnidadesCurriculares.updateUnidadCurricular(this.selected).subscribe({
-        next: value => { alert ("Unidad curricular modificada") 
+        next: value => { Swal.fire ("Unidad curricular modificada") 
                         this.router.navigate(['/unidad/'+this.selected.id]); },
-        error: err => { alert('Error al modificar la unidad curricular: ') },
+        error: err => { Swal.fire('Error al modificar la unidad curricular: ') },
       });
     }else{
-      alert ("Complete todos los campos");
+      Swal.fire ("Complete todos los campos");
     }
   }
 
@@ -135,12 +136,12 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
   ngOnInit(): void {
    this.servUnidadesCurriculares.getUnidadesCurriculares( ).subscribe({
       next: value => this.previas = value,
-      error: err => { alert('Error al cargar las materias: ' + err) },
+      error: err => { Swal.fire('Error al cargar las materias: ' + err) },
       complete: () => { this.cargando = false; }
     });
     this.servMateria.getMaterias().subscribe({
       next: value => this.materias = value,
-      error: err => { alert('Error al cargar las Materias' + err.message), 
+      error: err => { Swal.fire('Error al cargar las Materias' + err.message), 
                       this.router.navigate(['/abm-materias']);},
       complete: () => { this.cargando = false; }
     });

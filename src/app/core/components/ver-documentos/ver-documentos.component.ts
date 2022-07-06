@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Documento } from '../../models/documento';
 import { DocumentoService } from '../../services/documento.service';
 import {CargandoComponent} from '../../components/cargando/cargando.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ns-ver-documentos',
@@ -67,7 +68,7 @@ export class VerDocumentosComponent implements OnInit {
     let documentos: Documento[] = [];
     this.servDocumento.getDocumentosActivos(this.tipo).subscribe({
       next: value =>{ this.reparto(value,tipo) },
-      error: err => { alert('Error al cargar las noticias: ' + err) },
+      error: err => { Swal.fire('Error al cargar las noticias: ' + err) },
       complete: () => { this.cargando = false; }
     });
   }

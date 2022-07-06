@@ -3,6 +3,7 @@ import { Materia } from '../../models/materia';
 import { UnidadCurricular } from '../../models/unidad-curricular';
 import {UnidadesCurricularesService} from '../../services/unidades-curriculares.service';
 import { CargandoComponent } from '../cargando/cargando.component';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -29,7 +30,7 @@ con(item :string){
     this.servUnidad.getUnidadesCurriculares().subscribe({
       next: value => { console.log(value),
                   this.unidadesCurriculares=value},
-      error: err => { alert('Error al cargar las unidades: ' + err) },
+      error: err => { Swal.fire('Error al cargar las unidades: ' + err) },
       complete: () => { this.cargando = false }
     });
   }

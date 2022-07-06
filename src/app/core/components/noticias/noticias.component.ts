@@ -4,6 +4,7 @@ import { Noticia } from '../../models/noticia';
 import {PageEvent} from '@angular/material/paginator';
 import {CargandoComponent} from '../../components/cargando/cargando.component';
 type NewType = PageEvent;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ns-noticias',
@@ -56,7 +57,7 @@ export class NoticiasComponent implements OnInit {
       next: value => {this.noticias = this.cortadorString(value.list) ,
                       this.length = value.size
       },
-      error: err => { alert('Error al cargar las noticias: ' + err)},
+      error: err => { Swal.fire('Error al cargar las noticias: ' + err)},
       complete: () => {this.cargando  = false;}
     });
 

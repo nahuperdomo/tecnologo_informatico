@@ -17,6 +17,7 @@ import { VerNoticiaComponent } from './core/components/ver-noticia/ver-noticia.c
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -6,7 +6,7 @@ import { MatOption } from '@angular/material/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'ns-abm-documentos',
   templateUrl: './abm-documentos.component.html',
@@ -18,6 +18,7 @@ export class AbmDocumentosComponent implements OnInit {
     newEstado : new FormControl(''),
     newTipo : new FormControl(''),
   });
+  
   public selected :Documento = new Documento(0, "Documento1", "Programacion", "soyunpdf", true);
   public eleccion = "Vista";
   public documentos : Documento[] = [];
@@ -50,12 +51,14 @@ export class AbmDocumentosComponent implements OnInit {
       console.log(this.selected);
       this.servDocumento.newDocumento(this.selected).subscribe({
         next: value =>  {let id = value.id;
-                          alert("Noticia Modificada")
+
+                         Swal.fire('Noticia Modificada')
                           this.newDocumentoForm.reset();
                           this.router.navigate(['/documentos/']);
+                          
 
                         },
-        error: err => { alert('Error al crear documento: ') }
+        error: err => {Swal.fire('Error al crear documento: ') }
       });
     }
   }

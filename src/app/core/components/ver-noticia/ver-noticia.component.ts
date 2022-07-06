@@ -6,6 +6,7 @@ import { CargandoComponent } from '../cargando/cargando.component';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 type NewType = PageEvent;
 
@@ -26,17 +27,17 @@ export class VerNoticiaComponent implements OnInit {
       next: value => {
         this.noticia = value;
       },
-      error: err => { alert('Error al cargar las noticias: ' + err)},
+      error: err => { Swal.fire('Error al cargar las noticias: ' + err)},
       complete: () => {this.cargando = false;}
     });
   }
   public deleteNoticia (){
     this.servNoticia.deleteNoticia(this.noticia.id).subscribe({
       next: value => {
-         alert('NOTICIA ELIMINADA CORRECTAMENTE');
+         Swal.fire('NOTICIA ELIMINADA CORRECTAMENTE');
          this.router.navigate(['/noticias']);
       },
-      error: err => { alert('Error al eliminar la noticia')},
+      error: err => { Swal.fire('Error al eliminar la noticia')},
 
     });
   }

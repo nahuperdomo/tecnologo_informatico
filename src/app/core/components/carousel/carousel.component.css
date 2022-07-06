@@ -1,7 +1,7 @@
 img{
   width: 55rem;
   height: 37rem;
-
+  max-width: 100%;
 }
 .texto{
   width: fit-content;

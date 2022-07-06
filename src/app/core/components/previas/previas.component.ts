@@ -6,6 +6,7 @@ import { Materia } from '../../models/materia';
 import { MateriaService } from '../../services/materia.service';
 import { UnidadesCurricularesService } from '../../services/unidades-curriculares.service';
 import { PreviasService } from '../../services/previas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ns-previas',
@@ -28,7 +29,7 @@ export class PreviasComponent implements OnInit {
       this.servUnidadesCurriculares.getUnidadCurricular(this.rutaActiva.snapshot.params['id']).subscribe({
       next: value => {this.previa = value.previas
                       this.unidad = value},
-                      error: err => { alert('Error al cargar la unidad curricular: ' + err),
+                      error: err => { Swal.fire('Error al cargar la unidad curricular: ' + err),
                       this.router.navigate(['/unidad/'+this.rutaActiva.snapshot.params['id']])},
       complete: () => { this.cargando = false },
     });
@@ -46,7 +47,7 @@ export class PreviasComponent implements OnInit {
                       this.ngOnInit();
                       console.log(this.unidad)},
         
-      error: err => { alert('Error al eliminar la previa: ' + err)},
+      error: err => { Swal.fire('Error al eliminar la previa: ' + err)},
       complete: () => { this.cargando = false }
     });
 
@@ -62,12 +63,12 @@ export class PreviasComponent implements OnInit {
       next: value => {this.unidad.previas.push(value),
                       console.log(this.unidad),
                       this.ngOnInit();},
-                      error: err => { alert('Error al crear la previa: ' + err)},
+                      error: err => { Swal.fire('Error al crear la previa: ' + err)},
       complete: () => { this.cargando = false,
                       this.eleccion=="Vista" },
     });
     }else{
-      alert("Debe seleccionar todos los campos")
+      Swal.fire("Debe seleccionar todos los campos")
     }
   }
 
@@ -80,7 +81,7 @@ export class PreviasComponent implements OnInit {
     this.cargando = true;
     this.servUnidadesCurriculares.getUnidadesCurriculares( ).subscribe({
       next: value => {this.unidades = this.filtroUnidades(value) },
-      error: err => { alert('Error al cargar las materias: ' + err) },
+      error: err => { Swal.fire('Error al cargar las materias: ' + err) },
       complete: () => { this.cargando= false }
     });
    

@@ -9,6 +9,7 @@ img{
     align-items: center;
     justify-content: space-around;
     width: 35rem;
+    max-width: 100%;
     background-color: rgb(222, 224, 224);
     padding: 1.5rem;
     border-radius: 1rem;
