@@ -1,12 +1,12 @@
-<div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+<div  fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
     <h1>UNIDADES CURRICULARES</h1>
-    <button  mat-raised-button color='primary' routerLink="/abm-u-c" >Nueva Unidad</button>
+        <button  mat-raised-button color='primary' routerLink="/abm-u-c" >Nueva Unidad</button>
 </div>
 <div class="" *ngIf="cargando == true">
     <ns-cargando></ns-cargando>
 </div>
 <br> 
-<div class="" *ngIf="cargando == false" fxLayout= "row"  fxLayoutAlign="space-around center" >
+<div class="estilo" *ngIf="cargando == false" fxLayout= "row"  fxLayoutAlign="space-around center" >
     
     <div fxLayout="column" fxFlex="80" gt-xs.fxFlex ="99"  fxLayoutAlign="center" >
         <cdk-accordion class="example-accordion">

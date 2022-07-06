@@ -8,7 +8,7 @@
 
 <div *ngIf="cargando == false" fxLayout= "column" fxLayout.gt-xs="row" fxLayoutAlign="space-around center" >
 
-    <div *ngIf="this.eleccion =='Vista'&& materias.length >0" fxLayout="column" fxFlex="20" >
+    <div class="estilo" *ngIf="this.eleccion =='Vista'&& materias.length >0" fxLayout="column" fxFlex="20" >
         <h3><b>SELECCIONE UNA MATERIA</b></h3>
         <mat-form-field *ngIf="materias.length >0" appearance="fill">
             <mat-label>Select an option</mat-label>
@@ -30,9 +30,9 @@
     </div>
 <!--Para Vista-->
  
-    <div class="card" *ngIf ="this.eleccion =='Vista'&& this.selected.id!=-1" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
+    <div class="estilo" class="card" *ngIf ="this.eleccion =='Vista'&& this.selected.id!=-1" fxLayout="column" fxFlex="60"  fxLayoutAlign="center">
 
-        <mat-card class="example-card">
+        <mat-card class="example-card estilo">
             <mat-card-title> 
                 <h3><b>ID: </b>{{this.selected.id}}</h3>
             </mat-card-title>
@@ -60,7 +60,7 @@
     </div>
 <!--Para Modificar o Nuevo-->
 
-    <form [formGroup]="newMateriaForm" *ngIf ="this.eleccion =='Modificar' || this.eleccion == 'Nuevo'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center"> 
+    <form class="estilo" [formGroup]="newMateriaForm" *ngIf ="this.eleccion =='Modificar' || this.eleccion == 'Nuevo'" fxLayout="column" fxFlex="60"  fxLayoutAlign="center"> 
 
         <h3 *ngIf ="this.eleccion =='Modificar'">MODIFICAR:</h3>
         <h3 *ngIf ="this.eleccion =='Nuevo'">CREAR MATERIA:</h3>

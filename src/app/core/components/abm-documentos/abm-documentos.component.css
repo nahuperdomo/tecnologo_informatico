@@ -9,3 +9,16 @@
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+
+.file{
+    background-color: red;
+}
+
+.btn{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.prueba{
+    margin-bottom: 5rem;
+}
