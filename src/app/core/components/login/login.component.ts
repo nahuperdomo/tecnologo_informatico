@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
 
   public logear(): void {
     let log = new LoginModel(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value);
-    console.log(this.loginForm.value);
     this.servLogin.logear(log).subscribe({
       next: value => {localStorage.setItem('token', value.token),
-                      this.router.navigate([''])},
+                      window.location.reload()
+                      },
       error: err => { Swal.fire('Error al logear revise su usuario o contraseña') }
     });
    if (localStorage.getItem('token') != null) {
@@ -37,6 +37,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token') != null){
+      this.router.navigate(['']);
+    }
   }
 
 }

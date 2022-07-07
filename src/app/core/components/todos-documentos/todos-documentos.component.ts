@@ -43,8 +43,6 @@ public DocumentoForm : FormGroup = new FormGroup({
     this.pageSize=cantidad;
     this.cargando = true;
     this.ngOnInit();
-    console.log(this.page);
-    console.log(this.pageSize);
   }
 
   activarDesactivar(doc: Documento){
@@ -73,7 +71,6 @@ public DocumentoForm : FormGroup = new FormGroup({
     });
     this.doc = documento;
     this.eleccion = "Modificar";
-    console.log(this.eleccion);
   }
 
   public verPDF(docPDF:string){

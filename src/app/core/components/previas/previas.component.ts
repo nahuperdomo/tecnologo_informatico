@@ -44,8 +44,7 @@ export class PreviasComponent implements OnInit {
     this.cargando = true;
     this.servPrevias.deletePrevia(idPrevia).subscribe({
       next: value => {this.unidad.previas = this.unidad.previas.filter(previa => previa.id != idPrevia),
-                      this.ngOnInit();
-                      console.log(this.unidad)},
+                      this.ngOnInit();},
         
       error: err => { Swal.fire('Error al eliminar la previa: ' + err)},
       complete: () => { this.cargando = false }
@@ -61,7 +60,6 @@ export class PreviasComponent implements OnInit {
       this.eleccion=="Vista";
       this.servPrevias.agregarPrevia(this.unidad.id, parseInt(previa), tipo).subscribe({
       next: value => {this.unidad.previas.push(value),
-                      console.log(this.unidad),
                       this.ngOnInit();},
                       error: err => { Swal.fire('Error al crear la previa: ' + err)},
       complete: () => { this.cargando = false,
@@ -94,7 +92,6 @@ export class PreviasComponent implements OnInit {
     for(let i = 0; i < this.unidad.previas.length; i++) {
       uni = uni.filter(uni => uni.id != this.unidad.previas[i].previa.id);
     }
-    console.log(uni);
     return uni;
   }
 }

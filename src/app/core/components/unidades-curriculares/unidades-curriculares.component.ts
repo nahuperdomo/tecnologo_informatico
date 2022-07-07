@@ -24,8 +24,7 @@ constructor(private servUnidad: UnidadesCurricularesService) {}
 
   ngOnInit(): void {
     this.servUnidad.getUnidadesCurriculares().subscribe({
-      next: value => { console.log(value),
-                  this.unidadesCurriculares=value},
+      next: value => {this.unidadesCurriculares=value},
       error: err => { Swal.fire('Error al cargar las unidades: ' + err) },
       complete: () => { this.cargando = false }
     });

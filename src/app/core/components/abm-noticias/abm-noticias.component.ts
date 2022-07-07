@@ -47,7 +47,7 @@ export class AbmNoticiasComponent implements OnInit {
   subirFoto (event: any) {
     const file = event.target.files[0];
     if(!file){
-      console.log("ERROR: No se selecciono ninguna imagen");
+      Swal.fire("ERROR: No se selecciono ninguna imagen", "", "error");
     }
     else{
       const reader = new FileReader();

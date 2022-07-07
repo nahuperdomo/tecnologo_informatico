@@ -53,13 +53,11 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
         complete: () => { this.cargando = false }
       });
       this.eleccion="Modificar";
-      console.log(this.selected);
     }
    }
 
 
   public nuevaUnidad (){
-    console.log(this.doc64);
     if(this.newUnidadForm.valid && this.doc64 != ""){
         let idMateria = parseInt(this.newUnidadForm.controls['newMateria'].value);
 
@@ -114,7 +112,7 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
   subirDocumento (event: any) {
     const file = event.target.files[0];
     if(!file){
-      console.log("ERROR: No se selecciono ningun documento");
+      Swal.fire("ERROR: No se selecciono ningun documento " , "", "error");
     }
     else{
       const reader = new FileReader();
@@ -127,7 +125,6 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
 
   public setSelected (unidadesCurricular: UnidadCurricular): void {
     this.selected = unidadesCurricular;
-    console.log(this.selected);
   }
 
   public setEleccion (eleccion: string): void {

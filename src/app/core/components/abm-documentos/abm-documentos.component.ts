@@ -32,7 +32,7 @@ export class AbmDocumentosComponent implements OnInit {
 
   public setSelected (documento: Documento): void {
     this.selected = documento;
-    console.log(this.selected);
+
   }
 
   public newDocumento():void{
@@ -47,12 +47,12 @@ export class AbmDocumentosComponent implements OnInit {
         this.selected.activo=false;
       }
     
-      console.log(this.selected.activo);
-      console.log(this.selected);
+     
+      
       this.servDocumento.newDocumento(this.selected).subscribe({
         next: value =>  {let id = value.id;
 
-                         Swal.fire('Noticia Modificada')
+                         Swal.fire('Documento creado')
                           this.newDocumentoForm.reset();
                           this.router.navigate(['/documentos/']);
                           
@@ -62,26 +62,11 @@ export class AbmDocumentosComponent implements OnInit {
       });
     }
   }
-/* por si lo necesitamos
-  modificar(){
-    this.selected.titulo = "Tablas de inportancia, todos los estudiantes descarguen";
-    this.selected.tipo = "INFORMACION_CARRERA";
-    this.selected.documentoPDF = this.pdf64;
-    this.selected.activo = true;
-    this.selected.id = 6;
-    this.servDocumento.updateDocumento(this.selected.id,this.selected).subscribe({
-      next: value =>  {let id = value.id;
-                        alert("Documento Modificada")
-                        this.router.navigate(['/documentos/']);
-                      },
-      error: err => { alert('Error al modificar documento: ' + err) }
-    });
-  }
-*/
+
   subirPDF (event: any) {
     const file = event.target.files[0];
     if(!file){
-      console.log("ERROR: No se selecciono ninguna imagen");
+      Swal.fire('Error al subir el archivo, falta el PDF ', '', 'error');
     }
     else{
       const reader = new FileReader();

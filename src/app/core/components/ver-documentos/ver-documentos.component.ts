@@ -31,7 +31,6 @@ export class VerDocumentosComponent implements OnInit {
     if(tipo == "2"){
       this.tipo = "DATOS_DE_INTERES";
     }
-      console.log(tipo);
       this.ngOnInit();
 
  
@@ -53,9 +52,7 @@ export class VerDocumentosComponent implements OnInit {
   reparto(docs: Documento[],tipo:string): void {
     if(this.tipo == "INFORMACION_CARRERA"){
       this.documentosInformacion = docs;
-      for(let doc of this.documentosInformacion){
-        console.log(doc.id,doc.titulo);
-      }
+
     }
     if(this.tipo == "OPORTUNIDADES_LABORALES"){
         this.documentosOportunidades = docs;

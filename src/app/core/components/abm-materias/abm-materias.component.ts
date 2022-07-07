@@ -46,7 +46,6 @@ export class AbmMateriasComponent implements OnInit {
 
   public setSelected (materia: Materia): void {
     this.selected = materia;
-    console.log(this.selected);
   }
 
   public newMateria(): void {
