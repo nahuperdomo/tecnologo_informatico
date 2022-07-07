@@ -15,3 +15,18 @@
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
+
+  .docPDF{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100rem;
+    height: 100rem;
+  }
+  
+  .prueba{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

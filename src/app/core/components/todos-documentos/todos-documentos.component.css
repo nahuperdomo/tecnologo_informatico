@@ -67,4 +67,17 @@ margin-bottom: 1rem;
   min-width: 100%;
   min-height: 100 rem;
 }
-  
+
+.docPDF{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100rem;
+  height: 100rem;
+}
+
+.prueba{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

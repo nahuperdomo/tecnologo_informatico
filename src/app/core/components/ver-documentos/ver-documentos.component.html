@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
     <h1>DOCUMENTOS DE INTERES</h1>
 </div>
-<div fxLayout="column" fxLayoutAlign="space-around center" >
+<div fxLayout="column" fxLayoutAlign="space-around center" [hidden]="eleccion != 'vista'" >
   <div *ngIf="localStorage.getItem('token') != null">
     <button  mat-raised-button color='primary' routerLink="/abm-documento" >Nuevo documento</button>
   </div>
@@ -16,6 +16,7 @@
                     <mat-card-title-group>
                       <mat-card-title>{{doc.titulo}}</mat-card-title>
                       <mat-card-subtitle>
+                        <button class="me-1"  mat-raised-button (click)="verPDF(doc.documentoPDF)" >VER </button>
                          <button  mat-raised-button color='primary' (click)="onClickDownloadPdf(doc.documentoPDF,doc.titulo)">DESCARGAR</button> 
                       </mat-card-subtitle>
                       <img mat-card-sm-image src="../../../../assets/documentoPDF.png" >
@@ -35,6 +36,7 @@
                     <mat-card-title-group>
                       <mat-card-title>{{doc.titulo}}</mat-card-title>
                       <mat-card-subtitle>
+                        <button class="me-1"  mat-raised-button (click)="verPDF(doc.documentoPDF)" >VER </button> 
                          <button  mat-raised-button color='primary' (click)="onClickDownloadPdf(doc.documentoPDF,doc.titulo)">DESCARGAR</button> 
                       </mat-card-subtitle>
                       <img mat-card-sm-image src="../../../../assets/documentoPDF.png" >
@@ -53,6 +55,7 @@
                     <mat-card-title-group>
                       <mat-card-title>{{doc.titulo}}</mat-card-title>
                       <mat-card-subtitle>
+                        <button class="me-1"  mat-raised-button (click)="verPDF(doc.documentoPDF)" >VER </button>
                          <button  mat-raised-button color='primary' (click)="onClickDownloadPdf(doc.documentoPDF,doc.titulo)">DESCARGAR</button> 
                       </mat-card-subtitle>
                       <img mat-card-sm-image src="../../../../assets/documentoPDF.png" >
@@ -64,3 +67,12 @@
           </mat-tab-group>
 
 </div>
+<div class="prueba">
+  <button class="mb-4" mat-raised-button color="primary" [hidden]="eleccion != 'PDF'" (click)="setEleccion('vista')">Atras</button>
+</div>
+<div class="prueba">
+  <div [hidden] ="eleccion != 'PDF'"   class="docPDF">
+    <br>
+      <iframe class="mostradorPDF" type="application/pdf" width="100%" height="100%" [src]="PDF(this.pdf)" >DOCUMENTO PDF</iframe>
+  
+  </div>

@@ -3,6 +3,7 @@ import { Documento } from '../../models/documento';
 import { DocumentoService } from '../../services/documento.service';
 import {CargandoComponent} from '../../components/cargando/cargando.component';
 import Swal from 'sweetalert2';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'ns-ver-documentos',
@@ -15,6 +16,8 @@ export class VerDocumentosComponent implements OnInit {
   public documentosOportunidades : Documento[] = [];
   public documentosInformacion : Documento[] = [];
   public cargando = true;
+  public pdf = "";
+  public eleccion = 'vista';
 
   public tipo = "INFORMACION_CARRERA";
 
@@ -33,7 +36,7 @@ export class VerDocumentosComponent implements OnInit {
 
  
   }
-  constructor(private servDocumento: DocumentoService) { }
+  constructor(private servDocumento: DocumentoService, private san: DomSanitizer) { }
   
   downloadPdf(base64String:string, fileName:string) {
     const source = base64String;
@@ -60,8 +63,21 @@ export class VerDocumentosComponent implements OnInit {
     if(this.tipo == "DATOS_DE_INTERES"){
         this.documentosInteres = docs;
     }
-  }
 
+  }
+  public verPDF(docPDF:string){
+    this.eleccion = "PDF"
+    this.pdf=docPDF;
+   
+
+  }
+  public PDF(pdf: string){
+    return this.san.bypassSecurityTrustResourceUrl(pdf);
+  }
+  setEleccion(eleccion: string){
+    this.eleccion = eleccion;
+  }
+  
   ngOnInit(): void {
     this.cargando = true;
     let tipo = this.tipo;
