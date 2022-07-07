@@ -21,10 +21,6 @@ public cargando = true;
 
 constructor(private servUnidad: UnidadesCurricularesService) {}
 
-con(item :string){
-  console.log(item);
-}
-
 
   ngOnInit(): void {
     this.servUnidad.getUnidadesCurriculares().subscribe({

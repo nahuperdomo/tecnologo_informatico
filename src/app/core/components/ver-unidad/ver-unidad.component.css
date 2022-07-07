@@ -45,3 +45,18 @@
     max-width: 60%;
     max-height: auto;
   }
+
+  
+  .docPDF{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100rem;
+    height: 100rem;
+  }
+  
+  .prueba{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
