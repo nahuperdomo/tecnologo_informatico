@@ -7,7 +7,7 @@
    <div *ngIf="cargando == true" class="spinner" >
     <ns-cargando></ns-cargando>
    </div>
-   <div *ngIf="cargando==false && eleccion!='Modificar'"class="nueva">
+   <div *ngIf="cargando==false && eleccion =='Vista'"class="nueva">
     <button  mat-raised-button  color="primary" routerLink="/abm-noticias" >Nuevo Documento</button>
    </div>
 </div>
@@ -32,7 +32,9 @@
                 <button mat-raised-button color="accent" *ngIf="documento.activo == false" (click)="activarDesactivar(documento);">Activar</button>
 
                 <button mat-raised-button color="primary"  (click)="mostrarModificaciones(documento)" >Modificar</button>
-                <button mat-raised-button  >Ver</button>
+                <button mat-raised-button (click)="verPDF(documento.documentoPDF)">Ver</button>
+      
+  
               </mat-card-actions>
               
 
@@ -44,7 +46,7 @@
 
 
 </div>
-<div [hidden]= "cargando == true || eleccion=='Modificar'" fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+<div [hidden]= "cargando == true || eleccion!='Vista'" fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
 <mat-paginator  [length]="length"
 [pageSize]="pageSize"
 [pageSizeOptions]="pageSizeOptions"
@@ -54,7 +56,7 @@ aria-label="Select page"
 </mat-paginator>
 </div>
 <div class="modificar" fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
-  <form class="modificar" [hidden]= "cargando == true || eleccion=='Vista'" fxLayout="column" [formGroup]="DocumentoForm" >
+  <form class="modificar" [hidden]= "cargando == true || eleccion!='Modificar'" fxLayout="column" [formGroup]="DocumentoForm" >
         
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>TITULO:</mat-label>
@@ -83,16 +85,11 @@ aria-label="Select page"
 </div>
 
 
+<div [hidden] ="eleccion != 'PDF'"  fxLayout="column" fxLayoutAlign="space-around center" class="example-container">
+  <br>
 
-  <!--
-  <div *ngIf="pageEvent" >
-    <h5>Page Change Event Properties</h5>
-    <div>List length: {{pageEvent.length}}</div>
-    <div>Page size: {{pageEvent.pageSize}}</div>
-    <div>Page index: {{pageEvent.pageIndex}}</div>
-  </div>
-  -->
-  
+    <iframe class="mostradorPDF" type="application/pdf" width="100%" height="100%" [src]="PDF(this.pdf)" >DOCUMENTO PDF</iframe>
 
-  -->
+</div>
+
  

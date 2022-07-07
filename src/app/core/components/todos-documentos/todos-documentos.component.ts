@@ -7,6 +7,8 @@ import {CargandoComponent} from '../../components/cargando/cargando.component';
 type NewType = PageEvent;
 import { Documento } from '../../models/documento';
 import { DocumentoService } from '../../services/documento.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: 'ns-todos-documentos',
   templateUrl: './todos-documentos.component.html',
@@ -24,6 +26,7 @@ export class TodosDocumentosComponent implements OnInit {
   public documentos : Documento[] = [];
   public eleccion = "Vista";
   public doc = new Documento(-1,"","","",false);
+  public pdf : string ="";
 
 
 public DocumentoForm : FormGroup = new FormGroup({
@@ -33,7 +36,7 @@ public DocumentoForm : FormGroup = new FormGroup({
     });
 
 
-  constructor(private servDocumento: DocumentoService,  private router: Router, private rutaActiva: ActivatedRoute) { 
+  constructor(private servDocumento: DocumentoService,  private router: Router, private rutaActiva: ActivatedRoute, private san: DomSanitizer) { 
   }
   paginador(pagina: number, cantidad: number){
     this.page=pagina;
@@ -60,6 +63,7 @@ public DocumentoForm : FormGroup = new FormGroup({
       complete: () => {this.cargando  = false;}
     });
   }
+
   public mostrarModificaciones(documento: Documento){
     //cargar volores en el formulario
     this.DocumentoForm.setValue({
@@ -70,6 +74,16 @@ public DocumentoForm : FormGroup = new FormGroup({
     this.doc = documento;
     this.eleccion = "Modificar";
     console.log(this.eleccion);
+  }
+
+  public verPDF(docPDF:string){
+    this.eleccion = "PDF"
+    this.pdf=docPDF;
+   
+
+  }
+  public PDF(pdf: string){
+    return this.san.bypassSecurityTrustResourceUrl(pdf);
   }
 
   public guardarModificaciones(){
@@ -133,7 +147,7 @@ public DocumentoForm : FormGroup = new FormGroup({
         this.length = value.size
         this.documentos = value.list;
       },
-      error: err => { alert('Error al cargar los documentos: ' + err)},
+      error: err => { Swal.fire('Error al cargar los documentos')},
       complete: () => {this.cargando  = false;}
     });
 

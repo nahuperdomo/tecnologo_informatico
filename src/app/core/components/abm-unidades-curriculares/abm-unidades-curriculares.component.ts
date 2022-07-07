@@ -76,13 +76,17 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
         this.servUnidadesCurriculares.newUnidadCurricular(this.selected).subscribe({
         next: value => { Swal.fire('Unidad curricular creada con éxito'),
                         this.selected = value,
-                        this.router.navigate(['/unidad/'+this.selected.id])},
-        error: err => { Swal.fire('Error al crear la unidad curricular: ') },
+                        this.rutear()},
+        error: err => { Swal.fire('Error al crear la unidad curricular: ')} ,
         complete: () => { this.cargando = false }
       });
     }else{
       Swal.fire ("Complete todos los campos");
     }
+  }
+  public rutear (){
+    if(this.selected.semestre !=1){this.router.navigate(['/previas/'+this.selected.id])}else{
+      this.router.navigate(['/unidad/'+this.selected.id])}
   }
 
   public modificarUnidad (){
@@ -150,4 +154,6 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
 
   }
 }
+
+
 

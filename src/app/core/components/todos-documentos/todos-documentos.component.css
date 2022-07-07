@@ -55,4 +55,16 @@ margin-bottom: 1rem;
     max-width: 90%;
   }
 }
+
+.mostradorPDF{
+  min-width: 100%;
+  min-height: 100 rem;
+
+   width: 100%;
+}
+
+.contenedorPDF{
+  min-width: 100%;
+  min-height: 100 rem;
+}
   
