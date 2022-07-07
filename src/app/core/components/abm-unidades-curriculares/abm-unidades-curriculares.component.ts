@@ -68,7 +68,7 @@ export class AbmUnidadesCurricularesComponent implements OnInit {
         this.newUnidadForm.controls['newNombre'].value,
         this.newUnidadForm.controls['newDescripcion'].value,
         parseInt(this.newUnidadForm.controls['newCreditos'].value),
-        "",        
+        this.doc64,        
         parseInt(this.newUnidadForm.controls['newSemestre'].value),
         materia
         );

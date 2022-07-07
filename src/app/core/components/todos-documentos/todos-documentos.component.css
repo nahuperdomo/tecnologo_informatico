@@ -44,3 +44,15 @@
 margin-top: 1.5rem;
 margin-bottom: 1rem;
 }
+
+.modificar{
+  min-width: 60%;
+  max-width: 60%;
+}
+@media screen and (max-width: 400px) {
+  .modificar{
+    min-width: 90%;
+    max-width: 90%;
+  }
+}
+  

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {PageEvent} from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import {CargandoComponent} from '../../components/cargando/cargando.component';
 type NewType = PageEvent;
 import { Documento } from '../../models/documento';
@@ -72,16 +73,33 @@ public DocumentoForm : FormGroup = new FormGroup({
   }
 
   public guardarModificaciones(){
+    if(this.DocumentoForm.valid){
     this.cargando = true;
+    this.eleccion='Vista'
+    if(this.DocumentoForm.value.Estado == "true"){
+      this.doc.activo=true;
+    }
+    if(this.DocumentoForm.value.Estado == "false"){
+      this.doc.activo=false;
+    }
+    this.doc.titulo = this.DocumentoForm.value.Titulo;
+    this.doc.tipo = this.DocumentoForm.value.Tipo;
     this.servDocumento.updateDocumento(this.doc.id,this.doc).subscribe({
       next: value => { this.editarArray(value);
                       this.DocumentoForm.reset();
                       this.eleccion = "Vista";
+                      Swal.fire('Documento Modificado'),
+                      this.ngOnInit();
                       },
-      error: err => { alert('Error al cargar los documentos: ' + err)},
+      error: err => {this.eleccion='Modificar', Swal.fire('Error al modificar')},
       complete: () => {this.cargando  = false;} 
     });
+    
+    this.cargando=false;
+  }else{
+    Swal.fire( 'Faltan datos');
   }
+}
 
 
   
@@ -92,6 +110,15 @@ public DocumentoForm : FormGroup = new FormGroup({
         break;
       }
     }
+  }
+
+  public setEleccion(eleccion: string){
+    if(eleccion=="Vista"){
+      this.DocumentoForm.reset();
+      this.eleccion = "Vista";
+      this.ngOnInit();
+    }
+    this.eleccion = eleccion;
   }
 
 
