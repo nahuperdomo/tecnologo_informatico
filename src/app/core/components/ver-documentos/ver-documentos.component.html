@@ -5,7 +5,7 @@
   <div *ngIf="localStorage.getItem('token') != null">
     <button  mat-raised-button color='primary' routerLink="/abm-documento" >Nuevo documento</button>
   </div>
-        <mat-tab-group (selectedIndexChange) ="setTipo (''+$event)">
+        <mat-tab-group class="centrado" (selectedIndexChange) ="setTipo (''+$event)">
             <mat-tab (click)="setTipo('INFORMACION_CARRERA')" label="Informacion Carrera" >
           <br>
               <div *ngIf="cargando == true" class="spinner" >
